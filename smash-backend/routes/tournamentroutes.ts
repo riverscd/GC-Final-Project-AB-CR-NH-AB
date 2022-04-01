@@ -34,7 +34,7 @@ tournamentroutes.get('/tournaments', (req: any, res: any) => {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            "Authorization": "Bearer 95339d7dc9220792c3d97d93fb8b1fa6"
+            "Authorization": "Bearer"
         },
         body: JSON.stringify({
             query,
