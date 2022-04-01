@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function SignUp() {
   const [email, setEmail] = useState("");
@@ -37,6 +38,8 @@ export function SignUp() {
           </button>
         </div>
       </form>
+
+      <Link to="/">Home</Link>
     </div>
   );
 }
