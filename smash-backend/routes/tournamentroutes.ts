@@ -6,8 +6,8 @@ import fetch from 'node-fetch';
 const tournamentroutes = express.Router();
 
 tournamentroutes.get('/tournaments', (req: any, res: any) => {
-    // const perPage = 3;
-    // const videogameId = 287;
+     const perPage = 3;
+     const videogameId = 1;
     const query = `query TournamentsByVideogame($perPage: Int!, $videogameId: ID!) {
         tournaments(query: {
           perPage: $perPage
@@ -38,7 +38,7 @@ tournamentroutes.get('/tournaments', (req: any, res: any) => {
         },
         body: JSON.stringify({
             query,
-            variables: { "perPage": 3, "videogameId" : 287 },
+            variables: { perPage, videogameId },
         })
     })
         .then(r => r.json())
