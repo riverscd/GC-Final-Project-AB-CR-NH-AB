@@ -1,5 +1,6 @@
 import express from "express";
 import fetch from 'node-fetch';
+// import { ProcessEnv } from "../models/envModel";
 
 //import { db } from "../index"
 
@@ -8,6 +9,9 @@ const tournamentroutes = express.Router();
 tournamentroutes.get('/tournaments', (req: any, res: any) => {
      const perPage = 3;
      const videogameId = 1;
+    //  const bearer = 'Bearer';
+    const token = process.env.NODE_ENV_SMASH_AUTH_TOKEN!;
+
     const query = `query TournamentsByVideogame($perPage: Int!, $videogameId: ID!) {
         tournaments(query: {
           perPage: $perPage
@@ -34,7 +38,7 @@ tournamentroutes.get('/tournaments', (req: any, res: any) => {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            "Authorization": "Bearer"
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
             query,

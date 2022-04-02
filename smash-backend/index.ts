@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import pg from 'pg-promise';
 import tournamentroutes from './routes/tournamentroutes';
+import dotenv from 'dotenv';
 
 
 const app = express();
@@ -11,6 +12,10 @@ const port = 3001;
 app.use(cors());
 
 app.use(express.json());
+
+dotenv.config({
+	path: '.env.local'
+  });
 
 // export const db = pg()({
 // 	host:  process.env.DB_HOST,
