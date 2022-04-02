@@ -9,8 +9,7 @@ const tournamentroutes = express.Router();
 tournamentroutes.get('/tournaments', (req: any, res: any) => {
      const perPage = 3;
      const videogameId = 1;
-    //  const bearer = 'Bearer';
-    const token = process.env.NODE_ENV_SMASH_AUTH_TOKEN!;
+    const token = process.env.SMASH_AUTH_TOKEN!;
 
     const query = `query TournamentsByVideogame($perPage: Int!, $videogameId: ID!) {
         tournaments(query: {
