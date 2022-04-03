@@ -14,6 +14,9 @@ import { MyCommunities } from "./components/MyCommunities";
 import { GeneralMessageBoard } from "./components/GeneralMessageBoard";
 import { MyProfile } from "./components/MyProfile";
 import { CommunityEventManager } from "./components/CommunityEventManager";
+import { SiteNavigation } from "./components/SiteNav";
+import { CreateEvent } from "./components/EventForm";
+import { CreateCommunity } from "./components/CommunityForm";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,7 +32,13 @@ ReactDOM.render(
         <Route path="/myevents" element={<MyEvents />} />
         <Route path="/eventfinder" element={<EventFinder />} />
         <Route path="/myprofile" element={<MyProfile />} />
-        <Route path="/communityeventmanager" element={<CommunityEventManager />} />
+        <Route
+          path="/communityeventmanager"
+          element={<CommunityEventManager />}
+        />
+        <Route path="/sitenav" element={<SiteNavigation />} />
+        <Route path="/communityform" element={<CreateCommunity />} />
+        <Route path="/eventform" element={<CreateEvent />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

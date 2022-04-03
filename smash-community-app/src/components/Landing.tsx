@@ -1,17 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export function Landing() {
+  const navigate = useNavigate();
+
+  function handleLogin(e: any) {
+    navigate("/Login");
+  }
+
+  function handleSignUp(e: any) {
+    navigate("/SignUp");
+  }
   return (
     <div>
       <h1>Smash Melee Community</h1>
-      <button>login</button>
-      <button>signup</button>
-
-      <p>These links are here temporarily for while I'm building stuff
-        i plan to remove them so alexis can work out routes properly
-        but i might forget and leave it so pls delete if i do
-      </p>
+      <button className="button" type="submit" onClick={handleLogin}>
+        login
+      </button>
+      <button className="button" type="submit" onClick={handleSignUp}>
+        signup
+      </button>
 
       <ul>
         <li>
@@ -39,10 +47,6 @@ export function Landing() {
           <Link to="/communityeventmanager">Community/Event Manager</Link>
         </li>
       </ul>
-
-
-
-
     </div>
   );
 }
