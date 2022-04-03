@@ -20,33 +20,6 @@ export function Landing() {
       <button className="button" type="submit" onClick={handleSignUp}>
         signup
       </button>
-
-      <ul>
-        <li>
-          <Link to="/login">login</Link>
-        </li>
-        <li>
-          <Link to="/signup">signup</Link>
-        </li>
-        <li>
-          <Link to="/mycommunities">My Communities</Link>
-        </li>
-        <li>
-          <Link to="/communityfinder">Community Finder</Link>
-        </li>
-        <li>
-          <Link to="/myevents">My Events</Link>
-        </li>
-        <li>
-          <Link to="/eventfinder">Event Finder</Link>
-        </li>
-        <li>
-          <Link to="/myprofile">My Profile</Link>
-        </li>
-        <li>
-          <Link to="/communityeventmanager">Community/Event Manager</Link>
-        </li>
-      </ul>
     </div>
   );
 }
