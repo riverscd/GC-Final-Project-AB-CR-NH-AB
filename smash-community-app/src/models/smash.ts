@@ -9,10 +9,10 @@ export interface Data {
 }
 
 export interface Tournaments {
-  nodes: Node[];
+  nodes: TournamentNode[];
 }
 
-export interface Node {
+export interface TournamentNode {
   id: number;
   name: string;
   slug: string;
