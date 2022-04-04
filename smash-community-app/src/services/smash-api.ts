@@ -1,7 +1,9 @@
 import axios from "axios";
 
-// export function getAllTournaments() {
-//   return axios.get("/tournaments").then(function (response: any) {
-//     return response.data;
-//   });
-// }
+export function GetAllTournaments() {
+  return axios
+    .get("http://localhost:3001/tournaments")
+    .then(function (response: any) {
+      return response.data;
+    });
+}
