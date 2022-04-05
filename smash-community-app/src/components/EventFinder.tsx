@@ -15,8 +15,11 @@ export function EventFinder() {
     <div>
       <h1>Event and Tournament Finder</h1>
       <div>
-        {allTournaments.tournaments.nodes.map((tournament: any) => (
-          <li>{`${tournament.name}`}</li>
+        {allTournaments.map((tournament: any) => (
+          <ul>
+            <li>{`${tournament.name}`}</li>
+            <li>{`${tournament.slug}`}</li>
+          </ul>
         ))}
       </div>
       <Link to="/">Home</Link>

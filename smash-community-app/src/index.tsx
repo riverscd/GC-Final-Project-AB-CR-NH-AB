@@ -17,11 +17,13 @@ import { CommunityEventManager } from "./components/CommunityEventManager";
 import { SiteNavigation } from "./components/SiteNav";
 import { CreateEvent } from "./components/EventForm";
 import { CreateCommunity } from "./components/CommunityForm";
+import { Header } from "./components/Header";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
+      <Header />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
