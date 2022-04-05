@@ -26,7 +26,23 @@ tournamentroutes.get('/tournaments', (req: any, res: any) => {
           nodes {
             id
             name
-            slug
+                  city
+                  state
+                  postalCode
+                  venueName
+                  countryCode
+                  endAt
+                  events{competitionTier
+                    name}
+                  hasOfflineEvents
+                  hasOnlineEvents
+                  images{url}
+                  isRegistrationOpen
+                  name
+                  numAttendees
+                  registrationClosesAt
+                  slug
+                  startAt
           }
         }
       }
