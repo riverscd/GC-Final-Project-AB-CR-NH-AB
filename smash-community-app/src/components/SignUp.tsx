@@ -61,3 +61,5 @@ export function SignUp() {
     </div>
   );
 }
+
+// Add validation, API/post

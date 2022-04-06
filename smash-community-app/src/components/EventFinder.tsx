@@ -17,8 +17,13 @@ export function EventFinder() {
       <div>
         {allTournaments.map((tournament: any) => (
           <ul>
-            <li>{`${tournament.name}`}</li>
-            <li>{`${tournament.slug}`}</li>
+            <li>{`tournament name: ${tournament.name}`}</li>
+            <li>{`location: ${tournament.city}, ${tournament.state} ${tournament.postalCode}`}</li>
+            <li>{`venue name: ${tournament.venueName}`}</li>
+            <li>{`number of attendees: ${tournament.numAttendees}`}</li>
+            <li>{`has offline events: ${tournament.hasOfflineEvents}`}</li>
+            <li>{`has online events: ${tournament.hasOnlineEvents}`}</li>
+            <li>{`${tournament.events}`}</li>
           </ul>
         ))}
       </div>

@@ -15,7 +15,30 @@ export interface Tournaments {
 export interface TournamentNode {
   id: number;
   name: string;
+  city: string;
+  state: number;
+  postalCode: string;
+  venueName: string;
+  countryCode: string;
+  endAt: number;
+  events: Event[];
+  hasOfflineEvents: boolean;
+  hasOnlineEvents: boolean;
+  images: Image[];
+  isRegistrationOpen: boolean;
+  numAttendees: number;
+  registrationClosesAt: number;
   slug: string;
+  startAt: number;
+}
+
+export interface Event {
+  competitionTier: number;
+  name: string;
+}
+
+export interface Image {
+  url: string;
 }
 
 export interface Extensions {
