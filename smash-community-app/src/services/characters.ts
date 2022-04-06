@@ -4,7 +4,7 @@ import { Characters } from "../models/characters";
 export function GetAllCharacters() {
   return axios
     .get("http://localhost:3001/characters")
-    .then((res: AxiosResponse<Characters>) => {
-      return res.data.character_name;
+    .then((res: AxiosResponse<Characters>): Characters => {
+      return res.data;
     });
 }

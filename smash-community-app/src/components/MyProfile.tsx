@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Characters } from "../models/characters";
+import { Characters, Character } from "../models/characters";
 import { GetAllCharacters } from "../services/characters";
 
 export function MyProfile() {
-  const [characters, setCharacters] = useState<Characters[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
 
   useEffect(() => {
     GetAllCharacters().then((data: any) => {
@@ -16,7 +16,7 @@ export function MyProfile() {
     <div>
       <h1>My Profile</h1>
       <div>
-        {characters?.map((character: Characters) => (
+        {characters?.map((character: Character) => (
           <ul>
             <li>{`${character.character_name}`}</li>
           </ul>
