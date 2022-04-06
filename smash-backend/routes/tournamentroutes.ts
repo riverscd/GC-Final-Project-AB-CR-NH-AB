@@ -2,7 +2,7 @@ import express from "express";
 import fetch from 'node-fetch';
 // import { ProcessEnv } from "../models/envModel";
 
-//import { db } from "../index"
+// import { db } from "../index"
 
 const tournamentroutes = express.Router();
 
