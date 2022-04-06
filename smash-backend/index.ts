@@ -1,9 +1,14 @@
 import express from "express";
 import cors from "cors";
 import pg from "pg-promise";
-import tournamentroutes from "./routes/tournamentroutes";
+import tournamentroutes from "./routes/tournamentRoutes";
 import "dotenv/config";
-import characterRoutes from "./routes/Characters";
+import characterRoutes from "./routes/characterRoutes";
+import userRoutes from "./routes/userRoutes";
+import communitiesRoutes from "./routes/communitiesRoutes";
+import eventsRoutes from "./routes/eventsRoutes";
+import postsRoutes from "./routes/postsRoutes";
+import repliesRoutes from "./routes/repliesRoutes";
 
 const app = express();
 
@@ -21,7 +26,12 @@ export const db = pg()({
   database: process.env.DB_DATABASE,
 });
 
-app.use("/", tournamentroutes);
 app.use("/", characterRoutes);
+app.use("/", communitiesRoutes);
+app.use("/", eventsRoutes);
+app.use("/", postsRoutes);
+app.use("/", repliesRoutes);
+app.use("/", tournamentroutes);
+app.use("/", userRoutes);
 
 app.listen(port, () => console.log(`Server is listening on port ${port}.`));
