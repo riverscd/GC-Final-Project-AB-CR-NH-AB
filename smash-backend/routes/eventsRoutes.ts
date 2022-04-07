@@ -7,6 +7,56 @@ import { db } from "../index"
 
 const eventsRoutes = express.Router();
 
+const Joi = require('joi');
+
+const schema = Joi.object({
+  event_name: Joi.string()
+      .min(5)
+      .max(50)
+      .required(),
+
+      description: Joi.string()
+      .min(1)
+      .max(500)
+      .required(),
+
+      event_date: Joi.date().greater('now').timestamp('javascript').iso()
+              .required(),
+
+      posts: Joi.string()
+      .min(1)
+      .max(500)
+      .required(),
+
+
+      location: Joi.string()
+      .min(1)
+      .max(100),
+
+      address: Joi.string()
+      .min(1)
+      .max(100),
+
+      city: Joi.string()
+      .min(2)
+      .max(2),
+
+      country: Joi.string()
+      .min(1)
+      .max(50),
+
+      zip: Joi.string()
+      .min(5)
+      .max(5),
+
+      attendees: Joi.number()
+      .min(1)
+      .max(200),
+
+})
+      
+
+
 eventsRoutes.get('/events', (req, res) => {
 
   db.manyOrNone('select * from events')

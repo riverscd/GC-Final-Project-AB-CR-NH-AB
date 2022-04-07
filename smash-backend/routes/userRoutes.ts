@@ -7,6 +7,8 @@ import { db } from "../index"
 
 const userRoutes = express.Router();
 
+
+
 userRoutes.get('/users', (req, res) => {
 
   db.manyOrNone('select * from users')
