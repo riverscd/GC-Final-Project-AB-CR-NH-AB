@@ -12,13 +12,16 @@ export function EventFinder() {
     GetAllTournaments().then((data: any) => {
       setAllTournaments(data);
     });
-  }, []);
-
-  useEffect(() => {
     GetAllEvents().then((data: any) => {
       setAllEvents(data);
     });
   }, []);
+
+  // useEffect(() => {
+  //   GetAllEvents().then((data: any) => {
+  //     setAllEvents(data);
+  //   });
+  // }, []);
 
   return (
     <div>
@@ -39,10 +42,10 @@ export function EventFinder() {
       <div>
         {allEvents.map((event: any) => (
           <ul>
-            <li key={event.id}>{`event name: ${event.name}`}</li>
+            <li key={event.id}>{`event name: ${event.event_name}`}</li>
             <li>{`event location: ${event.location}`}</li>
-            <li>{`location details: ${event.city}, ${event.state} ${event.postalCode}`}</li>
-            <li>{`number of attendees: ${event.numAttendees}`}</li>
+            <li>{`location details: ${event.city}, ${event.state}`}</li>
+            <li>{`number of attendees: ${event.attendees}`}</li>
             <li>{`in person event: ${event.is_in_person}`}</li>
             <li>{`description: ${event.description}`}</li>
           </ul>
