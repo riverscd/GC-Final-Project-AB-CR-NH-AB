@@ -8,3 +8,5 @@ export function GetAllCharacters() {
       return res.data;
     });
 }
+
+
