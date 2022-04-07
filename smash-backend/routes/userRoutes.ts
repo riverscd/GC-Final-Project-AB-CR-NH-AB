@@ -6,6 +6,7 @@ import { db } from "../index";
 
 const userRoutes = express.Router();
 
+<<<<<<< HEAD
 userRoutes.get("/users", (req, res) => {
   db.manyOrNone("select * from users")
     .then((data) => res.json(data))
@@ -16,6 +17,11 @@ userRoutes.get("/users/:id", (req, res) => {
     .then((data) => res.json(data))
     .catch((error) => console.log(error));
 });
+=======
+
+
+userRoutes.get('/users', (req, res) => {
+>>>>>>> e8418dd0e40c2c8a8f1d88444df7f68b8ad16bd0
 
 userRoutes.post("/users", (req: any, res: any) => {
   const newUser = {

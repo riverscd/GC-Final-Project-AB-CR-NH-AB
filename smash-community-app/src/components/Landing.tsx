@@ -13,7 +13,6 @@ export function Landing() {
   }
   return (
     <div>
-      <h1>Smash Melee Community</h1>
       <button className="button" type="submit" onClick={handleLogin}>
         login
       </button>
