@@ -18,6 +18,13 @@ userRoutes.get("/users/:id", (req, res) => {
     .then((data) => res.json(data))
     .catch((error) => console.log(error));
 });
+userRoutes.get("/users/:username", (req, res) => {
+  db.oneOrNone("SELECT * FROM users WHERE username = $(username)", {
+    id: req.params.username,
+  })
+    .then((data) => res.json(data))
+    .catch((error) => console.log(error));
+});
 
 // userRoutes.post("/users", (req: any, res: any) => {
 //   const newUser = {
