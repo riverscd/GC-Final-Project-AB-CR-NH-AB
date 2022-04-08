@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Characters, Character } from "../models/characters";
 import { User } from "../models/users";
 import { GetAllCharacters } from "../services/characters";
-import { GetAllUsers, GetUser } from "../services/Login";
 
 export function MyProfile() {
   const [characters, setCharacters] = useState<Character[]>([]);
