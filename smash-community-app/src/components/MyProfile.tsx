@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Characters, Character } from "../models/characters";
+import { User } from "../models/users";
 import { GetAllCharacters } from "../services/characters";
+import { GetAllUsers, GetUser } from "../services/Login";
 
 export function MyProfile() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -12,15 +14,26 @@ export function MyProfile() {
   const [secondaryCharacter4, setSecondaryCharacter4] = useState("");
   const [secondaryCharacter5, setSecondaryCharacter5] = useState("");
 
+  const [users, setUsers] = useState<User[]>([]);
+
   useEffect(() => {
     GetAllCharacters().then((data: any) => {
       setCharacters(data);
     });
+    // GetUser(id).then((data: any) => {
+    //   setUsers(data);
+    // });
   }, []);
 
   return (
     <div>
       <h1>My Profile</h1>
+
+      <p>Username: </p>
+
+      <p>Bio:</p>
+
+      <p>location:</p>
 
       <div>
         <h2>Choose Your Character</h2>
@@ -90,13 +103,6 @@ export function MyProfile() {
         </div>
       
 
-      <div>
-        {characters?.map((character: Character) => (
-          <ul>
-            <li>{`${character.character_name}`}</li>
-          </ul>
-        ))}
-      </div>
       <Link to="/">Home</Link>
     </div>
   );

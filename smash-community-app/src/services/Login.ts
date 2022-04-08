@@ -8,3 +8,12 @@ export function GetAllUsers() {
       return res.data;
     });
 }
+
+export function GetUser(id: number) {
+  return axios
+    .get(`http://localhost:3001/users/${id}`)
+    .then((res: AxiosResponse<Users>): Users => {
+      return res.data;
+    });
+}
+
