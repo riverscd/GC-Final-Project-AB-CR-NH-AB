@@ -1,16 +1,14 @@
 import { createContext } from "react";
-import { Event } from "../models/events";
+import { Event } from "../models/users";
 
-interface MyEventsContext {
+interface MyProfileContext {
   events: Event[];
   addEvent: (event: Event) => void;
-  removeEvent: (id: number) => void;
 }
 
 const defaultValue: MyEventsContext = {
   events: [],
   addEvent: () => {},
-  removeEvent: () => {},
 };
 
 const MyEventsContext = createContext<MyEventsContext>(defaultValue);

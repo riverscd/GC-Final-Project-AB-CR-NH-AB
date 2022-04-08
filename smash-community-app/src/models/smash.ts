@@ -21,7 +21,7 @@ export interface TournamentNode {
   venueName: string;
   countryCode: string;
   endAt: number;
-  events: Event[];
+  events: CompetitionEvent[];
   hasOfflineEvents: boolean;
   hasOnlineEvents: boolean;
   images: Image[];
@@ -32,7 +32,7 @@ export interface TournamentNode {
   startAt: number;
 }
 
-export interface Event {
+export interface CompetitionEvent {
   competitionTier: number;
   name: string;
 }
