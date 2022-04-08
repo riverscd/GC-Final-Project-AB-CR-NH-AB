@@ -95,11 +95,11 @@ userRoutes.post("/login", (req, res) => {
   };
 
   db.oneOrNone(
-    "SELECT id, username, password FROM users WHERE username = $(username)",
+    "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
     { username: req.body.username }
   ).then((userCredentials) => {
     if (!userCredentials) {
-      return res.status(400).send("Invalid email or password");
+      return res.status(401).send("Invalid Username or password");
     }
 
     if (
