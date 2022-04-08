@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginUser } from "../services/Login";
 
 export function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(e: any) {
     e.preventDefault();
+    LoginUser(username, password).then((data: any) => {
+      if (data) console.log(data);
+    });
     navigate("/SiteNav");
   }
 
@@ -17,7 +21,7 @@ export function Login() {
         <p>Welcome Back to the Smash Melee Community</p>
         <label>
           <p>Email:</p>
-          <input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <input type="text" onChange={(e) => setUsername(e.target.value)} />
         </label>
         <label>
           <p>Password:</p>
