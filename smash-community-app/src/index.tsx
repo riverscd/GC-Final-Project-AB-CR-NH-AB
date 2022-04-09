@@ -18,6 +18,10 @@ import { SiteNavigation } from "./components/SiteNav";
 import { CreateEvent } from "./components/EventForm";
 import { CreateCommunity } from "./components/CommunityForm";
 import { Header } from "./components/Header";
+import { UserContextProvider } from "./contexts/UserContextProvider";
+import { userInfo } from "os";
+import { createContext } from "react";
+import UserContext from "./contexts/UserContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,22 +29,27 @@ ReactDOM.render(
       <App />
       <Header />
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/generalmessageboard" element={<GeneralMessageBoard />} />
-        <Route path="/mycommunities" element={<MyCommunities />} />
-        <Route path="/communityfinder" element={<CommunityFinder />} />
-        <Route path="/myevents" element={<MyEvents />} />
-        <Route path="/eventfinder" element={<EventFinder />} />
-        <Route path="/myprofile" element={<MyProfile />} />
-        <Route
-          path="/communityeventmanager"
-          element={<CommunityEventManager />}
-        />
-        <Route path="/sitenav" element={<SiteNavigation />} />
-        <Route path="/communityform" element={<CreateCommunity />} />
-        <Route path="/eventform" element={<CreateEvent />} />
+        <UserContextProvider>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/generalmessageboard"
+            element={<GeneralMessageBoard />}
+          />
+          <Route path="/mycommunities" element={<MyCommunities />} />
+          <Route path="/communityfinder" element={<CommunityFinder />} />
+          <Route path="/myevents" element={<MyEvents />} />
+          <Route path="/eventfinder" element={<EventFinder />} />
+          <Route path="/myprofile" element={<MyProfile />} />
+          <Route
+            path="/communityeventmanager"
+            element={<CommunityEventManager />}
+          />
+          <Route path="/sitenav" element={<SiteNavigation />} />
+          <Route path="/communityform" element={<CreateCommunity />} />
+          <Route path="/eventform" element={<CreateEvent />} />
+        </UserContextProvider>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

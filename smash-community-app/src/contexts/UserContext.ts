@@ -1,12 +1,12 @@
 import { createContext } from "react";
 import { User } from "../models/users";
 
-interface MyProfileContext {
+interface UserContext {
   user: User;
-  addUser: (event: Event) => void;
+  addUser: (user: User) => void;
 }
 
-const defaultValue: MyProfileContext = {
+const defaultValue: UserContext = {
   user: {
     id: 0,
     email: "",
@@ -34,5 +34,5 @@ const defaultValue: MyProfileContext = {
   addUser: () => {},
 };
 
-const MyProfileContext = createContext<MyProfileContext>(defaultValue);
-export default MyProfileContext;
+const userContext = createContext<UserContext>(defaultValue);
+export default userContext;

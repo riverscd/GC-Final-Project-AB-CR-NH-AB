@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { Users } from "../models/users";
+import { User, Users } from "../models/users";
 
 export function GetAllUsers() {
   return axios
@@ -23,7 +23,7 @@ export function LoginUser(username: string, password: string) {
       username: username,
       password: password,
     })
-    .then((res: AxiosResponse<Users>): Users => {
+    .then((res: AxiosResponse<User>): User => {
       return res.data;
     });
 }

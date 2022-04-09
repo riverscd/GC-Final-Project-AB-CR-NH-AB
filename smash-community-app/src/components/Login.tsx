@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
+import userContext from "../contexts/UserContext";
+import { User } from "../models/users";
 import { LoginUser } from "../services/Login";
 
 export function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { addUser } = useContext(UserContext);
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    LoginUser(username, password).then((data: any) => {
-      if (data) console.log(data);
+    LoginUser(username, password).then(
+      (user: User) => {
+      if (user) {
+        addUser(user);
+        navigate("/SiteNav");
+      }
     });
-    navigate("/SiteNav");
   }
 
   return (
