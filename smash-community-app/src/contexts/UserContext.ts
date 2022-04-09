@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { User } from "../models/users";
 
 interface UserContext {
-  loggedInUser: User;
+  loggedInUser: User | undefined;
   addUser: (loggedInUser: User) => void;
 }
 

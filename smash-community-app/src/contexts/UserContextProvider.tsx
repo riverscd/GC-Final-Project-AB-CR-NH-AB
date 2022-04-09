@@ -3,7 +3,7 @@ import { User } from "../models/users";
 import UserContext from "./UserContext";
 
 export function UserContextProvider(props: { children: JSX.Element }) : ReactElement  {
-  const [user, setUser] = useState<User>();
+  const [loggedInUser, setUser] = useState<User>();
 
   function addUser(loggedInUser : User) {
     setUser(loggedInUser);
@@ -12,7 +12,7 @@ export function UserContextProvider(props: { children: JSX.Element }) : ReactEle
   return ( 
     <div> 
       <UserContext.Provider
-      value ={{addUser}}> 
+      value ={{loggedInUser!, addUser}}> 
         {props.children}
       </UserContext.Provider>
     </div>
