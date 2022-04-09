@@ -1,19 +1,20 @@
-import { Provider, ReactNode, useState } from "react";
+import { Provider, ReactElement, ReactNode, useState } from "react";
 import { User } from "../models/users";
+import UserContext from "./UserContext";
 
-export function UserContextProvider(props: { children: ReactNode }) {
+export function UserContextProvider(props: { children: JSX.Element }) : ReactElement  {
   const [user, setUser] = useState<User>();
 
-  function addUser(loggedInUser : User): void {
+  function addUser(loggedInUser : User) {
     setUser(loggedInUser);
   };
 
   return ( 
     <div> 
-      <UserContextProvider.Provider
+      <UserContext.Provider
       value ={{addUser}}> 
         {props.children}
-      </UserContextProvider.Provider>
+      </UserContext.Provider>
     </div>
   )
   

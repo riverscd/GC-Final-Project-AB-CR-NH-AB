@@ -2,12 +2,12 @@ import { createContext } from "react";
 import { User } from "../models/users";
 
 interface UserContext {
-  user: User;
-  addUser: (user: User) => void;
+  loggedInUser: User;
+  addUser: (loggedInUser: User) => void;
 }
 
 const defaultValue: UserContext = {
-  user: {
+  loggedInUser: {
     id: 0,
     email: "",
     password: "",
