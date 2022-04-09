@@ -12,7 +12,7 @@ export function UserContextProvider(props: { children: JSX.Element }) : ReactEle
   return ( 
     <div> 
       <UserContext.Provider
-      value ={{loggedInUser!, addUser}}> 
+      value ={{loggedInUser, addUser}}> 
         {props.children}
       </UserContext.Provider>
     </div>
