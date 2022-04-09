@@ -28,8 +28,8 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
       <Header />
-      <Routes>
-        <UserContextProvider>
+      <UserContextProvider>
+        <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -49,8 +49,8 @@ ReactDOM.render(
           <Route path="/sitenav" element={<SiteNavigation />} />
           <Route path="/communityform" element={<CreateCommunity />} />
           <Route path="/eventform" element={<CreateEvent />} />
-        </UserContextProvider>
       </Routes>
+      </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
