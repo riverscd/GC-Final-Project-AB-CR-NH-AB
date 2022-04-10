@@ -18,10 +18,10 @@ const schema = Joi.object({
   .min(1)
   .max(100),
 
-  posts: Joi.string()
-  .min(1)
-  .max(500)
-  .required(),
+  // posts: Joi.string()
+  // .min(1)
+  // .max(500)
+  // .required(),
 
   description: Joi.string()
   .min(1)
@@ -57,8 +57,8 @@ communitiesRoutes.post("/createcommunity", (req, res) => {
      return res.status(400).send(valid.error)
     }
       db.one(
-        "INSERT INTO communities (community_name, location, posts, description ) VALUES \
-            (${community_name}, ${location}, ${posts}, ${description} ) RETURNING id;",
+        "INSERT INTO communities (community_name, location, description ) VALUES \
+            (${community_name}, ${location}, ${description} ) RETURNING id;",
         newCommunity
       )
         .then((id) => {

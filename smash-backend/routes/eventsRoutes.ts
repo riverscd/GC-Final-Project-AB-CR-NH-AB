@@ -95,8 +95,8 @@ eventsRoutes.post('/create-event', (req, res) => {
      return res.status(400).send(valid.error)
     }
       db.one(
-        "INSERT INTO events (event_name, location, posts, description ) VALUES \
-            (${event_name}, ${location}, ${posts}, ${description} ) RETURNING id;",
+        "INSERT INTO events (event_name, location, city, state, attendees, is_in_person, description ) VALUES \
+            (${event_name}, ${location}, ${city}, ${state}, ${attendees}, ${is_in_person} ${description} ) RETURNING id;",
         newEvent
       )
         .then((id) => {
