@@ -7,53 +7,55 @@ import { db } from "../index"
 
 const eventsRoutes = express.Router();
 
-// const Joi = require('joi');
+const Joi = require('joi');
 
-// const schema = Joi.object({
-//   event_name: Joi.string()
-//       .min(5)
-//       .max(50)
-//       .required(),
+const schema = Joi.object({
+  event_name: Joi.string()
+      .min(5)
+      .max(50)
+      .required(),
 
-//       description: Joi.string()
-//       .min(1)
-//       .max(500)
-//       .required(),
+      description: Joi.string()
+      .min(1)
+      .max(500)
+      .required(),
 
-//       event_date: Joi.date().greater('now').timestamp('javascript').iso()
-//               .required(),
+      event_date: Joi.date()
+      .greater('now')
+      .timestamp('javascript')
+      .iso()
+      .required(),
 
-//       posts: Joi.string()
-//       .min(1)
-//       .max(500)
-//       .required(),
+      posts: Joi.string()
+      .min(1)
+      .max(500),
 
 
-//       location: Joi.string()
-//       .min(1)
-//       .max(100),
+      location: Joi.string()
+      .min(1)
+      .max(100),
 
-//       address: Joi.string()
-//       .min(1)
-//       .max(100),
+      address: Joi.string()
+      .min(1)
+      .max(100),
 
-//       city: Joi.string()
-//       .min(2)
-//       .max(2),
+      city: Joi.string()
+      .min(2)
+      .max(2),
 
-//       country: Joi.string()
-//       .min(1)
-//       .max(50),
+      country: Joi.string()
+      .min(1)
+      .max(50),
 
-//       zip: Joi.string()
-//       .min(5)
-//       .max(5),
+      zip: Joi.string()
+      .min(5)
+      .max(5),
 
-//       attendees: Joi.number()
-//       .min(1)
-//       .max(200),
+      attendees: Joi.number()
+      .min(1)
+      .max(200),
 
-// })
+})
       
 
 
@@ -86,12 +88,23 @@ eventsRoutes.post('/create-event', (req, res) => {
       country: req.body.country,
       zip: req.body.zip
     }
-  db.one("INSERT INTO events (event_name, description, is_in_person, location, address, city, state, country, zip) VALUES (${event_name}, ${description}, ${is_in_person}, ${location}, ${address}, ${city}, ${state}, ${country}, ${zip}) RETURNING id;", 
-    newEvent
-  )
-  .then(data => res.json(data))
-  .catch(error => console.log(error));
+    const valid = schema.validate(newEvent);
 
-})
+
+    if(valid.error) {
+     return res.status(400).send(valid.error)
+    }
+      db.one(
+        "INSERT INTO events (event_name, location, posts, description ) VALUES \
+            (${event_name}, ${location}, ${posts}, ${description} ) RETURNING id;",
+        newEvent
+      )
+        .then((id) => {
+          return db.oneOrNone("SELECT * FROM events WHERE id=${id}", {
+            id: id.id,
+          });
+        })
+        .then((event) => res.json(event));
+    });
 
 export default eventsRoutes;
