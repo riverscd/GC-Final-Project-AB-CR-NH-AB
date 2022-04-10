@@ -75,14 +75,10 @@ userRoutes.post("/signup", (req, res) => {
         last_name: req.body.last_name,
         email: req.body.email,
         birthdate: req.body.birthdate,
-        city: req.body.city,
-        state: req.body.state,
-        country: req.body.country,
-        zip: req.body.zip,
       };
       db.one(
-        "INSERT INTO users ( username, password, first_name, last_name, email, birthdate, city, state, country, zip ) VALUES \
-            ( ${username}, ${password}, ${first_name}, ${last_name}, ${email}, ${birthdate}, ${city}, ${state}, ${country}, ${zip} ) RETURNING id;",
+        "INSERT INTO users ( username, password, first_name, last_name, email, birthdate ) VALUES \
+            ( ${username}, ${password}, ${first_name}, ${last_name}, ${email}, ${birthdate} ) RETURNING id;",
         newUser
       )
         .then((id) => {

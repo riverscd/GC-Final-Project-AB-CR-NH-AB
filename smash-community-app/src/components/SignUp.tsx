@@ -8,7 +8,7 @@ export function SignUp() {
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [birthdate, setBirthdate] = useState<number>(Date.now());
+  const [birthdate, setBirthdate] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { addUser } = useContext(UserContext);
@@ -16,6 +16,7 @@ export function SignUp() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
+    console.log(birthdate);
     if (password === confirmPassword) {
       SignUpUser(
         email,
@@ -52,6 +53,16 @@ export function SignUp() {
         <label>
           <p>Last Name:</p>
           <input type="text" onChange={(e) => setLastName(e.target.value)} />
+        </label>
+        <label>
+          <p>Birth Date:</p>
+          <input
+            type="date"
+            onChange={(e) => {
+              setBirthdate(e.target.value);
+              console.log(birthdate);
+            }}
+          />
         </label>
         <label>
           <p>Password</p>

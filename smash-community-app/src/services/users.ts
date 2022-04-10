@@ -31,19 +31,20 @@ export function LoginUser(username: string, password: string) {
 export function SignUpUser(
   email: string,
   username: string,
-  firstName: string,
-  lastName: string,
+  first_name: string,
+  last_name: string,
   password: string,
-  birthdate: number
+  birthdate: string
 ) {
+  console.log(birthdate);
   return axios
     .post(`http://localhost:3001/signup`, {
       email: email,
       username: username,
-      firstName: firstName,
-      lastName: lastName,
+      first_name: first_name,
+      last_name: last_name,
       password: password,
-      birthday: birthdate,
+      birthdate: birthdate,
     })
     .then((res: AxiosResponse<User>): User => {
       return res.data;
