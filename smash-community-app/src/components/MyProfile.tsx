@@ -16,7 +16,7 @@ export function MyProfile() {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    GetAllCharacters().then((data: any) => {
+    GetAllCharacters().then((data: any) => { 
       setCharacters(data);
     });
     // GetUser(id).then((data: any) => {
