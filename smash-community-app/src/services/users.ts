@@ -27,3 +27,25 @@ export function LoginUser(username: string, password: string) {
       return res.data;
     });
 }
+
+export function SignUpUser(
+  email: string,
+  username: string,
+  firstName: string,
+  lastName: string,
+  password: string,
+  birthdate: number
+) {
+  return axios
+    .post(`http://localhost:3001/signup`, {
+      email: email,
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      password: password,
+      birthday: birthdate,
+    })
+    .then((res: AxiosResponse<User>): User => {
+      return res.data;
+    });
+}

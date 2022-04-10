@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
-import userContext from "../contexts/UserContext";
 import { User } from "../models/users";
-import { LoginUser } from "../services/Login";
+import { LoginUser } from "../services/users";
 
 export function Login() {
   const [username, setUsername] = useState("");
@@ -13,8 +12,7 @@ export function Login() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    LoginUser(username, password).then(
-      (user: User) => {
+    LoginUser(username, password).then((user: User) => {
       if (user) {
         addUser(user);
         navigate("/SiteNav");

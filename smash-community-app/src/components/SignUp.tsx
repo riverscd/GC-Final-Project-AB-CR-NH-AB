@@ -1,19 +1,36 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { SignUpUser } from "../services/users";
+import UserContext from "../contexts/UserContext";
 
 export function SignUp() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [birthdate, setBirthdate] = useState("");
+  const [birthdate, setBirthdate] = useState<number>(Date.now());
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { addUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    navigate("/SiteNav");
+    if (password === confirmPassword) {
+      SignUpUser(
+        email,
+        username,
+        firstName,
+        lastName,
+        password,
+        birthdate
+      ).then((user) => {
+        if (user) {
+          addUser(user);
+          navigate("/SiteNav");
+        }
+      });
+    }
   }
 
   return (
@@ -61,5 +78,3 @@ export function SignUp() {
     </div>
   );
 }
-
-// Add validation, API/post

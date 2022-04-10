@@ -42,7 +42,7 @@ userRoutes.get("/users/:username", (req, res) => {
 //     bio: req.body.bio,
 //     main_character: req.body.main_character,
 //     secondary_character: req.body.secondary_character,
-//     slippi_usernames: req.body.slippi_usernames,
+//     slippi_usernames: req.body.slippi_usernames
 //   };
 //   // const valid = schema.validate(newUser);
 
