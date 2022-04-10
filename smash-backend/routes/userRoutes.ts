@@ -8,6 +8,22 @@ const saltRounds = 10;
 
 const userRoutes = express.Router();
 
+const Joi = require("joi");
+
+const schema = Joi.object({
+  username: Joi.string().min(5).max(30).required(),
+  password: Joi.string().min(8).max(20),
+  first_name: Joi.string().min(2).max(30).required(),
+  last_name: Joi.string().min(2).max(30).required(),
+  // email: Joi.string()
+  //     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+  birthdate: Joi.date().greater("1-2-1903").less("now"),
+  city: Joi.string().min(2).max(100),
+  state: Joi.string().min(2).max(2),
+  country: Joi.string().min(4).max(56),
+  zip: Joi.string().min(5).max(5),
+});
+
 userRoutes.get("/users", (req, res) => {
   db.manyOrNone("SELECT * FROM users")
     .then((data) => res.json(data))
@@ -75,7 +91,16 @@ userRoutes.post("/signup", (req, res) => {
         last_name: req.body.last_name,
         email: req.body.email,
         birthdate: req.body.birthdate,
+        city: req.body.city,
+        state: req.body.state,
+        country: req.body.country,
+        zip: req.body.zip,
       };
+      const valid = schema.validate(newUser);
+
+      if (valid.error) {
+        return res.status(400).send(valid.error);
+      }
       db.one(
         "INSERT INTO users ( username, password, first_name, last_name, email, birthdate ) VALUES \
             ( ${username}, ${password}, ${first_name}, ${last_name}, ${email}, ${birthdate} ) RETURNING id;",
@@ -96,6 +121,12 @@ userRoutes.post("/login", (req, res) => {
     username: req.body.username,
     password: req.body.password,
   };
+
+  const valid = schema.validate(userLoginInput);
+
+  if (valid.error) {
+    return res.status(400).send(valid.error);
+  }
 
   db.oneOrNone(
     "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",

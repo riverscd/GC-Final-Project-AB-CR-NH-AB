@@ -20,13 +20,15 @@ const schema = Joi.object({
       .max(500)
       .required(),
 
-      event_date: Joi.date().greater('now').timestamp('javascript').iso()
-              .required(),
+      event_date: Joi.date()
+      .greater('now')
+      .timestamp('javascript')
+      .iso()
+      .required(),
 
       posts: Joi.string()
       .min(1)
-      .max(500)
-      .required(),
+      .max(500),
 
 
       location: Joi.string()
@@ -72,5 +74,37 @@ eventsRoutes.get('/events/:id', (req, res) => {
   .catch(error => console.log(error));
 
 })
+
+eventsRoutes.post('/create-event', (req, res) => {
+    const newEvent = { 
+      event_name: req.body.event_name,
+      description: req.body.description,
+      // event_date: req.body.event_date,
+      is_in_person: req.body.is_in_person,
+      location: req.body.location,
+      address: req.body.address,
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      zip: req.body.zip
+    }
+    const valid = schema.validate(newEvent);
+
+
+    if(valid.error) {
+     return res.status(400).send(valid.error)
+    }
+      db.one(
+        "INSERT INTO events (event_name, location, city, state, attendees, is_in_person, description ) VALUES \
+            (${event_name}, ${location}, ${city}, ${state}, ${attendees}, ${is_in_person} ${description} ) RETURNING id;",
+        newEvent
+      )
+        .then((id) => {
+          return db.oneOrNone("SELECT * FROM events WHERE id=${id}", {
+            id: id.id,
+          });
+        })
+        .then((event) => res.json(event));
+    });
 
 export default eventsRoutes;
