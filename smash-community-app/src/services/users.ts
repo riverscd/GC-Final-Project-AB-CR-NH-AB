@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from "axios";
+import { StringifyOptions } from "querystring";
+import { Character } from "../models/characters";
 import { User, Users } from "../models/users";
 
 export function GetAllUsers() {
@@ -50,3 +52,23 @@ export function SignUpUser(
       return res.data;
     });
 }
+
+export function UpdateUser( 
+  id: number | undefined,
+  first_name: string, 
+  last_name: string, 
+  slippi_username: string, 
+  country: string, 
+  state: string, 
+  city: string, 
+  user_bio: string, 
+  main_character: Character | undefined, 
+  // secondary_character: Character[],  
+) { 
+  return axios 
+  .put(`http://localhost:3001/users/${id}`) 
+  .then((res: AxiosResponse<User>): User => {
+    return res.data;
+  })
+}
+

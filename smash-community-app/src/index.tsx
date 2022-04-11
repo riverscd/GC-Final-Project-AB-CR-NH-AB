@@ -22,6 +22,7 @@ import { UserContextProvider } from "./contexts/UserContextProvider";
 import { userInfo } from "os";
 import { createContext } from "react";
 import UserContext from "./contexts/UserContext";
+import {EditProfile} from "./components/EditProfile"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -41,7 +42,8 @@ ReactDOM.render(
           <Route path="/communityfinder" element={<CommunityFinder />} />
           <Route path="/myevents" element={<MyEvents />} />
           <Route path="/eventfinder" element={<EventFinder />} />
-          <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/communityform" element={<CreateCommunity />} />
+          <Route path="/editprofile" element={<EditProfile />} />
           <Route
             path="/communityeventmanager"
             element={<CommunityEventManager />}
