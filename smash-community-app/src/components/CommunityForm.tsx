@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AddCommunity } from "../services/communities";
 
 export function CreateCommunity() {
-  const [name, setName] = useState("");
+  const [communityName, setName] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    navigate("/CommunityFinder");
+    console.log(communityName);
+    AddCommunity(communityName, location, description).then((newCommunity) => {
+      if (newCommunity) {
+        navigate("/mycommunities");
+      }
+    });
   }
 
   return (

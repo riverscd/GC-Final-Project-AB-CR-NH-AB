@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AddEvent } from "../services/events";
 
 export function CreateEvent() {
   const [eventName, setEventName] = useState("");
@@ -10,14 +11,28 @@ export function CreateEvent() {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [zip, setZip] = useState(0);
-  const [state, setState] = useState("")
+  const [zip, setZip] = useState("");
+  const [state, setState] = useState("");
 
   const navigate = useNavigate();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    navigate("/CommunityEvents");
+    console.log(eventName);
+    AddEvent(
+      eventName,
+      // date: string,
+      location,
+      description,
+      address,
+      city,
+      zip,
+      state
+    ).then((newEvent) => {
+      if (newEvent) {
+        navigate("/myevents");
+      }
+    });
   }
 
   return (
@@ -44,7 +59,7 @@ export function CreateEvent() {
         <p>State:</p>
         <input type="text" onChange={(e) => setState(e.target.value)} />
         <p>Zip Code:</p>
-        <input type="number" onChange={(e) => setZip(parseInt(e.target.value))} />
+        <input type="number" onChange={(e) => setZip(e.target.value)} />
       </label>
       <label>
         <p>Event Description:</p>

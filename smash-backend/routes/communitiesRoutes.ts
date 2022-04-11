@@ -8,26 +8,7 @@ const communitiesRoutes = express.Router();
 
 const Joi = require("joi");
 
-const schema = Joi.object({
-  community_name: Joi.string()
-  .min(2)
-  .max(50)
-  .required(),
 
-  location: Joi.string()
-  .min(1)
-  .max(100),
-
-  // posts: Joi.string()
-  // .min(1)
-  // .max(500)
-  // .required(),
-
-  description: Joi.string()
-  .min(1)
-  .max(500)
-  .required(),
-});
 
 communitiesRoutes.get("/communities", (req, res) => {
   db.manyOrNone("select * from communities")
@@ -42,19 +23,42 @@ communitiesRoutes.get("/communities/:id", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-communitiesRoutes.post("/createcommunity", (req, res) => {
+communitiesRoutes.post("/create-community", (req, res) => {
+
+  const communitySchema = Joi.object({
+    community_name: Joi.string()
+    .min(2)
+    .max(50)
+    .required(),
+  
+    location: Joi.string()
+    .min(1)
+    .max(100),
+  
+    // posts: Joi.string()
+    // .min(1)
+    // .max(500)
+    // .required(),
+  
+    description: Joi.string()
+    .min(1)
+    .max(500)
+    .required(),
+  });
   
       const newCommunity = {
         community_name: req.body.community_name,
         location: req.body.location,
-        posts: req.body.posts,
+        // posts: req.body.posts,
         description: req.body.description
       }
-      const valid = schema.validate(newCommunity);
+      const validCommunity = communitySchema.validate(newCommunity);
+
+      console.log(newCommunity);
 
 
-    if(valid.error) {
-     return res.status(400).send(valid.error)
+    if(validCommunity.error) {
+     return res.status(400).send(validCommunity.error)
     }
       db.one(
         "INSERT INTO communities (community_name, location, description ) VALUES \

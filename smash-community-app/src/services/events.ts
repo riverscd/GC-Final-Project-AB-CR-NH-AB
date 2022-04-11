@@ -10,27 +10,23 @@ export function GetAllEvents() {
 }
 
 export function AddEvent(
-  eventname: string, 
+  event_name: string, 
   // date: string, 
   location: string, 
   description: string, 
-  isInPerson: string, 
   address: string, 
-  city: string, 
-  country: string, 
+  city: string,  
   zip: string, 
   state: string
 ) { 
   return axios 
   .post("http://localhost:3001/create-event", {
-    eventname: eventname, 
+    event_name: event_name, 
     // date: date, 
     location: location, 
-    description: description, 
-    isInPerson: isInPerson, 
+    description: description,  
     address: address, 
-    city: city, 
-    country: country, 
+    city: city,  
     zip: zip, 
     state: state
   })
