@@ -23,6 +23,9 @@ export function SiteNavigation() {
           <li>
             <Link to="/communityeventmanager">Community/Event Manager</Link>
           </li>
+          <li>
+            <Link to="/login">Sign Out</Link>
+          </li>
         </ul>
       </nav>
     </div>

@@ -5,7 +5,7 @@ export function MyEvents() {
     <div>
       <h1>My Events and Tournaments</h1>
 
-      <Link to="/">Home</Link>
+      <Link to="/sitenav">Home</Link>
     </div>
   );
 }

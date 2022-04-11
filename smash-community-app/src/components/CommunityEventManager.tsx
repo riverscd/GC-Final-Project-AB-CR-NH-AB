@@ -20,7 +20,7 @@ export function CommunityEventManager() {
       <button className="button" type="submit" onClick={handleCreateEvent}>
         Create an Event
       </button>
-      <Link to="/">Home</Link>
+      <Link to="/sitenav">Home</Link>
     </div>
   );
 }
