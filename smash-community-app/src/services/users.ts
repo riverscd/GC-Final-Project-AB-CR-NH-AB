@@ -53,22 +53,31 @@ export function SignUpUser(
     });
 }
 
-export function UpdateUser( 
+export function UpdateUser(
   id: number | undefined,
-  first_name: string, 
-  last_name: string, 
-  slippi_username: string, 
-  country: string, 
-  state: string, 
-  city: string, 
-  user_bio: string, 
-  main_character: Character | undefined, 
-  // secondary_character: Character[],  
-) { 
-  return axios 
-  .put(`http://localhost:3001/users/${id}`) 
-  .then((res: AxiosResponse<User>): User => {
-    return res.data;
-  })
+  first_name: string,
+  last_name: string,
+  slippi_usernames: string,
+  country: string,
+  state: string,
+  city: string,
+  user_bio: string,
+  main_character: Character | undefined
+  // secondary_character: Character[],
+) {
+  return axios
+    .put(`http://localhost:3001/updateUser`, {
+      id: id,
+      first_name: first_name,
+      last_name: last_name,
+      slippi_usernames: slippi_usernames,
+      country: country,
+      state: state,
+      city: city,
+      user_bio: user_bio,
+      main_character: main_character,
+    })
+    .then((res: AxiosResponse<User>): User => {
+      return res.data;
+    });
 }
-

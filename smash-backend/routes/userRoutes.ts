@@ -120,7 +120,6 @@ const loginSchema = Joi.object({
   password: Joi.string().min(8).max(20),
 });
 
-  
 userRoutes.post("/login", (req, res) => {
   const userLoginInput = {
     username: req.body.username,
@@ -149,6 +148,27 @@ userRoutes.post("/login", (req, res) => {
 
     res.status(200).json(userCredentials);
   });
+});
+
+userRoutes.put("/updateUser", (req: any, res: any) => {
+  const updatedUser = {
+    id: req.body.id,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    slippi_usernames: req.body.slippi_usernames,
+    country: req.body.country,
+    state: req.body.state,
+    city: req.body.city,
+    user_bio: req.body.user_bio,
+    main_character: req.body.main_character,
+  };
+
+  db.oneOrNone(
+    "UPDATE users SET (first_name, last_name, slippi_usernames, country, state, city, user_bio, main_character) = \
+  (${first_name}, ${last_name}, ${slippi_usernames}, ${country}, ${state}, ${city}, ${user_bio}, ${main_character}) WHERE id = ${id} RETURNING id, \
+  first_name, last_name, slippi_usernames, country, state, city, user_bio, main_character;",
+    updatedUser
+  ).then((user) => res.json(user));
 });
 
 export default userRoutes;
