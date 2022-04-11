@@ -115,17 +115,23 @@ userRoutes.post("/signup", (req, res) => {
   });
 });
 
+const loginSchema = Joi.object({
+  username: Joi.string().min(5).max(30).required(),
+  password: Joi.string().min(8).max(20),
+});
+
+  
 userRoutes.post("/login", (req, res) => {
   const userLoginInput = {
     username: req.body.username,
     password: req.body.password,
   };
 
-  //const valid = schema.validate(userLoginInput);
+  const validLogin = loginSchema.validate(userLoginInput);
 
-  // if (valid.error) {
-  //   return res.status(400).send(valid.error);
-  // }
+  if (validLogin.error) {
+    return res.status(400).send(validLogin.error);
+  }
 
   db.oneOrNone(
     "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
