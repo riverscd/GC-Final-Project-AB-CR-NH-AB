@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Landing } from "./components/Landing";
-import { Login } from "./components/Login";
+import Login from "./components/Login";
 import { SignUp } from "./components/SignUp";
 import { CommunityFinder } from "./components/CommunityFinder";
 import { EventFinder } from "./components/EventFinder";
@@ -22,7 +22,6 @@ import { UserContextProvider } from "./contexts/UserContextProvider";
 import { userInfo } from "os";
 import { createContext } from "react";
 import UserContext from "./contexts/UserContext";
-import MUSignIn from "./components/MUSignIn";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -33,7 +32,6 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/musignin" element={<MUSignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route
             path="/generalmessageboard"
@@ -51,7 +49,7 @@ ReactDOM.render(
           <Route path="/sitenav" element={<SiteNavigation />} />
           <Route path="/communityform" element={<CreateCommunity />} />
           <Route path="/eventform" element={<CreateEvent />} />
-      </Routes>
+        </Routes>
       </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
