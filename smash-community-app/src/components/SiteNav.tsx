@@ -5,20 +5,20 @@ export function SiteNavigation() {
     <div>
       <nav>
         <ul>
-          <li>
+          {/* <li>
             <Link to="/mycommunities">My Communities</Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link to="/communityfinder">Community Finder</Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link to="/myevents">My Events</Link>
+          </li> */}
+          <li>
+            <Link to="/myprofile">My Profile</Link>
           </li>
           <li>
             <Link to="/eventfinder">Event Finder</Link>
-          </li>
-          <li>
-            <Link to="/myprofile">My Profile</Link>
           </li>
           <li>
             <Link to="/communityeventmanager">Community/Event Manager</Link>
