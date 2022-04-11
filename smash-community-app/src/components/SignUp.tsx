@@ -28,7 +28,7 @@ export function SignUp() {
       ).then((user) => {
         if (user) {
           addUser(user);
-          navigate("/SiteNav");
+          navigate("/");
         }
       });
     }
