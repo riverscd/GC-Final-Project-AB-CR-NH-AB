@@ -22,6 +22,7 @@ import { UserContextProvider } from "./contexts/UserContextProvider";
 import { userInfo } from "os";
 import { createContext } from "react";
 import UserContext from "./contexts/UserContext";
+import MUSignIn from "./components/MUSignIn";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -32,6 +33,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/musignin" element={<MUSignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route
             path="/generalmessageboard"
