@@ -85,7 +85,7 @@ export function SignUp() {
         </div>
       </form>
 
-      <Link to="/">Home</Link>
+      <Link to="/">Back</Link>
     </div>
   );
 }
