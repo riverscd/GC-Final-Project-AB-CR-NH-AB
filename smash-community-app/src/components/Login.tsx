@@ -71,11 +71,11 @@ export default function SignInSide() {
           item
           xs={12}
           sm={8}
-          md={5}
+          md={4}
           component={Paper}
           elevation={6}
           square
-          // sx={{ maxWidth: { xs: 500, md: 400 } }}
+          //sx={{ maxWidth: { xs: 500, md: 400 } }}
         >
           <Box
             sx={{
@@ -84,6 +84,7 @@ export default function SignInSide() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              //maxWidth: { xs: 350, md:250}
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -153,7 +154,7 @@ export default function SignInSide() {
           item
           xs={false}
           sm={4}
-          md={7}
+          md={8}
           sx={{
             backgroundImage: `url(${Smashbackground})`,
             backgroundRepeat: "no-repeat",
@@ -163,6 +164,7 @@ export default function SignInSide() {
                 : t.palette.grey[900],
             backgroundSize: "fit",
             backgroundPosition: "center",
+            
           }}
         />
       </Grid>
