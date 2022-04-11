@@ -10,18 +10,18 @@ const userRoutes = express.Router();
 
 const Joi = require("joi");
 
-const schema = Joi.object({
-  username: Joi.string().min(5).max(30).required(),
-  password: Joi.string().min(8).max(20),
+const signupSchema = Joi.object({
+  username: Joi.string().min(5).max(10).required(),
+  password: Joi.string().min(8).max(30),
   first_name: Joi.string().min(2).max(30).required(),
   last_name: Joi.string().min(2).max(30).required(),
-  // email: Joi.string()
+  email: Joi.string(),
   //     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
   birthdate: Joi.date().greater("1-2-1903").less("now"),
-  city: Joi.string().min(2).max(100),
-  state: Joi.string().min(2).max(2),
-  country: Joi.string().min(4).max(56),
-  zip: Joi.string().min(5).max(5),
+  // city: Joi.string().min(2).max(100),
+  // state: Joi.string().min(2).max(2),
+  // country: Joi.string().min(4).max(56),
+  // zip: Joi.string().min(5).max(5),
 });
 
 userRoutes.get("/users", (req, res) => {
@@ -86,21 +86,20 @@ userRoutes.post("/signup", (req, res) => {
     bcrypt.hash(req.body.password, salt, function (err, hash) {
       const newUser = {
         username: req.body.username,
-        password: hash,
+        password: req.body.password,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
         birthdate: req.body.birthdate,
-        city: req.body.city,
-        state: req.body.state,
-        country: req.body.country,
-        zip: req.body.zip,
       };
-      const valid = schema.validate(newUser);
+      console.log(newUser);
+
+      const valid = signupSchema.validate(newUser);
 
       if (valid.error) {
         return res.status(400).send(valid.error);
       }
+      newUser.password = hash;
       db.one(
         "INSERT INTO users ( username, password, first_name, last_name, email, birthdate ) VALUES \
             ( ${username}, ${password}, ${first_name}, ${last_name}, ${email}, ${birthdate} ) RETURNING id;",
@@ -122,11 +121,11 @@ userRoutes.post("/login", (req, res) => {
     password: req.body.password,
   };
 
-  const valid = schema.validate(userLoginInput);
+  //const valid = schema.validate(userLoginInput);
 
-  if (valid.error) {
-    return res.status(400).send(valid.error);
-  }
+  // if (valid.error) {
+  //   return res.status(400).send(valid.error);
+  // }
 
   db.oneOrNone(
     "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
