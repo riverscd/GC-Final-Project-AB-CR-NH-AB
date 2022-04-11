@@ -75,7 +75,7 @@ export default function SignInSide() {
           component={Paper}
           elevation={6}
           square
-          sx={{ maxWidth: { xs: 500, md: 400 } }}
+          // sx={{ maxWidth: { xs: 500, md: 400 } }}
         >
           <Box
             sx={{
