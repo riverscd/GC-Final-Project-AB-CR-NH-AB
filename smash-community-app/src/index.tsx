@@ -28,7 +28,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
-      <Header />
+      {/* <Header /> */}
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<Login />} />

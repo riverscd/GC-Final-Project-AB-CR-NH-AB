@@ -4,7 +4,7 @@ import { AddEvent } from "../services/events";
 
 export function CreateEvent() {
   const [eventName, setEventName] = useState("");
-  // const [date, setDate] = useState("");
+  const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [isInPerson, setIsInPerson] = useState("");
@@ -18,10 +18,10 @@ export function CreateEvent() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    console.log(eventName);
+    console.log(date);
     AddEvent(
       eventName,
-      // date: string,
+      date,
       location,
       description,
       address,
@@ -42,10 +42,10 @@ export function CreateEvent() {
         <p>Event Name:</p>
         <input type="text" onChange={(e) => setEventName(e.target.value)} />
       </label>
-      {/* <label>
+      <label>
         <p>Event Date:</p>
-        <input type="text" onChange={(e) => setDate(e.target.value)} />
-      </label> */}
+        <input type="date" onChange={(e) => setDate(e.target.value)} />
+      </label>
       <label>
         <p>Event Location Name:</p>
         <input type="text" onChange={(e) => setLocation(e.target.value)} />
