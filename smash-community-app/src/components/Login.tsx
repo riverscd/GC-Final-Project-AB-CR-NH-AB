@@ -70,7 +70,7 @@ export default function SignInSide() {
         <Grid
           item
           xs={12}
-          sm={8}
+          // sm={8}
           md={4}
           component={Paper}
           elevation={6}
@@ -153,7 +153,7 @@ export default function SignInSide() {
         <Grid
           item
           xs={false}
-          sm={4}
+          // sm={4}
           md={8}
           sx={{
             backgroundImage: `url(${Smashbackground})`,
