@@ -7,7 +7,7 @@ export function MyCommunities(){
         <div>
             <h1>My Joined Communities</h1>
 
-            <Link to="/">Home</Link>
+            <Link to="/sitenav">Home</Link>
         </div>
     )
 }

@@ -70,12 +70,12 @@ export default function SignInSide() {
         <Grid
           item
           xs={12}
-          sm={8}
-          md={5}
+          // sm={8}
+          md={4}
           component={Paper}
           elevation={6}
           square
-          // sx={{ maxWidth: { xs: 500, md: 400 } }}
+          //sx={{ maxWidth: { xs: 500, md: 400 } }}
         >
           <Box
             sx={{
@@ -84,6 +84,7 @@ export default function SignInSide() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              //maxWidth: { xs: 350, md:250}
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -121,10 +122,10 @@ export default function SignInSide() {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth
@@ -152,8 +153,8 @@ export default function SignInSide() {
         <Grid
           item
           xs={false}
-          sm={4}
-          md={7}
+          // sm={4}
+          md={8}
           sx={{
             backgroundImage: `url(${Smashbackground})`,
             backgroundRepeat: "no-repeat",
@@ -161,8 +162,9 @@ export default function SignInSide() {
               t.palette.mode === "light"
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
-            backgroundSize: "cover",
+            backgroundSize: "fit",
             backgroundPosition: "center",
+            
           }}
         />
       </Grid>

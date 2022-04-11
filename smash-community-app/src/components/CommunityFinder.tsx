@@ -24,7 +24,7 @@ export function CommunityFinder() {
           </ul>
         ))}
       </div>
-      <Link to="/">Home</Link>
+      <Link to="/sitenav">Home</Link>
     </div>
   );
 }

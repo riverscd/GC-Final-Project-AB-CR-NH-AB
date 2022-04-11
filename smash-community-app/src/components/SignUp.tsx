@@ -28,7 +28,7 @@ export function SignUp() {
       ).then((user) => {
         if (user) {
           addUser(user);
-          navigate("/SiteNav");
+          navigate("/");
         }
       });
     }
@@ -85,7 +85,7 @@ export function SignUp() {
         </div>
       </form>
 
-      <Link to="/">Home</Link>
+      <Link to="/">Back</Link>
     </div>
   );
 }

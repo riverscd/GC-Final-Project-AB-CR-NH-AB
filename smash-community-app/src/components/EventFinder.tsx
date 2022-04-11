@@ -57,7 +57,7 @@ export function EventFinder() {
           </ul>
         ))}
       </div>
-      <Link to="/">Home</Link>
+      <Link to="/sitenav">Home</Link>
     </div>
   );
 }
