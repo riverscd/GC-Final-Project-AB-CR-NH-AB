@@ -7,21 +7,22 @@ import { User } from "../models/users";
 import { GetAllCharacters } from "../services/characters";
 
 export function MyProfile() {
-  
   const [users, setUsers] = useState<User[]>([]);
-  const {loggedInUser} = useContext(UserContext)
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div>
       <h1>My Profile</h1>
 
-      <p>Username: {`${loggedInUser?.slippi_usernames}`} </p>
+      <p>Username: {`${loggedInUser?.username}`} </p>
 
-      <p>Bio: {`${loggedInUser?.bio }`}</p>
+      <p>Bio: {`${loggedInUser?.bio}`}</p>
 
-      <p>location: {`${loggedInUser?.state}`}</p>
+      <p>location: {`${loggedInUser?.city}, ${loggedInUser?.state}`}</p>
 
-      <Link to="/">Home</Link>
+      <Link to="/editprofile">Edit </Link>
+      <br />
+      <Link to="/sitenav">Home</Link>
     </div>
   );
 }

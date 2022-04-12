@@ -22,6 +22,7 @@ export function EventFinder() {
     <div>
       <h1>Event and Tournament Finder</h1>
       <div>
+        <h2>Tournaments:</h2>
         {allTournaments.map((tournament: TournamentNode) => (
           <div>
             <ul>
@@ -41,11 +42,12 @@ export function EventFinder() {
               ))}
             </ul>
 
-            <button></button>
+            <button>Add To My Events</button>
           </div>
         ))}
       </div>
       <div>
+        <h2>Community Events:</h2>
         {allEvents.map((event: any) => (
           <ul>
             <li key={event.id}>{`event name: ${event.event_name}`}</li>
@@ -54,6 +56,7 @@ export function EventFinder() {
             <li>{`number of attendees: ${event.attendees}`}</li>
             <li>{`in person event: ${event.is_in_person}`}</li>
             <li>{`description: ${event.description}`}</li>
+            <button>Add To My Events</button>
           </ul>
         ))}
       </div>

@@ -9,6 +9,7 @@ interface UserContext {
 const defaultValue: UserContext = {
   loggedInUser: {
     id: 0,
+    username: "",
     email: "",
     password: "",
     first_name: "",
