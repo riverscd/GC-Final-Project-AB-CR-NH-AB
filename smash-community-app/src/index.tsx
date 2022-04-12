@@ -22,7 +22,7 @@ import { UserContextProvider } from "./contexts/UserContextProvider";
 import { userInfo } from "os";
 import { createContext } from "react";
 import UserContext from "./contexts/UserContext";
-import {EditProfile} from "./components/EditProfile"
+import { EditProfile } from "./components/EditProfile";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -34,6 +34,7 @@ ReactDOM.render(
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/myprofile" element={<MyProfile />} />
           <Route
             path="/generalmessageboard"
             element={<GeneralMessageBoard />}

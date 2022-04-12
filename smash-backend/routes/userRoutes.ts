@@ -150,25 +150,29 @@ userRoutes.post("/login", (req, res) => {
   });
 });
 
-userRoutes.put("/updateUser", (req: any, res: any) => {
+userRoutes.put("/updateUser/:id", (req: any, res: any) => {
   const updatedUser = {
     id: req.body.id,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
-    slippi_usernames: req.body.slippi_usernames,
     country: req.body.country,
     state: req.body.state,
     city: req.body.city,
-    user_bio: req.body.user_bio,
-    main_character: req.body.main_character,
+    bio: req.body.bio,
   };
-
+  const user = "hello";
   db.oneOrNone(
-    "UPDATE users SET (first_name, last_name, slippi_usernames, country, state, city, user_bio, main_character) = \
-  (${first_name}, ${last_name}, ${slippi_usernames}, ${country}, ${state}, ${city}, ${user_bio}, ${main_character}) WHERE id = ${id} RETURNING id, \
-  first_name, last_name, slippi_usernames, country, state, city, user_bio, main_character;",
+    "UPDATE users SET (first_name, last_name, country, state, city, bio) = \
+  (${first_name}, ${last_name}, ${country}, ${state}, ${city}, ${bio}) WHERE id = ${id} RETURNING id, \
+  first_name, last_name, country, state, city, bio;",
     updatedUser
-  ).then((user) => res.json(user));
+  ).then((user) => {
+    if (user) {
+      return res.json(user);
+    } else {
+      return res.status(400);
+    }
+  });
 });
 
 export default userRoutes;

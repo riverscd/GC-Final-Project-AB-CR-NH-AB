@@ -57,12 +57,11 @@ export function UpdateUser(
   id: number | undefined,
   first_name: string,
   last_name: string,
-  slippi_usernames: string,
   country: string,
   state: string,
   city: string,
-  user_bio: string,
-  main_character: Character | undefined
+  bio: string
+  // main_character: number
   // secondary_character: Character[],
 ) {
   return axios
@@ -70,12 +69,11 @@ export function UpdateUser(
       id: id,
       first_name: first_name,
       last_name: last_name,
-      slippi_usernames: slippi_usernames,
       country: country,
       state: state,
       city: city,
-      user_bio: user_bio,
-      main_character: main_character,
+      bio: bio,
+      // main_character: main_character,
     })
     .then((res: AxiosResponse<User>): User => {
       return res.data;

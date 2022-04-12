@@ -5,105 +5,104 @@ import { Character } from "../models/characters";
 import { GetAllCharacters } from "../services/characters";
 import { UpdateUser } from "../services/users";
 
-export function EditProfile() { 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [city, setCity] = useState(""); 
-    const [state, setState] = useState("");
-    const [country, setCountry] = useState("");
-    const [bio, setBio] = useState("");  
-    const [slippi, setSlippi] = useState("");
-    const navigate = useNavigate(); 
-    const [characters, setCharacters] = useState<Character[]>([]);
-    const [mainCharacter, setMainCharacter] = useState<Character| undefined>();
-    const [secondaryCharacters, setSecondaryCharacters] = useState([]);
-    const {loggedInUser} = useContext(UserContext)
+export function EditProfile() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [bio, setBio] = useState("");
+  const [slippi, setSlippi] = useState([]);
+  const navigate = useNavigate();
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [mainCharacter, setMainCharacter] = useState<number>(0);
+  const [secondaryCharacters, setSecondaryCharacters] = useState([]);
+  const { loggedInUser } = useContext(UserContext);
 
-    useEffect(() => {
-      GetAllCharacters().then((data: any) => { 
-        setCharacters(data);
-      });
-      // GetUser(id).then((data: any) => {
-      //   setUsers(data);
-      // });
-    }, []);
+  useEffect(() => {
+    GetAllCharacters().then((data: any) => {
+      setCharacters(data);
+    });
+    // GetUser(id).then((data: any) => {
+    //   setUsers(data);
+    // });
+  }, []);
 
-    function handleSubmit(e: any) {
-        e.preventDefault();
-        UpdateUser(
-        loggedInUser?.id,
-        firstName, 
-        lastName, 
-        slippi,
-        city,
-        state, 
-        country, 
-        bio, 
-        mainCharacter, 
-        // secondaryCharacters[], 
-        ).then((newEvent) => {
-          if (newEvent) {
-            navigate("/myprofile");
-          }
-        });
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    UpdateUser(
+      loggedInUser?.id,
+      firstName,
+      lastName,
+      city,
+      state,
+      country,
+      bio
+      //mainCharacter
+      // secondaryCharacters[],
+    ).then((newEvent) => {
+      if (newEvent) {
+        navigate("/myprofile");
       }
+    });
+  }
 
-    return (
-      <div>
-        <form>
-          <p>Create Your Profile</p>
-          <label>
-            <p>First Name:</p>
-            <input type="text" onChange={(e) => setFirstName(e.target.value)} />
-          </label>
-          <label>
-            <p>Last Name:</p>
-            <input type="text" onChange={(e) => setLastName(e.target.value)} />
-          </label>
-          <label>
+  return (
+    <div>
+      <form>
+        <p>Create Your Profile</p>
+        <label>
+          <p>First Name:</p>
+          <input type="text" onChange={(e) => setFirstName(e.target.value)} />
+        </label>
+        <label>
+          <p>Last Name:</p>
+          <input type="text" onChange={(e) => setLastName(e.target.value)} />
+        </label>
+        {/* <label>
             <p>Slippi Username:</p>
             <input type="text" onChange={(e) => setSlippi(e.target.value)} />
-          </label>
-          <label>
-            <p>Location Information:</p>
-            <p>Country:</p>
-            <input type="text" onChange={(e) => setCountry(e.target.value)} />
-            <p>State:</p>
-            <input type="text" onChange={(e) => setState(e.target.value)} />
-            <p>City:</p>
-            <input type="text" onChange={(e) => setCity(e.target.value)} />
-          </label>
-          <label>
-            <p>User Bio:</p>
-            <input type="text" onChange={(e) => setBio(e.target.value)} />
-          </label>
-          <button className="button" type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </form>
-        <div>
-        <h2>Choose Your Character</h2>
+          </label> */}
+        <label>
+          <p>Location Information:</p>
+          <p>Country:</p>
+          <input type="text" onChange={(e) => setCountry(e.target.value)} />
+          <p>State:</p>
+          <input type="text" onChange={(e) => setState(e.target.value)} />
+          <p>City:</p>
+          <input type="text" onChange={(e) => setCity(e.target.value)} />
+        </label>
+        <label>
+          <p>User Bio:</p>
+          <input type="text" onChange={(e) => setBio(e.target.value)} />
+        </label>
+        <button className="button" type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
+      </form>
+      <div>
+        {/* <h2>Choose Your Character</h2>
         Main Character - {mainCharacter}
-        Secondary Character- {secondaryCharacters}
-        <div>
+        Secondary Character- {secondaryCharacters} */}
+        {/* <div>
           <label>Main Character: </label>
-{/* 
+
           <select
             onChange={(event) => {
-              setMainCharacter(event.target.value);
+              setMainCharacter(parseInt(event.target.value));
             }}
           >
             {characters?.map((character: Character) => (
               <option
-                value={`${character.character_name}`}
+                value={`${character.id}`}
               >{`${character.character_name}`}</option>
             ))}
           </select>
-        </div>
-        <div> */}
+        </div> */}
+        <div>
           {/* {/* <label>Secondary Character 1: </label> */}
-          
-            {/* onChange={(event) => {
+
+          {/* onChange={(event) => {
               setSecondaryCharacters(event.target.value);
             }} */}
           {/* <select> 
@@ -155,7 +154,7 @@ export function EditProfile() {
               >{`${character.character_name}`}</option>
             ))}
           </select> */}
-        {/* </div>
+          {/* </div>
         <div>
           <label>Secondary Character 5: </label>
           <select
@@ -171,6 +170,6 @@ export function EditProfile() {
           </select> */}
         </div>
       </div>
-      </div>
-      );
+    </div>
+  );
 }
