@@ -1,1 +1,43 @@
 
+.message{
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+    width: 700px
+}
+
+.reply{
+    margin-left: 100px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border: 1px solid white;
+    width: 610px
+}
+
+/* unvisited link */
+a:link {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: gray;
+    text-decoration: none;
+  }
+  
+  /* selected link */
+  a:active {
+    color: white;
+    text-decoration: none;
+  }

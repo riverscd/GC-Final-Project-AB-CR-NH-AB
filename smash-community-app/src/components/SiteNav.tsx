@@ -65,6 +65,18 @@ export function SiteNavigation() {
               <Grid container>
                 <Grid item>
                   <Link
+                    to={"/generalmessageboard"}
+                    // variant="inherit"
+                    // color="inherit"
+                    // underline="none"
+                  >
+                    General Message Board
+                  </Link>
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid item>
+                  <Link
                     to={"/communityfinder"}
                     // variant="inherit"
                     // color="inherit"
@@ -76,26 +88,26 @@ export function SiteNavigation() {
               </Grid>
               <Grid container>
                 <Grid item>
-                  <MuiLink
-                    href="/eventfinder"
-                    variant="inherit"
-                    color="inherit"
-                    underline="none"
+                  <Link
+                    to={"/eventfinder"}
+                    // variant="inherit"
+                    // color="inherit"
+                    // underline="none"
                   >
                     Event Finder
-                  </MuiLink>
+                  </Link>
                 </Grid>
               </Grid>
               <Grid container>
                 <Grid item>
-                  <MuiLink
-                    href="/communityeventmanager"
-                    variant="inherit"
-                    color="inherit"
-                    underline="none"
+                  <Link
+                    to={"/communityeventmanager"}
+                    // variant="inherit"
+                    // color="inherit"
+                    // underline="none"
                   >
                     Community and Event Creator
-                  </MuiLink>
+                  </Link>
                 </Grid>
               </Grid>
             </Box>
@@ -114,26 +126,26 @@ export function SiteNavigation() {
               </Typography>
               <Grid container>
                 <Grid item>
-                  <MuiLink
-                    href="/myevents"
-                    variant="inherit"
-                    color="inherit"
-                    underline="none"
+                  <Link
+                   to={"/myevents"}
+                    // variant="inherit"
+                    // color="inherit"
+                    // underline="none"
                   >
                     My Events
-                  </MuiLink>
+                  </Link>
                 </Grid>
               </Grid>
               <Grid container>
                 <Grid item>
-                  <MuiLink
-                    href="/mycommunities"
-                    variant="inherit"
-                    color="inherit"
-                    underline="none"
+                  <Link
+                    to={"/mycommunities"}
+                    // variant="inherit"
+                    // color="inherit"
+                    // underline="none"
                   >
                     My Communities
-                  </MuiLink>
+                  </Link>
                 </Grid>
               </Grid>
               <Grid container>
