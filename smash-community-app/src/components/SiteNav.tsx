@@ -74,7 +74,15 @@ export function SiteNavigation() {
                   </MuiLink>
                 </Grid>
               </Grid>
+              <Grid container >
+                <Grid item>
+                  <MuiLink href="//communityeventmanager" variant="inherit" color="inherit" underline="none">
+                    Community and Event Creator
+                  </MuiLink>
+                </Grid>
+              </Grid>
             </Box>
+            
             <Box sx={{
               mx: 4,
               mt: 4,
