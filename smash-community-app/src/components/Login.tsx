@@ -134,7 +134,7 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
-              <Grid container>
+              <Grid container justifyContent="center">
                 {/* <Grid item xs>
                   <MuiLink href="/signup" variant="body2">
                     Forgot password?
