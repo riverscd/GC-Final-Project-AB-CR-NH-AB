@@ -4,10 +4,10 @@ import { User } from "../models/users";
 interface UserContext {
   loggedInUser: User | undefined;
   addUser: (loggedInUser: User) => void;
-  removeUser: (loggedInUser: User) => void;
+  removeUser: () => void;
 }
 
-const defaultValue: UserContext = {
+export const defaultValue: UserContext = {
   loggedInUser: {
     id: 0,
     username: "",

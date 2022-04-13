@@ -2,6 +2,32 @@ import { Provider, ReactElement, ReactNode, useState } from "react";
 import { User } from "../models/users";
 import UserContext from "./UserContext";
 
+const userInitialValue: User = {
+    id: 0,
+    username: "",
+    email: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    birthdate: "",
+    city: "",
+    state: "",
+    country: "",
+    zip: "",
+    bio: "",
+    main_character: {
+      id: 0,
+      character_name: "",
+    },
+    secondary_characters: [
+      {
+        id: 0,
+        character_name: "",
+      },
+    ],
+    slippi_usernames: [],
+  }
+
 export function UserContextProvider(props: { children: JSX.Element }) : ReactElement  {
   const [loggedInUser, setUser] = useState<User>();
 
@@ -9,8 +35,9 @@ export function UserContextProvider(props: { children: JSX.Element }) : ReactEle
     setUser(loggedInUser);
   };
 
-  function removeUser(loggedInUser: User) { 
-    setUser(undefined)
+  function removeUser() { 
+    setUser({...userInitialValue});
+    console.log(loggedInUser)
   }
 
   return ( 

@@ -28,7 +28,7 @@ export function SiteNavigation() {
   const navigate = useNavigate();
 
   function handleSignOut() {
-    removeUser(loggedInUser as User)
+    removeUser()
     navigate("/login")
     console.log(loggedInUser)
   }
