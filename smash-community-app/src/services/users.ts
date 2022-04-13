@@ -65,8 +65,7 @@ export function UpdateUser(
   // secondary_character: Character[],
 ) {
   return axios
-    .put(`http://localhost:3001/updateUser`, {
-      id: id,
+    .put(`http://localhost:3001/users/${id}`, {
       first_name: first_name,
       last_name: last_name,
       country: country,

@@ -45,7 +45,6 @@ const darkTheme = createTheme({
 });
 
 export default function SignInSide() {
- 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -57,6 +56,7 @@ export default function SignInSide() {
     console.log(password);
     LoginUser(username, password).then((user: User) => {
       if (user) {
+        console.log(user);
         addUser(user);
         navigate("/SiteNav");
       }
@@ -165,7 +165,6 @@ export default function SignInSide() {
                 : t.palette.grey[900],
             backgroundSize: "fit",
             backgroundPosition: "center",
-            
           }}
         />
       </Grid>

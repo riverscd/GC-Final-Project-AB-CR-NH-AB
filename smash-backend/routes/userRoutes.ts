@@ -150,9 +150,9 @@ userRoutes.post("/login", (req, res) => {
   });
 });
 
-userRoutes.put("/updateUser/:id", (req: any, res: any) => {
-  const updatedUser = {
-    id: req.body.id,
+userRoutes.put("/users/:id", (req: any, res: any) => {
+  const updatedUserValues = {
+    id: req.params.id,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     country: req.body.country,
@@ -160,15 +160,15 @@ userRoutes.put("/updateUser/:id", (req: any, res: any) => {
     city: req.body.city,
     bio: req.body.bio,
   };
-  const user = "hello";
+
   db.oneOrNone(
     "UPDATE users SET (first_name, last_name, country, state, city, bio) = \
   (${first_name}, ${last_name}, ${country}, ${state}, ${city}, ${bio}) WHERE id = ${id} RETURNING id, \
-  first_name, last_name, country, state, city, bio;",
-    updatedUser
-  ).then((user) => {
-    if (user) {
-      return res.json(user);
+  username, first_name, last_name, country, state, city, bio;",
+    updatedUserValues
+  ).then((updatedUser) => {
+    if (updatedUser) {
+      return res.json(updatedUser);
     } else {
       return res.status(400);
     }
