@@ -17,8 +17,8 @@ export function EditProfile() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [mainCharacter, setMainCharacter] = useState<number>(0);
   const [secondaryCharacters, setSecondaryCharacters] = useState([]);
-  const { loggedInUser } = useContext(UserContext);
-
+  const { loggedInUser, addUser } = useContext(UserContext);
+  console.log(loggedInUser?.id);
   useEffect(() => {
     GetAllCharacters().then((data: any) => {
       setCharacters(data);
@@ -30,6 +30,7 @@ export function EditProfile() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
+    console.log(loggedInUser?.id);
     UpdateUser(
       loggedInUser?.id,
       firstName,
@@ -40,8 +41,9 @@ export function EditProfile() {
       bio
       //mainCharacter
       // secondaryCharacters[],
-    ).then((newEvent) => {
-      if (newEvent) {
+    ).then((updatedUser) => {
+      if (updatedUser) {
+        addUser(updatedUser);
         navigate("/myprofile");
       }
     });
