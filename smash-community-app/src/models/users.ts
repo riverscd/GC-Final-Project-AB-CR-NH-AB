@@ -14,7 +14,7 @@ export interface User {
   birthdate: string;
   city: string;
   state: string;
-  country: string;
+  country: string; 
   zip: string;
   bio: string;
   main_character: Character;
