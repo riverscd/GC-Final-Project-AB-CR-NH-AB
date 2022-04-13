@@ -17,7 +17,7 @@ export interface User {
   country: string;
   zip: string;
   bio: string;
-  main_character: Character;
-  secondary_characters: Character[];
-  slippi_usernames: string[];
+  // main_character: Character;
+  // secondary_characters: Character[];
+  // slippi_usernames: string[];
 }

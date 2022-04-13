@@ -18,9 +18,9 @@ export function CommunityFinder() {
       <div>
         {allCommunities?.map((community: Community) => (
           <ul>
-            <li key={community.id}>{`${community.community_name}`}</li>
-            <li>{`${community.location}`}</li>
-            <li>{`${community.description}`}</li>
+            <li key={community.id}>Community Name: {`${community.community_name}`}</li>
+            <li>Location: {`${community.location}`}</li>
+            <li>Description: {`${community.description}`}</li>
           </ul>
         ))}
       </div>

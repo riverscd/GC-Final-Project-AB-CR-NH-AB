@@ -4,6 +4,7 @@ import { User } from "../models/users";
 interface UserContext {
   loggedInUser: User | undefined;
   addUser: (loggedInUser: User) => void;
+  removeUser: (loggedInUser: User) => void;
 }
 
 const defaultValue: UserContext = {
@@ -33,6 +34,7 @@ const defaultValue: UserContext = {
     slippi_usernames: [],
   },
   addUser: () => {},
+  removeUser: () => {}
 };
 
 const userContext = createContext<UserContext>(defaultValue);

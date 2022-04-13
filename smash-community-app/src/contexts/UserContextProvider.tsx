@@ -9,10 +9,14 @@ export function UserContextProvider(props: { children: JSX.Element }) : ReactEle
     setUser(loggedInUser);
   };
 
+  function removeUser(loggedInUser: User) { 
+    setUser(undefined)
+  }
+
   return ( 
     <div> 
       <UserContext.Provider
-      value ={{loggedInUser, addUser}}> 
+      value ={{loggedInUser, addUser, removeUser}}> 
         {props.children}
       </UserContext.Provider>
     </div>
