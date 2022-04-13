@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
+import {useContext} from "react";
+import { User } from "../models/users";
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import MuiLink from '@mui/material/Link';
 import Paper from "@mui/material/Paper";
 import Grid from '@mui/material/Grid';
@@ -24,6 +24,14 @@ const darkTheme = createTheme({
 
 export function SiteNavigation() {
 
+  const { loggedInUser, removeUser } = useContext(UserContext); 
+  const navigate = useNavigate();
+
+  function handleSignOut() { 
+    removeUser(loggedInUser as User)
+    navigate("/login")
+    console.log(loggedInUser)
+  }
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -96,9 +104,7 @@ export function SiteNavigation() {
             </Grid>
             <Grid container>
               <Grid item>
-                <MuiLink href="/login" variant="inherit" color="inherit" underline="none">
-                  Sign Out
-                </MuiLink>
+                <Button onClick={handleSignOut}>Sign Out</Button>
               </Grid>
             </Grid>
           </Box>
