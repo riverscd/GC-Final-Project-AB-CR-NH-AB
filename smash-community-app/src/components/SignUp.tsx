@@ -74,7 +74,7 @@ export function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            mt: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -210,7 +210,7 @@ export function SignUp() {
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <MuiLink href="#" variant="body2">
+                <MuiLink href="/sitenav" variant="body2">
                   Already have an account? Sign in
                 </MuiLink>
               </Grid>

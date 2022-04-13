@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
-import {useContext} from "react";
+import { useContext } from "react";
 import { User } from "../models/users";
 
 import Avatar from '@mui/material/Avatar';
@@ -24,10 +24,10 @@ const darkTheme = createTheme({
 
 export function SiteNavigation() {
 
-  const { loggedInUser, removeUser } = useContext(UserContext); 
+  const { loggedInUser, removeUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  function handleSignOut() { 
+  function handleSignOut() {
     removeUser(loggedInUser as User)
     navigate("/login")
     console.log(loggedInUser)
@@ -44,69 +44,76 @@ export function SiteNavigation() {
           component={Paper}
           elevation={6}
           sx={{
-            py: 2
+            py: 2,
           }}
         >
           <Box sx={{
-            mx: 4,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'left',
           }}>
-            <Typography component="h1" variant="h5">
-              Explore
-            </Typography>
-            <Grid container >
-              <Grid item>
-                <MuiLink href="/communityfinder" variant="inherit" color="inherit" underline="none">
-                  Community Finder
-                </MuiLink>
+            <Box sx={{
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'left',
+            }}>
+              <Typography component="h1" variant="h5">
+                Explore
+              </Typography>
+              <Grid container >
+                <Grid item>
+                  <MuiLink href="/communityfinder" variant="inherit" color="inherit" underline="none">
+                    Community Finder
+                  </MuiLink>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item>
-                <MuiLink href="/eventfinder" variant="inherit" color="inherit" underline="none">
-                  Event Finder
-                </MuiLink>
+              <Grid container>
+                <Grid item>
+                  <MuiLink href="/eventfinder" variant="inherit" color="inherit" underline="none">
+                    Event Finder
+                  </MuiLink>
+                </Grid>
               </Grid>
-            </Grid>
-          </Box>
-          <Box sx={{
-            mx: 4,
-            mt: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'left',
-          }}>
-            <Typography component="h1" variant="h5">
-              My Stuff
-            </Typography>
-            <Grid container >
-              <Grid item>
-                <MuiLink href="/myevents" variant="inherit" color="inherit" underline="none">
-                  My Events
-                </MuiLink>
+            </Box>
+            <Box sx={{
+              mx: 4,
+              mt: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'left',
+            }}>
+              <Typography component="h1" variant="h5">
+                My Stuff
+              </Typography>
+              <Grid container >
+                <Grid item>
+                  <MuiLink href="/myevents" variant="inherit" color="inherit" underline="none">
+                    My Events
+                  </MuiLink>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container >
-              <Grid item>
-                <MuiLink href="/mycommunities" variant="inherit" color="inherit" underline="none">
-                  My Communities
-                </MuiLink>
+              <Grid container >
+                <Grid item>
+                  <MuiLink href="/mycommunities" variant="inherit" color="inherit" underline="none">
+                    My Communities
+                  </MuiLink>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container >
-              <Grid item>
-                <MuiLink href="/myprofile" variant="inherit" color="inherit" underline="none">
-                  My Profile
-                </MuiLink>
+              <Grid container >
+                <Grid item>
+                  <MuiLink href="/myprofile" variant="inherit" color="inherit" underline="none">
+                    My Profile
+                  </MuiLink>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item>
-                <Button onClick={handleSignOut}>Sign Out</Button>
+              <Grid container>
+                <Grid item >
+                  <Button sx={{
+                    mt: 2,
+                  }} variant="outlined" onClick={handleSignOut}>Sign Out</Button>
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Box>
           {/* <Copyright sx={{ mt: 5 }} /> */}
         </Grid>
