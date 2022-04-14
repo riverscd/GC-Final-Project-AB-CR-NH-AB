@@ -24,13 +24,14 @@ import { createContext } from "react";
 import UserContext from "./contexts/UserContext";
 import { EditProfile } from "./components/EditProfile";
 import { Message } from "./components/Message";
+import { LoginChecker } from "./components/LoginChecker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-      {/* <Header /> */}
-      <UserContextProvider>
+    <UserContextProvider>
+      <BrowserRouter>
+        {/* <Header /> */}
+        <App />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
@@ -55,8 +56,8 @@ ReactDOM.render(
           <Route path="/communityform" element={<CreateCommunity />} />
           <Route path="/eventform" element={<CreateEvent />} />
         </Routes>
-      </UserContextProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </UserContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

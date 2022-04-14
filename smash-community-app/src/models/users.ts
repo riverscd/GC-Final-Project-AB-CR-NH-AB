@@ -12,12 +12,12 @@ export interface User {
   first_name: string;
   last_name: string;
   birthdate: string;
-  city: string;
-  state: string;
-  country: string; 
-  zip: string;
-  bio: string;
-  main_character: Character;
-  secondary_characters: Character[];
-  slippi_usernames: string[];
+  city?: string;
+  state?: string;
+  country?: string;
+  zip?: string;
+  bio?: string;
+  main_character?: number[];
+  secondary_characters?: number[];
+  slippi_usernames?: string[];
 }

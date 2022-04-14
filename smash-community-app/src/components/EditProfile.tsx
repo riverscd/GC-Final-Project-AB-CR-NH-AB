@@ -6,6 +6,7 @@ import { GetAllCharacters } from "../services/characters";
 import { UpdateUser } from "../services/users";
 
 export function EditProfile() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [city, setCity] = useState("");
@@ -13,9 +14,9 @@ export function EditProfile() {
   const [country, setCountry] = useState("");
   const [bio, setBio] = useState("");
   const [slippi, setSlippi] = useState([]);
-  const navigate = useNavigate();
+
   const [characters, setCharacters] = useState<Character[]>([]);
-  const [mainCharacter, setMainCharacter] = useState<number>(0);
+  const [mainCharacters, setMainCharacter] = useState<number>(0);
   const [secondaryCharacters, setSecondaryCharacters] = useState([]);
   const { loggedInUser, addUser } = useContext(UserContext);
   console.log(loggedInUser?.id);

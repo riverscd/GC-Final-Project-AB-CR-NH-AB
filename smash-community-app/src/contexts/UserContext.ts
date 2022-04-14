@@ -21,20 +21,12 @@ export const defaultValue: UserContext = {
     country: "",
     zip: "",
     bio: "",
-    main_character: {
-      id: 0,
-      character_name: "",
-    },
-    secondary_characters: [
-      {
-        id: 0,
-        character_name: "",
-      },
-    ],
+    main_character: [],
+    secondary_characters: [],
     slippi_usernames: [],
   },
   addUser: () => {},
-  removeUser: () => {}
+  removeUser: () => {},
 };
 
 const userContext = createContext<UserContext>(defaultValue);
