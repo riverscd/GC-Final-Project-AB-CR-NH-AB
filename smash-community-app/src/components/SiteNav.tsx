@@ -24,11 +24,10 @@ const darkTheme = createTheme({
 export function SiteNavigation() {
   const { loggedInUser, removeUser } = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(loggedInUser);
   function handleSignOut() {
     removeUser()
+    console.log(loggedInUser);
     navigate("/login")
-    console.log(loggedInUser)
   }
 
   return (
