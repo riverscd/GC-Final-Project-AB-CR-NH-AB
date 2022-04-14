@@ -159,12 +159,13 @@ userRoutes.put("/users/:id", (req: any, res: any) => {
     state: req.body.state,
     city: req.body.city,
     bio: req.body.bio,
+    main_character: req.body.main_character,
   };
 
   db.oneOrNone(
-    "UPDATE users SET (first_name, last_name, country, state, city, bio) = \
-  (${first_name}, ${last_name}, ${country}, ${state}, ${city}, ${bio}) WHERE id = ${id} RETURNING id, \
-  username, first_name, last_name, country, state, city, bio;",
+    "UPDATE users SET (first_name, last_name, country, state, city, bio, main_character) = \
+  (${first_name}, ${last_name}, ${country}, ${state}, ${city}, ${bio}, array_append(main_character, ${main_character})) WHERE id = ${id} RETURNING id, \
+  username, first_name, last_name, country, state, city, bio, main_character;",
     updatedUserValues
   ).then((updatedUser) => {
     if (updatedUser) {
@@ -174,5 +175,7 @@ userRoutes.put("/users/:id", (req: any, res: any) => {
     }
   });
 });
+
+
 
 export default userRoutes;
