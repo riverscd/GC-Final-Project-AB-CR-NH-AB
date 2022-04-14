@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export function GeneralMessageBoard() {
+    const navigate = useNavigate();
+
+    function handleClick(){
+        navigate("/message")
+    }
 
     return (
         <div>
@@ -16,7 +21,7 @@ export function GeneralMessageBoard() {
                 <p> Message Body: PUT THIS ON MESSAGE PAGE NOT MAIN BOARD </p>
                 <p>Show Replies on Main Board like below
                     or show reply count and click Message to see Replies?</p>
-                <button>reply</button> <button>way for creator to delete?</button>  <button>way to report?</button>
+                <button>reply</button> <button  onClick= {handleClick} >Replies</button>  <button>way to report?</button>
             </div>
 
             <div className="reply">
