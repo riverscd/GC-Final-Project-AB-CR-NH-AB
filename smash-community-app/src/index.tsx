@@ -30,7 +30,6 @@ ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>
       <BrowserRouter>
-        {/* <Header /> */}
         <App />
         <Routes>
           <Route path="/" element={<Login />} />

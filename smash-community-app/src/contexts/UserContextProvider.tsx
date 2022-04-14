@@ -1,4 +1,4 @@
-import { Provider, ReactElement, ReactNode, useState } from "react";
+import { Provider, ReactElement, ReactNode, useEffect, useState } from "react";
 import { User } from "../models/users";
 import UserContext from "./UserContext";
 
@@ -31,8 +31,13 @@ export function UserContextProvider(props: {
 
   function removeUser() {
     setUser({ ...userInitialValue });
-    console.log(loggedInUser);
+    localStorage.clear();
   }
+
+  useEffect(() => {
+    localStorage.setItem("key", JSON.stringify(loggedInUser));
+    console.log(loggedInUser);
+  }, []);
 
   return (
     <div>
