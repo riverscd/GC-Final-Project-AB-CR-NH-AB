@@ -7,19 +7,19 @@ import { db } from "../index"
 
 const postsRoutes = express.Router();
 
-const Joi = require('joi');
+// const Joi = require('joi');
 
-const schema = Joi.object({
-    replies: Joi.string()
-        .min(1)
-        .max(200),
+// const schema = Joi.object({
+//     replies: Joi.string()
+//         .min(1)
+//         .max(200),
 
-    date_: Joi.date().greater('now').timestamp('javascript').iso(),
+//     date_: Joi.date().greater('now').timestamp('javascript').iso(),
         
 
     
 
-})
+// })
 
 postsRoutes.get('/posts', (req, res) => {
 

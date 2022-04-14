@@ -23,8 +23,8 @@ import { userInfo } from "os";
 import { createContext } from "react";
 import UserContext from "./contexts/UserContext";
 import { EditProfile } from "./components/EditProfile";
-import { Message } from "./components/Message";
 import { LoginChecker } from "./components/LoginChecker";
+import { Post } from "./components/Post";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -40,7 +40,7 @@ ReactDOM.render(
             path="/generalmessageboard"
             element={<GeneralMessageBoard />}
           />
-          <Route path="/message" element={<Message />} />
+          <Route path="/post" element={<Post />} />
           <Route path="/mycommunities" element={<MyCommunities />} />
           <Route path="/communityfinder" element={<CommunityFinder />} />
           <Route path="/myevents" element={<MyEvents />} />

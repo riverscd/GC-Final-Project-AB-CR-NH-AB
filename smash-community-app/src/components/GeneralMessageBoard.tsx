@@ -1,11 +1,23 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Post, Posts } from "../models/posts";
+import { GetAllPosts } from "../services/posts";
 
 
 export function GeneralMessageBoard() {
+
+    const [allPosts, setAllPosts] = useState<any>([]);
     const navigate = useNavigate();
 
+    useEffect(() => {
+       
+        GetAllPosts().then((data: any) => {
+          setAllPosts(data);
+        });
+      }, []);
+
     function handleClick(){
-        navigate("/message")
+        navigate("/post")
     }
 
     return (
@@ -14,8 +26,23 @@ export function GeneralMessageBoard() {
 
             <button>Create Post</button>
 
-            <div className="message">
-            <Link to ="/message" > Message Title: </Link>
+            {allPosts.map((post: Post) => (
+          <div className="message">
+            <ul>
+              <li
+                key={post.id}
+              ><Link to ="/post" > {`post title: ${post.post_title}`}</Link></li>
+              <li>{`post author: ${post.author_id}`}</li>
+              <li>{`post message: ${post.post_message}`}</li>
+              <li>{`post date: ${post.date_created}`}</li>
+              <li># of replies</li>
+              <button onClick= {handleClick}>reply</button>  
+            </ul>
+            </div>
+        ))}
+
+            {/* <div className="message">
+            <Link to ="/post" > Title: </Link>
                 <p> Username of Author: </p>
                 <p> Date Posted: </p>
                 <p> Message Body: PUT THIS ON MESSAGE PAGE NOT MAIN BOARD </p>
@@ -25,7 +52,7 @@ export function GeneralMessageBoard() {
 
 
             <div className="message">
-            <Link to ="/message" > Message Title: </Link>
+            <Link to ="/post" > Message Title: </Link>
                 <p> Username of Author: </p>
                 <p> Date Posted: </p>
                 <p> Message Body: </p>
@@ -35,7 +62,7 @@ export function GeneralMessageBoard() {
 
          
             <div className="message">
-            <Link to ="/message" > Message Title: </Link>
+            <Link to ="/post" > Message Title: </Link>
                 <p> Username of Author: </p>
                 <p> Date Posted: </p>
                 <p> Message Body: </p>
@@ -44,13 +71,13 @@ export function GeneralMessageBoard() {
             </div>
 
             <div className="message">
-            <Link to ="/message" > Message Title: </Link>
+            <Link to ="/post" > Message Title: </Link>
                 <p> Username of Author: </p>
                 <p> Date Posted: </p>
                 <p> Message Body: </p>
                 <p># of replies </p>
                 <button>reply</button>
-            </div>
+            </div> */}
 
            
 
