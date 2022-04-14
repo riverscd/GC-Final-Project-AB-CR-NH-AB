@@ -27,10 +27,9 @@ import { Message } from "./components/Message";
 
 ReactDOM.render(
   <React.StrictMode>
+    <UserContextProvider>
     <BrowserRouter>
       <App />
-      {/* <Header /> */}
-      <UserContextProvider>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
@@ -55,8 +54,8 @@ ReactDOM.render(
           <Route path="/communityform" element={<CreateCommunity />} />
           <Route path="/eventform" element={<CreateEvent />} />
         </Routes>
-      </UserContextProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </UserContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
