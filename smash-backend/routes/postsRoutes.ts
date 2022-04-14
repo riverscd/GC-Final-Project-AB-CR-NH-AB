@@ -36,4 +36,35 @@ postsRoutes.get('/posts/:id', (req, res) => {
 
 })
 
+postsRoutes.post("/create-post", (req, res) => {
+
+  const newPost = {
+    post_title: req.body.post_title,
+    post_message: req.body.post_message,
+    date_created:new Date().toISOString()
+    // posts: req.body.posts,
+    
+  }
+  // const validPost = postSchema.validate(newPost);
+
+  console.log(newPost);
+  console.log(new Date().toISOString())
+  
+// if(validCommunity.error) {
+//  return res.status(400).send(validCommunity.error)
+// }
+  db.one(
+    "INSERT INTO posts (post_title, post_message, date_created) VALUES \
+        (${post_title}, ${post_message}, ${date_created}) RETURNING id;",
+    newPost
+  )
+    .then((id) => {
+      return db.oneOrNone("SELECT * FROM posts WHERE id=${id}", {
+        id: id.id,
+      });
+    })
+    .then((post) => res.json(post));
+});
+
+
 export default postsRoutes;

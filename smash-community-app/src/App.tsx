@@ -13,13 +13,13 @@ function App() {
 
   const location = useLocation();
   const { checkLoginStatus } = useContext(UserContext);
-  useEffect(() => {
-    if (!checkLoginStatus()) {
-      navigate("/");
-    }
+  // useEffect(() => {
+  //   if (!checkLoginStatus()) {
+  //     navigate("/");
+  //   }
 
-    //checkLoginStatus();
-  }, []);
+  //   //checkLoginStatus();
+  // }, []);
 
   const darkTheme = createTheme({
     palette: {
