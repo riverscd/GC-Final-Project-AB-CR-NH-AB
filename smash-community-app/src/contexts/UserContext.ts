@@ -2,12 +2,15 @@ import { createContext } from "react";
 import { User } from "../models/users";
 
 interface UserContext {
+  isLoggedIn: boolean;
   loggedInUser: User | undefined;
   addUser: (loggedInUser: User) => void;
-  removeUser: () => void;
+  logoutUser: () => void;
+  checkLoginStatus: () => boolean;
 }
 
 export const defaultValue: UserContext = {
+  isLoggedIn: false,
   loggedInUser: {
     id: 0,
     username: "",
@@ -26,7 +29,10 @@ export const defaultValue: UserContext = {
     slippi_usernames: [],
   },
   addUser: () => {},
-  removeUser: () => {},
+  logoutUser: () => {},
+  checkLoginStatus: () => {
+    return false;
+  },
 };
 
 const userContext = createContext<UserContext>(defaultValue);

@@ -24,7 +24,6 @@ import { createContext } from "react";
 import UserContext from "./contexts/UserContext";
 import { EditProfile } from "./components/EditProfile";
 import { Message } from "./components/Message";
-import { LoginChecker } from "./components/LoginChecker";
 
 ReactDOM.render(
   <React.StrictMode>

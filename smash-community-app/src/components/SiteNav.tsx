@@ -22,12 +22,12 @@ const darkTheme = createTheme({
 });
 
 export function SiteNavigation() {
-  const { loggedInUser, removeUser } = useContext(UserContext);
+  const { loggedInUser, logoutUser } = useContext(UserContext);
   const navigate = useNavigate();
   function handleSignOut() {
-    removeUser()
+    logoutUser();
     console.log(loggedInUser);
-    navigate("/login")
+    navigate("/login");
   }
 
   return (
@@ -126,7 +126,7 @@ export function SiteNavigation() {
               <Grid container>
                 <Grid item>
                   <Link
-                   to={"/myevents"}
+                    to={"/myevents"}
                     // variant="inherit"
                     // color="inherit"
                     // underline="none"
