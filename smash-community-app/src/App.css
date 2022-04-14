@@ -21,6 +21,7 @@
 /* unvisited link */
 a:link {
     color: white;
+    font-weight: bolder;
     text-decoration: none;
   }
   
