@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function Message(){
+export function Post(){
 
 
     return (
