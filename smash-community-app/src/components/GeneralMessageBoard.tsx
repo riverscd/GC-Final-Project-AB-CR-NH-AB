@@ -47,7 +47,8 @@ export function GeneralMessageBoard() {
     GetAllPosts().then((data: any) => {
       setAllPosts(data);
     });
-  }, [handleSubmit]);
+    console.log("hi")
+  }, []);
 
   //reply button
   function handleClick() {
