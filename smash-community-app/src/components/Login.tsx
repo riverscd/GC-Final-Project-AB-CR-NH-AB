@@ -48,16 +48,14 @@ export default function SignInSide() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { addUser } = useContext(UserContext);
+  const { loggedInUser, addUser } = useContext(UserContext);
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
     LoginUser(username, password).then((user: User) => {
       if (user) {
-        console.log(user);
         addUser(user);
+        console.log(loggedInUser);
         navigate("/SiteNav");
       }
     });

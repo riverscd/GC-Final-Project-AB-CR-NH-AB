@@ -1,5 +1,5 @@
 import UserContext from "../contexts/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { User } from "../models/users";
 
 import Avatar from "@mui/material/Avatar";
@@ -24,6 +24,11 @@ const darkTheme = createTheme({
 export function SiteNavigation() {
   const { loggedInUser, logoutUser } = useContext(UserContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (loggedInUser !== undefined)
+      window.localStorage.setItem("user", JSON.stringify(loggedInUser));
+  }, []);
+  console.log(loggedInUser);
   function handleSignOut() {
     logoutUser();
     console.log(loggedInUser);

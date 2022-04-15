@@ -29,9 +29,8 @@ export function UserContextProvider(props: {
 
   const [loggedInUser, setUser] = useState<User>();
 
-  function addUser(loggedInUser: User) {
-    setUser(loggedInUser);
-    localStorage.setItem("user", JSON.stringify(loggedInUser));
+  function addUser(user: User) {
+    setUser(user);
     setIsLoggedIn(true);
   }
 
@@ -42,42 +41,35 @@ export function UserContextProvider(props: {
   }
 
   function checkLoginStatus(): boolean {
-    // let userFromLocalStorage =
-    //   window.localStorage.getItem("user") ?? "No user in storage";
-    // console.log(isLoggedIn);
-    // console.log(loggedInUser);
-    // console.log(userFromLocalStorage);
-    // if (isLoggedIn && userFromLocalStorage === "No user in storage") {
-    //   localStorage.setItem("user", JSON.stringify(loggedInUser));
-    //   return true;
-    // } else if (isLoggedIn && userFromLocalStorage !== "No user in storage") {
-    //   return true;
-    // } else if (
-    //   isLoggedIn === false &&
-    //   userFromLocalStorage !== "No user in storage"
-    // ) {
-    //   //console.log(JSON.parse(userFromLocalStorage));
-    //   //setUser(JSON.parse(userFromLocalStorage));
-    //   return true;
-    // } else {
-    //   return false;
-    // if(isLoggedIn === false){
+    const userFromLocalStorage = window.localStorage.getItem("user") ?? "{}";
+    if (!isLoggedIn) {
+      if (userFromLocalStorage !== "{}") {
+        try {
+          const result = JSON.parse(userFromLocalStorage);
+        } catch (err) {
+          console.log(err);
+        }
+        addUser(JSON.parse(userFromLocalStorage));
+        console.log(userFromLocalStorage);
+      }
+      return true;
+    } else {
+      return false;
+    }
 
-    //   if(window.localStorage.getItem("user") === null){
+    //   if (userFromLocalStorage === "") {
     //     return false;
-    //   }else{
-    //     setUser(JSON.parse(window.localStorage.getItem("user")!.toString() ))
+    //   } else if (userFromLocalStorage !== "") {
+    //     addUser(JSON.parse(userFromLocalStorage));
     //     return true;
     //   }
-    //   return false;
+    // } else if (isLoggedIn && userFromLocalStorage === "") {
+    //   localStorage.setItem("user", JSON.stringify(loggedInUser));
+    //   return true;
+    // } else {
+    //   return true;
     // }
-
-    return false;
   }
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(loggedInUser));
-    console.log(loggedInUser);
-  }, []);
 
   return (
     <div>

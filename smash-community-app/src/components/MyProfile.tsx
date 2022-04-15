@@ -4,16 +4,12 @@ import UserContext from "../contexts/UserContext";
 import { Character } from "../models/characters";
 import { User } from "../models/users";
 import { GetAllCharacters } from "../services/characters";
+import { characters } from "../models/characters";
 
 export function MyProfile() {
-  const [characters, setCharacters] = useState<Character[]>([]);
   const { loggedInUser } = useContext(UserContext);
   let foundCharacter;
-  useEffect(() => {
-    GetAllCharacters().then((data) => {
-      setCharacters(data);
-    });
-  }, []);
+
   console.log(loggedInUser);
   return (
     <div>
@@ -33,10 +29,7 @@ export function MyProfile() {
                 (character) => character.id === characterId
               ))
             }
-            <img
-              alt={"Main Character"}
-              src={`../images/characterIcons/${foundCharacter?.character_name}.png`}
-            ></img>
+            <img alt={"Main Character"} src={foundCharacter?.imgSrc}></img>
           </li>;
         })}
       </ul>
