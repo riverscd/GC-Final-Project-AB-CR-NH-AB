@@ -44,11 +44,10 @@ export function GeneralMessageBoard() {
   };
 
   useEffect(() => {
-
     GetAllPosts().then((data: any) => {
       setAllPosts(data);
     });
-  }, []);
+  }, [handleSubmit]);
 
   //reply button
   function handleClick() {
