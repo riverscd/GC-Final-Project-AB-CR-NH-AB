@@ -93,7 +93,7 @@ export function EventFinder() {
               <li
                 key={tournament.id}
               >{`tournament name: ${tournament.name}`}</li>
-              <li>{`location: ${tournament.city}, ${tournament.state} ${tournament.postalCode}`}</li>
+              <li>{`location: ${tournament.city}, ${tournament.addrState} ${tournament.postalCode}`}</li>
               <li>{`venue name: ${tournament.venueName}`}</li>
               <li>{`number of attendees: ${tournament.numAttendees}`}</li>
               <li>{`has offline events: ${tournament.hasOfflineEvents}`}</li>

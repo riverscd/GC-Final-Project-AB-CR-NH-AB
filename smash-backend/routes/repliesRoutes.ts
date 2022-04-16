@@ -13,13 +13,33 @@ repliesRoutes.get('/replies', (req, res) => {
   .then(data => res.json(data))
   .catch(error => console.log(error));
 
-})
+});
 repliesRoutes.get('/replies/:id', (req, res) => {
 
   db.oneOrNone('select * from replies where id = $(id)', {id: req.params.id})
   .then(data => res.json(data))
   .catch(error => console.log(error));
 
-})
+});
+repliesRoutes.post("/create-reply", (req, res) => {
+
+  const newReply = {
+    author_id: req.body.author_id,
+    message: req.body.message,
+    date_created:new Date().toISOString()
+  }
+
+  db.one(
+    "INSERT INTO replies (author_id, message, date_created) VALUES \
+        (${author_id}, ${message}, ${date_created}) RETURNING id;",
+    newReply
+  )
+    .then((id) => {
+      return db.oneOrNone("SELECT * FROM replies WHERE id=${id}", {
+        id: id.id,
+      });
+    })
+    .then((reply) => res.json(reply));
+});
 
 export default repliesRoutes;

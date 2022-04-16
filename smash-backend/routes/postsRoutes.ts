@@ -39,6 +39,7 @@ postsRoutes.get('/posts/:id', (req, res) => {
 postsRoutes.post("/create-post", (req, res) => {
 
   const newPost = {
+    author_id: req.body.author_id,
     post_title: req.body.post_title,
     post_message: req.body.post_message,
     date_created:new Date().toISOString()
@@ -47,15 +48,15 @@ postsRoutes.post("/create-post", (req, res) => {
   }
   // const validPost = postSchema.validate(newPost);
 
-  console.log(newPost);
-  console.log(new Date().toISOString())
+  // console.log(newPost);
+  // console.log(new Date().toISOString())
   
 // if(validCommunity.error) {
 //  return res.status(400).send(validCommunity.error)
 // }
   db.one(
-    "INSERT INTO posts (post_title, post_message, date_created) VALUES \
-        (${post_title}, ${post_message}, ${date_created}) RETURNING id;",
+    "INSERT INTO posts (author_id, post_title, post_message, date_created) VALUES \
+        (${author_id}, ${post_title}, ${post_message}, ${date_created}) RETURNING id;",
     newPost
   )
     .then((id) => {

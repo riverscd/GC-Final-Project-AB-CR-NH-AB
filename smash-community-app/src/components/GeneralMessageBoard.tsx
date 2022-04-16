@@ -1,23 +1,60 @@
 import { Box, Button, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 import { Post, Posts } from "../models/posts";
+import { User } from "../models/users";
 import { AddPost, GetAllPosts } from "../services/posts";
+import { GetAllUsers } from "../services/users";
 
 
 export function GeneralMessageBoard() {
 
   const navigate = useNavigate();
   const [allPosts, setAllPosts] = useState<any>([]);
+  const { loggedInUser } = useContext(UserContext);
+  const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [foundUser, setFoundUser] = useState<User>();
+
   //create post modal
   const [postTitle, setPostTitle] = useState<any>("");
   const [postMessage, setPostMessage] = useState<any>("");
-
-  //create post modal open & close
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  //pull all messages
+  useEffect(() => {
+    GetAllUsers().then((data: any) => {
+      setAllUsers(data);
+    });
+    GetAllPosts().then((data: any) => {
+      setAllPosts(data);
+    });
+    console.log("hi")
+  }, []);
+
+    //create post 
+    function handleSubmit(e: any) {
+      e.preventDefault();
+      AddPost(
+        loggedInUser?.id,
+        postTitle,
+        postMessage
+      ).then((newPost) => {
+        if (newPost) {
+          handleClose();
+          setAllPosts([...allPosts, newPost])
+        }
+      });
+    };
+
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
   //create post modal styling
   const style = {
     position: 'absolute' as 'absolute',
@@ -30,40 +67,6 @@ export function GeneralMessageBoard() {
     boxShadow: 24,
     p: 4,
   };
-
-  
-
-  //create post 
-  function handleSubmit(e: any) {
-    e.preventDefault();
-    AddPost(
-      postTitle,
-      postMessage
-    ).then((newPost) => {
-      if (newPost) {
-        handleClose();
-        
-        setAllPosts([...allPosts, newPost])
-      }
-    });
-  };
-
-  useEffect(() => {
-    GetAllPosts().then((data: any) => {
-      setAllPosts(data);
-    });
-    console.log("hi")
-  }, []);
-
-  //reply button
-  function handleClick() {
-    navigate("/post")
-  }
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -81,8 +84,8 @@ export function GeneralMessageBoard() {
         <div>
           <h1>General Message Board</h1>
           <Box sx={{
-              m: 2,
-            }}>
+            m: 2,
+          }}>
             <Link to="/sitenav">Home</Link>
           </Box>
 
@@ -128,18 +131,24 @@ export function GeneralMessageBoard() {
 
           {/* All Posts Display */}
           {allPosts.map((post: Post) => (
+            
+            // setFoundUser( allUsers.find((user: User) =>  {user.id === post.author_id} ))
+            //  return (
+
             <div className="message">
               <ul>
                 <li
                   key={post.id}
                 ><Link to="/post" > {`post title: ${post.post_title}`}</Link></li>
-                <li>{`post author: ${post.author_id}`}</li>
+                <li>{`post author: ${foundUser?.username}`}</li>
                 <li>{`post message: ${post.post_message}`}</li>
                 <li>{`post date: ${post.date_created}`}</li>
                 <li># of replies</li>
-                <button onClick={handleClick}>reply</button>
+                {/* <button onClick={handleClick}>reply</button> */}
               </ul>
             </div>
+             
+          
           ))}
         </div>
       </Grid>

@@ -7,7 +7,7 @@ export function CreateCommunity() {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
-
+  
   function handleSubmit(e: any) {
     e.preventDefault();
     console.log(communityName);

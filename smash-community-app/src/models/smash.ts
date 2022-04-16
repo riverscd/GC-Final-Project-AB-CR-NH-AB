@@ -16,7 +16,7 @@ export interface TournamentNode {
   id: number;
   name: string;
   city: string;
-  state: number;
+  addrState: number;
   postalCode: string;
   venueName: string;
   countryCode: string;
