@@ -30,6 +30,11 @@ export function GeneralMessageBoard() {
     boxShadow: 24,
     p: 4,
   };
+
+  function refreshPage() {
+    window.location.reload();
+  }
+
   //create post 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -39,6 +44,7 @@ export function GeneralMessageBoard() {
     ).then((newPost) => {
       if (newPost) {
         handleClose();
+        refreshPage();
       }
     });
   };
