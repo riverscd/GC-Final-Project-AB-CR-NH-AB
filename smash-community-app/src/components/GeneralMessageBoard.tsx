@@ -31,9 +31,7 @@ export function GeneralMessageBoard() {
     p: 4,
   };
 
-  function refreshPage() {
-    window.location.reload();
-  }
+  
 
   //create post 
   function handleSubmit(e: any) {
@@ -44,7 +42,8 @@ export function GeneralMessageBoard() {
     ).then((newPost) => {
       if (newPost) {
         handleClose();
-        refreshPage();
+        
+        setAllPosts([...allPosts, newPost])
       }
     });
   };
