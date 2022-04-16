@@ -67,11 +67,12 @@ tournamentroutes.get("/tournaments", (req: any, res: any) => {
 });
 
 tournamentroutes.get(`/tournaments/bystate`, (req: any, res: any) => {
+  console.log(req)
   const perPage: number = 5;
   const videogameId: number = 1;
   // const past : boolean = false;
   const token : string = process.env.SMASH_AUTH_TOKEN!;
-  const addrState: string = "MI" ;
+  const addrState: string =  req.body.state;
   const query : string = `
   query TournamentsByVideogameAndState($perPage: Int!, $videogameId: ID!, $addrState: String!) {
     tournaments(query: {

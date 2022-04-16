@@ -18,9 +18,11 @@ export function GetAllTournaments() {
 export function GetTournamentsByState(state: string){
   return axios.get(
     `http://localhost:3001/tournaments/byState`,
-    {params: {
+    {
+      params: {
       "state": state
-    }}
+      }
+    }
   ).then((res: AxiosResponse<any>): any => {
     return res;
   })
