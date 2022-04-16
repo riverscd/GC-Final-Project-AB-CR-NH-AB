@@ -20,14 +20,15 @@ export function GetPostById(id: number) {
 }
 
 export function AddPost(
+  author_id: number | undefined,
   post_title: string, 
   // date: string, 
   post_message: string, 
-  
 ) { 
   return axios 
   .post("http://localhost:3001/create-post", {
-    post_title: post_title, 
+  author_id: author_id,  
+  post_title: post_title, 
     // date: date, 
     post_message: post_message, 
    

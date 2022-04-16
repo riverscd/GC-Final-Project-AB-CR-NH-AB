@@ -28,7 +28,7 @@ tournamentroutes.get("/tournaments", (req: any, res: any) => {
             id
             name
                   city
-                  state
+                  addrState
                   postalCode
                   venueName
                   countryCode
