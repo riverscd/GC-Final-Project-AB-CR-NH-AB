@@ -6,7 +6,7 @@ import {
   Tournaments,
 } from "../models/smash";
 
-export function GetAllTournaments() {
+export function GetAllTournaments() : Promise<TournamentNode[]> {
   return axios
     .get(
       "http://localhost:3001/tournaments")
@@ -15,7 +15,7 @@ export function GetAllTournaments() {
     });
 }
 
-export function GetTournamentsByState(state: string){
+export function GetTournamentsByState(state: string) : Promise<TournamentNode[]> {
   return axios.get(
     `http://localhost:3001/tournaments/byState`,
     {
@@ -24,6 +24,5 @@ export function GetTournamentsByState(state: string){
       }
     }
   ).then((res: AxiosResponse<any>): any => {
-    return res;
-  })
+    return res.data.data.tournaments.nodes;  })
 }

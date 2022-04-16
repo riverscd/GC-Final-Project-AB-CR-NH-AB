@@ -8,26 +8,32 @@ import { TournamentNode, CompetitionEvent } from "../models/smash";
 export function EventFinder() {
   const [allTournaments, setAllTournaments] = useState<any>([]);
   const [allEvents, setAllEvents] = useState<Event[]>([]);
-  const [state, setState] = useState<String>();
+  const [state, setState] = useState<string | undefined>("");
 
   useEffect(() => {
     GetAllTournaments().then((data: any) => {
       setAllTournaments(data);
     });
-    GetTournamentsByState(state as string).then((data: any) => { 
-      setState(data);
-    });
+    //this is not firing when user changes value
     GetAllEvents().then((data: any) => {
       setAllEvents(data);
     });
   }, []);
+
+  useEffect(() => { 
+    if (state !== undefined && state !== 'default' && state !== "")
+    GetTournamentsByState(state as string).then((data: any) => { 
+      console.log(data);
+      setAllTournaments(data);
+    });
+  }, [state]);
 
   return (
     <div>
       <h1>Event and Tournament Finder</h1>
       <div>
       <select onChange={(event) => { setState(event.target.value) }} >
-                    <option defaultValue="state">State:</option>
+                    <option defaultValue="default">State:</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
