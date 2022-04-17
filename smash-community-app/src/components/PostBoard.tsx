@@ -1,11 +1,12 @@
 import { Box, Button, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import { Reply } from "../models/posts";
-import { AddReply, GetAllReplies } from "../services/replies";
+import { AddReply, GetAllReplies, GetRepliesByPost } from "../services/replies";
 
-export function Post() {
+
+export function PostBoard(){
 
   //notes for thoughts on how to make this work
   // click post, pull replies where post.id === replies.post_id we're in
@@ -16,6 +17,8 @@ export function Post() {
   // when a reply is added, update post.replies[] w/ id of reply? 
   // to track # of replies
 
+  const location = useLocation();
+  const post: any = location.state;
   const [allReplies, setAllReplies] = useState<Reply[]>([]);
   const { loggedInUser } = useContext(UserContext);
 
@@ -27,10 +30,10 @@ export function Post() {
 
   //pull all replies
   useEffect(() => {
-    GetAllReplies().then((data: any) => {
+    GetRepliesByPost(post.post.id).then((data: any) => {
       setAllReplies(data);
     });
-    console.log("hi")
+
   }, []);
 
   //create post 
@@ -124,7 +127,6 @@ export function Post() {
               <li>{`reply date: ${reply.date_created}`}</li>
             </ul>
           </div>
-
 
         ))}
 
