@@ -21,6 +21,15 @@ repliesRoutes.get('/replies/:id', (req, res) => {
   .catch(error => console.log(error));
 
 });
+
+repliesRoutes.get('/repliesbypostid/:post_id', (req, res) => {
+
+  db.manyOrNone('select * from replies where post_id = $(post_id)', {post_id: req.params.post_id})
+  .then(data => res.json(data))
+  .catch(error => console.log(error));
+
+});
+
 repliesRoutes.post("/create-reply", (req, res) => {
 
   const newReply = {

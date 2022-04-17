@@ -8,6 +8,14 @@ export function GetAllReplies() {
       return res.data;
     });
 }
+
+export function GetRepliesByPost(post_id: number) {
+  return axios
+    .get(`http://localhost:3001/repliesbypostid/${post_id}`)
+    .then((res: AxiosResponse<any>): any => {
+      return res.data;
+    });
+}
 export function GetReplyById(id: number) {
     return axios
       .get(`http://localhost:3001/replies/${id}`)

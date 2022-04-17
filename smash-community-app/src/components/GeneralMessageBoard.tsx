@@ -34,20 +34,20 @@ export function GeneralMessageBoard() {
     console.log("hi")
   }, []);
 
-    //create post 
-    function handleSubmit(e: any) {
-      e.preventDefault();
-      AddPost(
-        loggedInUser?.id,
-        postTitle,
-        postMessage
-      ).then((newPost) => {
-        if (newPost) {
-          handleClose();
-          setAllPosts([...allPosts, newPost])
-        }
-      });
-    };
+  //create post 
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    AddPost(
+      loggedInUser?.id,
+      postTitle,
+      postMessage
+    ).then((newPost) => {
+      if (newPost) {
+        handleClose();
+        setAllPosts([...allPosts, newPost])
+      }
+    });
+  };
 
 
   const darkTheme = createTheme({
@@ -131,7 +131,7 @@ export function GeneralMessageBoard() {
 
           {/* All Posts Display */}
           {allPosts.map((post: Post) => (
-            
+
             // setFoundUser( allUsers.find((user: User) =>  {user.id === post.author_id} ))
             //  return (
 
@@ -139,20 +139,20 @@ export function GeneralMessageBoard() {
               <ul>
                 <li
                   key={post.id}
-                ><Link to="/post" > {`post title: ${post.post_title}`}</Link></li>
-                <li>{`post author: ${foundUser?.username}`}</li>
-                <li>{`post message: ${post.post_message}`}</li>
-                <li>{`post date: ${post.date_created}`}</li>
-                <li># of replies</li>
-                {/* <button onClick={handleClick}>reply</button> */}
-              </ul>
+                ><Link to='/post' state={{post: post}}> {`post title: ${post.post_title}`}</Link></li>
+              <li>{`post author: ${foundUser?.username}`}</li>
+              <li>{`post message: ${post.post_message}`}</li>
+              <li>{`post date: ${post.date_created}`}</li>
+              <li># of replies</li>
+              {/* <button onClick={handleClick}>reply</button> */}
+            </ul>
             </div>
              
           
           ))}
-        </div>
-      </Grid>
-    </ThemeProvider>
+      </div>
+    </Grid>
+    </ThemeProvider >
 
 
   )
