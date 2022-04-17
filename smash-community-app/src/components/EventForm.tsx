@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AddEvent } from "../services/events";
 
 export function CreateEvent() {
@@ -36,6 +36,7 @@ export function CreateEvent() {
   }
 
   return (
+    <div>
     <form>
       <p>Create an Event</p>
       <label>
@@ -69,6 +70,8 @@ export function CreateEvent() {
         Submit
       </button>
     </form>
+    <Link to="/sitenav">Back to Home</Link>
+    </div>
   );
 }
 
