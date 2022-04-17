@@ -9,6 +9,18 @@ export function GetAllCommunities() {
     });
 }
 
+export function GetCommunitiesByLocation(location: string): Promise<Community[]> { 
+  return axios 
+  .get(`http://localhost:3001/communities/bylocation/${location}`, {
+    params: { 
+      "location": location
+    }
+  }
+  ).then((res: AxiosResponse<any>): any => { 
+    console.log(res.data)
+    return res.data
+  })
+}
 
 export function AddCommunity(
   community_name: string, 
