@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AddCommunity } from "../services/communities";
 
 export function CreateCommunity() {
@@ -19,6 +19,7 @@ export function CreateCommunity() {
   }
 
   return (
+  <div>
     <form>
       <p>Create a Community</p>
       <label>
@@ -37,5 +38,7 @@ export function CreateCommunity() {
         Submit
       </button>
     </form>
+    <Link to="/sitenav">Back to Home</Link>
+    </div>
   );
 }
