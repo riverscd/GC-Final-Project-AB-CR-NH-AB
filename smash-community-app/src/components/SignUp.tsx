@@ -16,6 +16,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useFormik} from 'formik';
+import * as yup from 'yup';
 
 // function Copyright(props: any) {
 //   return (
@@ -29,6 +31,57 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 //     </Typography>
 //   );
 // }
+const validationSchema = yup.object({
+    email: yup
+    .string('Enter your email')
+    .email('Enter a valid email'),
+    username: yup
+    .string('Enter your username')
+    .min(5, 'Username should be of minimum 5 characters length')
+    .max(10, 'Username cannot be longer than 10 characters')
+    .required('Username is required'),
+    firstname: yup
+    .string('Enter your First name')
+    .min(2, 'First name should be of minimum 2 characters length')
+    .max(30, 'First name cannot be longer than 30 characters')
+    .required('First name is required'),
+    lastname: yup
+    .string('Enter your Last name')
+    .min(2, 'Last name should be of minimum 8 characters length')
+    .max(30, 'Last name cannot be longer than 30 characters')
+    .required('Last name is required'),
+    birthdate: yup
+    .string('Enter your birthdate')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+    password: yup
+    .string('Enter your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .max(30, 'Password cannot be longer than 30 characters')
+    .required('Password is required'),
+    confirmpassword: yup
+    .string('Confirm your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .max(30, 'Password cannot be longer than 30 characters')
+    .required('Password is required'),
+});
+
+const WithMaterialUI = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: 'foobar@example.com',
+      username: 'johndoe',
+      firstname: 'John',
+      lastname: 'Doe',
+      birthdate: '12-07-2000',
+      password: 'foobarrr',
+      confirmpassword: 'foobarrr',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
 const darkTheme = createTheme({
   palette: {
@@ -99,6 +152,9 @@ export function SignUp() {
                   fullWidth
                   id="username"
                   label="Username"
+                  value={formik.values.username}
+                  error={formik.touched.username && Boolean(formik.errors.username)}
+                  helperText={formik.touched.username && formik.errors.username}
                   autoFocus
                   InputLabelProps={{
                     shrink: true,
@@ -114,6 +170,9 @@ export function SignUp() {
                   label="Birth Date"
                   type="date"
                   id="birthday"
+                  value={formik.values.birthdate}
+                  error={formik.touched.birthdate && Boolean(formik.errors.birthdate)}
+                  helperText={formik.touched.birthdate && formik.errors.birthdate}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -131,6 +190,9 @@ export function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={formik.values.email}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -145,6 +207,9 @@ export function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  value={formik.values.firstname}
+                  error={formik.touched.firstname && Boolean(formik.errors.firstname)}
+                  helperText={formik.touched.firstname && formik.errors.firstname}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -159,6 +224,9 @@ export function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={formik.values.lastname}
+                  error={formik.touched.lastname && Boolean(formik.errors.lastname)}
+                  helperText={formik.touched.lastname && formik.errors.lastname}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -174,6 +242,9 @@ export function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={formik.values.password}
+                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  helperText={formik.touched.password && formik.errors.password}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -189,6 +260,9 @@ export function SignUp() {
                   type="password"
                   id="confirmPassword"
                   autoComplete="confirm-password"
+                  value={formik.values.password}
+                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  helperText={formik.touched.password && formik.errors.password}
                   InputLabelProps={{
                     shrink: true,
                   }}
