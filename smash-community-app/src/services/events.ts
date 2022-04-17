@@ -9,6 +9,19 @@ export function GetAllEvents() {
     });
 }
 
+export function GetEventsByState(state: string): Promise<Event[]> { 
+  return axios 
+  .get(`http://localhost:3001/events/bystate/${state}`, {
+    params: { 
+      "state": state
+    }
+  }
+  ).then((res: AxiosResponse<any>): any => { 
+    console.log(res.data)
+    return res.data
+  })
+}
+
 export function AddEvent(
   event_name: string,
   event_date: string,

@@ -20,6 +20,14 @@ eventsRoutes.get("/events/:id", (req, res) => {
     .catch((error) => console.log(error));
 });
 
+eventsRoutes.get("/events/bystate/:state", (req, res) => {
+  console.log(req.params)
+  console.log(req.query);
+  return db.manyOrNone("select * from events where state = $(state)", {state: req.params.state})
+    .then((data) => res.json(data))
+    .catch((error) => console.log(error))
+})
+
 eventsRoutes.post("/create-event", (req, res) => {
   const schema = Joi.object({
     event_name: Joi.string().min(2).max(50).required(),
