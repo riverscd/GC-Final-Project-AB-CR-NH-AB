@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GetAllTournaments, GetTournamentsByState } from "../services/smash-api";
-import { GetAllEvents } from "../services/events";
+import { GetAllEvents, GetEventsByState } from "../services/events";
 import { Events } from "../models/events";
 import { TournamentNode, CompetitionEvent } from "../models/smash";
 
@@ -21,12 +21,19 @@ export function EventFinder() {
   }, []);
 
   useEffect(() => { 
-    if (state !== undefined && state !== 'default' && state !== "")
-    GetTournamentsByState(state as string).then((data: any) => { 
-      console.log(data);
-      setAllTournaments(data);
-    });
+    if (state !== undefined && state !== 'default' && state !== ""){
+      GetTournamentsByState(state as string).then((data: any) => { 
+        setAllTournaments(data);
+      });
+      GetEventsByState(state as string).then((data: any) => { 
+        setAllEvents(data)
+        console.log(state)
+      });
+    }
   }, [state]);
+
+
+
 
   return (
     <div>
@@ -87,6 +94,7 @@ export function EventFinder() {
                 </select>
         
         <h2>Tournaments:</h2>
+        
         {allTournaments.map((tournament: TournamentNode) => (
           <div>
             <ul>

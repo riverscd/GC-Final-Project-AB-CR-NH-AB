@@ -5,6 +5,7 @@ import { GetAllCommunities } from "../services/communities";
 
 export function CommunityFinder() {
   const [allCommunities, setAllCommunities] = useState<Community[]>([]);
+  const [state, setState] = useState<string | undefined>("");
 
   useEffect(() => {
     GetAllCommunities().then((data: any) => {
@@ -14,7 +15,8 @@ export function CommunityFinder() {
 
   return (
     <div>
-      <h1>Community Finder</h1>
+       <h1>Community Finder</h1>
+     
       <div>
         {allCommunities?.map((community: Community) => (
           <ul>
