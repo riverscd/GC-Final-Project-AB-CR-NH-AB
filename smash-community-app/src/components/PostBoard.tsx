@@ -30,14 +30,9 @@ export function PostBoard(){
 
   //pull all replies
   useEffect(() => {
-
-    GetRepliesByPost(post.id).then((data: any) => {
-      console.log(data)
+    GetRepliesByPost(post.post.id).then((data: any) => {
       setAllReplies(data);
     });
-    console.log(post)
-    console.log(allReplies)
-
 
   }, []);
 

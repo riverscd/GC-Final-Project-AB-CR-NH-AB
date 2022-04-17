@@ -12,7 +12,7 @@ export function GetAllReplies() {
 export function GetRepliesByPost(post_id: number) {
   return axios
     .get(`http://localhost:3001/repliesbypostid/${post_id}`)
-    .then((res: AxiosResponse<any>): any => {
+    .then((res: AxiosResponse<Reply[]>): Reply[] => {
       return res.data;
     });
 }
