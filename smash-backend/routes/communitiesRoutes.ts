@@ -23,13 +23,12 @@ communitiesRoutes.get("/communities/:id", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-// communitiesRoutes.get("/communities/bylocation/:location", (req, res) => {
-//   console.log(req.params)
-//   console.log(req.query);
-//   return db.manyOrNone("select * from communities where location = $(location)", {state: req.params.location})
-//     .then((data) => res.json(data))
-//     .catch((error) => console.log(error))
-// })
+communitiesRoutes.get("/communities/bylocation/:location", (req, res) => {
+  console.log(req.params)
+  return db.manyOrNone("select * from communities where location = $(location)", {location: req.params.location})
+    .then((data) => res.json(data))
+    .catch((error) => console.log(error))
+})
 
 communitiesRoutes.post("/create-community", (req, res) => {
 
