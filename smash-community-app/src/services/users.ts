@@ -60,9 +60,9 @@ export function UpdateUser(
   country: string,
   state: string,
   city: string,
-  bio: string
-  // main_character: number
-  // secondary_character: Character[],
+  bio: string,
+  main_character: number[],
+  secondary_characters: number[]
 ) {
   return axios
     .put(`http://localhost:3001/users/${id}`, {
@@ -72,7 +72,8 @@ export function UpdateUser(
       state: state,
       city: city,
       bio: bio,
-      // main_character: main_character,
+      main_character: main_character,
+      secondary_characters: secondary_characters,
     })
     .then((res: AxiosResponse<User>): User => {
       return res.data;
