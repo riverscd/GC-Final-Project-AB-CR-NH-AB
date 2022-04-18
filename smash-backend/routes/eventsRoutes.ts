@@ -20,6 +20,13 @@ eventsRoutes.get("/events/:id", (req, res) => {
     .catch((error) => console.log(error));
 });
 
+
+eventsRoutes.get("/events/bycreator/:creator_id", (req, res) => {
+  return db.manyOrNone("select * from events where creator_id = $(creator_id)", {creator_id: req.params.creator_id})
+  .then((data) => res.json(data))
+  .catch((error) => console.log(error))
+})
+
 eventsRoutes.get("/events/bystate/:state", (req, res) => {
   console.log(req.params)
   console.log(req.query);
