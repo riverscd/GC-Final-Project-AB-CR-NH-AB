@@ -1,8 +1,8 @@
-export interface Events {
-  events: Event[];
+export interface SmashEvents {
+  events: SmashEvent[];
 }
 
-export interface Event {
+export interface SmashEvent {
   id: number;
   creator_id: number;
   event_name: string;

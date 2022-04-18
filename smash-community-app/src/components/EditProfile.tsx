@@ -1,5 +1,5 @@
 import { KeyboardEventHandler, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import { characters } from "../models/characters";
 import { UpdateUser } from "../services/users";
@@ -166,6 +166,8 @@ export function EditProfile() {
         <button className="button" type="submit">
           Submit
         </button>
+        <Link to="/sitenav">Home</Link>
+        <Link to="/myprofile">Back to My Profile</Link>
       </form>
     </div>
     </ThemeProvider>

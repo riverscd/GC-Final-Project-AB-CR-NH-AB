@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GetAllTournaments, GetTournamentsByState } from "../services/smash-api";
 import { GetAllEvents, GetEventsByState } from "../services/events";
-import { Events } from "../models/events";
+import { SmashEvent } from "../models/events";
 import { TournamentNode, CompetitionEvent } from "../models/smash";
 
 export function EventFinder() {
   const [allTournaments, setAllTournaments] = useState<any>([]);
-  const [allEvents, setAllEvents] = useState<Event[]>([]);
+  const [allEvents, setAllEvents] = useState<SmashEvent[]>([]);
   const [state, setState] = useState<string | undefined>("");
 
   useEffect(() => {

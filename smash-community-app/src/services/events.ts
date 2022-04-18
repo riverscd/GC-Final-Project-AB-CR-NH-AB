@@ -1,15 +1,15 @@
 import axios, { AxiosResponse } from "axios";
-import { Events } from "../models/events";
+import { SmashEvents, SmashEvent } from "../models/events";
 
 export function GetAllEvents() {
   return axios
     .get("http://localhost:3001/events")
-    .then((res: AxiosResponse<Events>): Events => {
+    .then((res: AxiosResponse<SmashEvents>): SmashEvents => {
       return res.data;
     });
 }
 
-export function GetEventsByState(state: string): Promise<Event[]> { 
+export function GetEventsByState(state: string): Promise<SmashEvent[]> { 
   return axios 
   .get(`http://localhost:3001/events/bystate/${state}`, {
     params: { 
@@ -22,7 +22,7 @@ export function GetEventsByState(state: string): Promise<Event[]> {
   })
 }
 
-export function GetEventsByCreator(creator_id: number): Promise<Event[]> { 
+export function GetEventsByCreator(creator_id: number): Promise<SmashEvent[]> { 
   return axios 
   .get(`http://localhost:3001/events/bycreator/${creator_id}`, { 
     params: { 
