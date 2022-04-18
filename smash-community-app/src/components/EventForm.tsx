@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 import { AddEvent } from "../services/events";
 
 export function CreateEvent() {
@@ -13,6 +14,7 @@ export function CreateEvent() {
   const [country, setCountry] = useState("");
   const [zip, setZip] = useState("");
   const [state, setState] = useState("");
+  const {loggedInUser} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -27,7 +29,8 @@ export function CreateEvent() {
       address,
       city,
       zip,
-      state
+      state, 
+      loggedInUser!.id
     ).then((newEvent) => {
       if (newEvent) {
         navigate("/myevents");

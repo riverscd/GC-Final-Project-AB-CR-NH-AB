@@ -22,6 +22,18 @@ export function GetEventsByState(state: string): Promise<Event[]> {
   })
 }
 
+export function GetEventsByCreator(creator_id: number): Promise<Event[]> { 
+  return axios 
+  .get(`http://localhost:3001/events/bycreator/${creator_id}`, { 
+    params: { 
+      "creator_id": creator_id
+    }
+  }
+  ).then((res: AxiosResponse<any>): any => { 
+    return res.data
+  })
+}
+
 export function AddEvent(
   event_name: string,
   event_date: string,
@@ -30,7 +42,8 @@ export function AddEvent(
   address: string,
   city: string,
   zip: string,
-  state: string
+  state: string, 
+  creator_id: number
 ) {
   return axios
     .post("http://localhost:3001/create-event", {
@@ -42,6 +55,7 @@ export function AddEvent(
       city: city,
       zip: zip,
       state: state,
+      creator_id: creator_id
     })
     .then((res: AxiosResponse<Event>): Event => {
       return res.data;

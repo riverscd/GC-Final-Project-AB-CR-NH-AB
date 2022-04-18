@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AddCommunity } from "../services/communities";
+import UserContext from "../contexts/UserContext"
+// import loggedInUser from "../contexts/UserContext"
 
 export function CreateCommunity() {
   const [communityName, setName] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const {loggedInUser} = useContext(UserContext)
   
   function handleSubmit(e: any) {
     e.preventDefault();
-    console.log(communityName);
-    AddCommunity(communityName, location, description).then((newCommunity) => {
+    AddCommunity(communityName, location, description, loggedInUser!.id).then((newCommunity) => {
       if (newCommunity) {
         navigate("/mycommunities");
       }
