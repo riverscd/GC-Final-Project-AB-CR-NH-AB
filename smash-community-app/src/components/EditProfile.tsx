@@ -7,6 +7,7 @@ import Select from "react-select";
 
 import CreatableSelect from "react-select";
 import { ActionMeta, OnChangeValue, MultiValue } from "react-select";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 export function EditProfile() {
   const components = {
@@ -87,7 +88,14 @@ export function EditProfile() {
     }
   };
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   return (
+    <ThemeProvider theme={darkTheme}>
     <div>
       <form onSubmit={handleSubmit}>
         <p>Edit Your Profile</p>
@@ -160,5 +168,6 @@ export function EditProfile() {
         </button>
       </form>
     </div>
+    </ThemeProvider>
   );
 }

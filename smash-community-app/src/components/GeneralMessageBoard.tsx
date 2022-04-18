@@ -14,7 +14,8 @@ export function GeneralMessageBoard() {
   const [allPosts, setAllPosts] = useState<any>([]);
   const { loggedInUser } = useContext(UserContext);
   const [allUsers, setAllUsers] = useState<User[]>([]);
-  const [foundUser, setFoundUser] = useState<User>();
+  
+  
 
   //create post modal
   const [postTitle, setPostTitle] = useState<any>("");
@@ -49,6 +50,7 @@ export function GeneralMessageBoard() {
     });
   };
 
+  console.log(allPosts)
 
   const darkTheme = createTheme({
     palette: {
@@ -132,18 +134,15 @@ export function GeneralMessageBoard() {
           {/* All Posts Display */}
           {allPosts.map((post: Post) => (
 
-            // setFoundUser( allUsers.find((user: User) =>  {user.id === post.author_id} ))
-            //  return (
-
             <div className="message">
               <ul>
                 <li
                   key={post.id}
                 ><Link to='/post' state={{post: post}}> {`post title: ${post.post_title}`}</Link></li>
-              <li>{`post author: ${foundUser?.username}`}</li>
+              <li>{`post author: ${post.author_id}`}</li>
               <li>{`post message: ${post.post_message}`}</li>
               <li>{`post date: ${post.date_created}`}</li>
-              <li># of replies</li>
+              <li>{`reply number: ${post.replies?.length}`}</li>
               {/* <button onClick={handleClick}>reply</button> */}
             </ul>
             </div>

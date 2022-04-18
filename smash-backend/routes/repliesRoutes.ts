@@ -35,12 +35,13 @@ repliesRoutes.post("/create-reply", (req, res) => {
   const newReply = {
     author_id: req.body.author_id,
     message: req.body.message,
-    date_created:new Date().toISOString()
+    date_created:new Date().toISOString(),
+    post_id: req.body.post_id
   }
 
   db.one(
-    "INSERT INTO replies (author_id, message, date_created) VALUES \
-        (${author_id}, ${message}, ${date_created}) RETURNING id;",
+    "INSERT INTO replies (author_id, message, date_created, post_id) VALUES \
+        (${author_id}, ${message}, ${date_created}, ${post_id}) RETURNING id;",
     newReply
   )
     .then((id) => {
