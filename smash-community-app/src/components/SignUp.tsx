@@ -108,12 +108,12 @@ export function SignUp() {
               .min(5, 'Username should be of minimum 5 characters length')
               .max(10, 'Username cannot be longer than 10 characters')
               .required('Username is required'),
-            firstname: Yup
+            firstName: Yup
               .string()
               .min(2, 'First name should be of minimum 2 characters length')
               .max(30, 'First name cannot be longer than 30 characters')
               .required('First name is required'),
-            lastname: Yup
+            lastName: Yup
               .string()
               .min(2, 'Last name should be of minimum 8 characters length')
               .max(30, 'Last name cannot be longer than 30 characters')
@@ -134,21 +134,21 @@ export function SignUp() {
           })}
           onSubmit={(values) => {
             console.log(values);
-            // if (password === confirmPassword) {
-            //   SignUpUser(
-            //     email,
-            //     username,
-            //     firstName,
-            //     lastName,
-            //     password,
-            //     birthdate
-            //   ).then((user) => {
-            //     // if (user) {
-            //     //   // addUser(user);
-            //     //   // navigate("/");
-            //     // }
-            //   });
-            // } 
+            if (values.password === values.confirmPassword) {
+              SignUpUser(
+                values.email,
+                values.username,
+                values.firstName,
+                values.lastName,
+                values.password,
+                values.birthdate
+              ).then((user) => {
+                if (user) {
+                  addUser(user);
+                  navigate("/");
+                }
+              });
+            } 
           }}>
           {({
             errors,
@@ -162,7 +162,7 @@ export function SignUp() {
             values
           }) => (
 
-            <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+           
 
               <Box
                 sx={{
@@ -178,7 +178,7 @@ export function SignUp() {
                 <Typography component="h1" variant="h5">
                   Sign up
                 </Typography>
-                <Box
+                <Box component="form" autoComplete="off" noValidate onSubmit={handleSubmit}
                   sx={{ mt: 3 }}
                 >
                   <Grid container spacing={2}>
@@ -210,12 +210,12 @@ export function SignUp() {
                         required
                         helperText={touched.birthdate && errors.birthdate}
                         label="Birth Date"
-                        id="birthday"
+                        id="birthdate"
                         name="birthdate"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         type="date"
-                        value={setBirthdate(values.birthdate)}
+                        value={values.birthdate}
                         variant="outlined"
                         size="small"
 
@@ -239,7 +239,7 @@ export function SignUp() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         type="text"
-                        value={setEmail(values.email)}
+                        value={values.email}
                         variant="outlined"
                         size="small"
                         InputLabelProps={{
@@ -261,7 +261,7 @@ export function SignUp() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         type="text"
-                        value={setFirstName(values.firstName)}
+                        value={values.firstName}
                         variant="outlined"
                         size="small"
                         InputLabelProps={{
@@ -283,7 +283,7 @@ export function SignUp() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         type="text"
-                        value={setLastName(values.lastName)}
+                        value={values.lastName}
                         variant="outlined"
                         size="small"
                         InputLabelProps={{
@@ -304,7 +304,7 @@ export function SignUp() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         type="password"
-                        value={setPassword(values.password)}
+                        value={values.password}
                         variant="outlined"
                         size="small"
                         InputLabelProps={{
@@ -329,7 +329,7 @@ export function SignUp() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         type="password"
-                        value={setConfirmPassword(values.confirmPassword)}
+                        value={values.confirmPassword}
                         variant="outlined"
                         size="small"
                         InputLabelProps={{
@@ -359,7 +359,7 @@ export function SignUp() {
                 </Box>
               </Box>
 
-            </form>
+           
           )}
         </Formik>
 

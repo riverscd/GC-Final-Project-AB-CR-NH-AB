@@ -2,23 +2,17 @@ import { Box, Button, createTheme, Grid, Modal, Paper, TextField, ThemeProvider,
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
-import { Reply } from "../models/posts";
+import { Post, Reply } from "../models/posts";
+import { GetPostById } from "../services/posts";
 import { AddReply, GetAllReplies, GetRepliesByPost } from "../services/replies";
 
 
 export function PostBoard(){
 
-  //notes for thoughts on how to make this work
-  // click post, pull replies where post.id === replies.post_id we're in
-  // pass post id as a prop??
-  // pass entire post as a prop and get all replies where id = whatever
-  // map out replies order by created date should by default be chron.
-  // adding a reply mimics adding a posts
-  // when a reply is added, update post.replies[] w/ id of reply? 
-  // to track # of replies
 
   const location = useLocation();
   const post: any = location.state;
+  const [ selectedPost, setSelectedPost ] = useState<Post>()
   const [allReplies, setAllReplies] = useState<Reply[]>([]);
   const { loggedInUser } = useContext(UserContext);
 
@@ -28,13 +22,19 @@ export function PostBoard(){
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  //pull all replies
+  
   useEffect(() => {
+    
+    GetPostById(post.post.id).then((data: any) => {
+      setSelectedPost(data);
+      console.log(post.post.id)
+    });
+
     GetRepliesByPost(post.post.id).then((data: any) => {
       setAllReplies(data);
     });
 
-  }, []);
+  },[]);
 
   //create post 
   function handleSubmit(e: any) {
@@ -85,13 +85,22 @@ export function PostBoard(){
         }}>
           <Link to="/generalmessageboard">Back to Message Board</Link>
         </Box>
-        {/* Create Post Modal  */}
-        <Button
+        <div className = "message">
+         <ul>
+           <li>{`post title: ${selectedPost?.post_title}`}</li>
+           <li>{`post author: ${selectedPost?.author_id}`}</li>
+           <li>{`date created: ${selectedPost?.date_created}`}</li>
+           <li>{`post message: ${selectedPost?.post_message}`}</li>
+         </ul>
+         <Button
           sx={{
             m: 2,
           }}
           variant="outlined"
           onClick={handleOpen}>Reply</Button>
+       </div>
+        {/* Create Post Modal  */}
+       
         <Modal
           open={open}
           onClose={handleClose}
@@ -113,13 +122,13 @@ export function PostBoard(){
           </Box>
         </Modal>
 
-
+      
 
         {allReplies.map((reply: Reply) => (
           // setFoundUser( allUsers.find((user: User) =>  {user.id === post.author_id} ))
           //  return (
 
-          <div className="message">
+          <div className="reply">
             <ul>
               <li
                 key={reply.id}

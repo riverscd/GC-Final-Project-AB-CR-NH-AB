@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Community } from "../models/communities";
-import { GetAllCommunities } from "../services/communities";
+import { GetAllCommunities, GetCommunitiesByLocation } from "../services/communities";
 
 export function CommunityFinder() {
   const [allCommunities, setAllCommunities] = useState<Community[]>([]);
-  const [state, setState] = useState<string | undefined>("");
+  const [location, setLocation] = useState<string | undefined>("");
 
   useEffect(() => {
     GetAllCommunities().then((data: any) => {
@@ -13,9 +13,25 @@ export function CommunityFinder() {
     });
   }, []);
 
+  function handleSubmit(e: any) { 
+    e.preventDefault(); 
+    GetCommunitiesByLocation(location as string).then((data: Community[]) : void => {
+      setAllCommunities(data)
+    }) 
+  }
+
   return (
     <div>
        <h1>Community Finder</h1>
+       <form>
+      <label>
+        <p>Search by Location:</p>
+        <input type="text" onChange={(e) => setLocation(e.target.value)} />
+      </label>
+      <button className="button" type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
+      </form>
      
       <div>
         {allCommunities?.map((community: Community) => (
