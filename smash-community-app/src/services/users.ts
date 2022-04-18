@@ -62,7 +62,8 @@ export function UpdateUser(
   city: string,
   bio: string,
   main_character: number[],
-  secondary_characters: number[]
+  secondary_characters: number[],
+  slippi_usernames: string[]
 ) {
   return axios
     .put(`http://localhost:3001/users/${id}`, {
@@ -74,6 +75,7 @@ export function UpdateUser(
       bio: bio,
       main_character: main_character,
       secondary_characters: secondary_characters,
+      slippi_usernames: slippi_usernames,
     })
     .then((res: AxiosResponse<User>): User => {
       return res.data;

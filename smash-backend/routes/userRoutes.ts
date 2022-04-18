@@ -160,12 +160,14 @@ userRoutes.put("/users/:id", (req: any, res: any) => {
     city: req.body.city,
     bio: req.body.bio,
     main_character: req.body.main_character,
+    secondary_characters: req.body.secondary_characters,
+    slippi_usernames: req.body.slippi_usernames,
   };
 
   db.oneOrNone(
-    "UPDATE users SET (first_name, last_name, country, state, city, bio, main_character) = \
-  (${first_name}, ${last_name}, ${country}, ${state}, ${city}, ${bio}, array_append(main_character, ${main_character})) WHERE id = ${id} RETURNING id, \
-  username, first_name, last_name, country, state, city, bio, main_character;",
+    "UPDATE users SET (first_name, last_name, country, state, city, bio, main_character, secondary_characters, slippi_usernames) = \
+  (${first_name}, ${last_name}, ${country}, ${state}, ${city}, ${bio}, ${main_character}::smallint[], ${secondary_characters}::smallint[], ${slippi_usernames}::varchar(20)[]) WHERE id = ${id} \
+  RETURNING id, username, first_name, last_name, country, state, city, bio, main_character, secondary_characters, slippi_usernames;",
     updatedUserValues
   ).then((updatedUser) => {
     if (updatedUser) {
@@ -175,7 +177,5 @@ userRoutes.put("/users/:id", (req: any, res: any) => {
     }
   });
 });
-
-
 
 export default userRoutes;

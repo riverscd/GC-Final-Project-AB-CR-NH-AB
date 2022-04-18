@@ -18,6 +18,11 @@
     width: 610px
 }
 
+.characterImages{
+  height: 20px;
+  width: 20px;
+}
+
 /* unvisited link */
 a:link {
     color: white;
