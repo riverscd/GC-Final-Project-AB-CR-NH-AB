@@ -38,6 +38,7 @@ eventsRoutes.post("/create-event", (req, res) => {
     city: Joi.string().min(1).max(30),
     state: Joi.string().min(2).max(2),
     zip: Joi.string().min(5).max(5),
+    creator_id: Joi.number().required()
   });
   const newEvent = {
     event_name: req.body.event_name,
@@ -48,6 +49,7 @@ eventsRoutes.post("/create-event", (req, res) => {
     city: req.body.city,
     state: req.body.state,
     zip: req.body.zip,
+    creator_id!: req.body.creator_id
   };
   const valid = schema.validate(newEvent);
   console.log(newEvent);
@@ -56,8 +58,8 @@ eventsRoutes.post("/create-event", (req, res) => {
     return res.status(400).send(valid.error.message);
   }
   db.one(
-    "INSERT INTO events (event_name, event_date, location, city, state, description, zip, address ) VALUES \
-            (${event_name}, ${event_date}, ${location}, ${city}, ${state}, ${description}, ${zip}, ${address} ) RETURNING id;",
+    "INSERT INTO events (event_name, event_date, location, city, state, description, zip, address, creator_id ) VALUES \
+            (${event_name}, ${event_date}, ${location}, ${city}, ${state}, ${description}, ${zip}, ${address}, ${creator_id} ) RETURNING id;",
     newEvent
   )
     .then((id) => {

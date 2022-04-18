@@ -1,4 +1,5 @@
 import express from "express";
+import { number } from "joi";
 import fetch from "node-fetch";
 import pg from "pg-promise";
 
@@ -30,6 +31,12 @@ communitiesRoutes.get("/communities/bylocation/:location", (req, res) => {
     .catch((error) => console.log(error))
 })
 
+communitiesRoutes.get("/communities/bycreator/:creator_id", (req, res) => {
+  return db.manyOrNone("select * from communities where creator_id = $(creator_id)", {creator_id: req.params.creator_id})
+  .then((data) => res.json(data))
+  .catch((error) => console.log(error))
+})
+
 communitiesRoutes.post("/create-community", (req, res) => {
 
   const communitySchema = Joi.object({
@@ -51,14 +58,19 @@ communitiesRoutes.post("/create-community", (req, res) => {
     .min(1)
     .max(500)
     .required(),
+
+    creator_id: Joi.number()
+    .required()
   });
   
       const newCommunity = {
         community_name: req.body.community_name,
         location: req.body.location,
         // posts: req.body.posts,
-        description: req.body.description
+        description: req.body.description,
+        creator_id!: req.body.creator_id
       }
+      console.log(newCommunity.creator_id)
       const validCommunity = communitySchema.validate(newCommunity);
 
       console.log(newCommunity);
@@ -68,8 +80,8 @@ communitiesRoutes.post("/create-community", (req, res) => {
      return res.status(400).send(validCommunity.error)
     }
       db.one(
-        "INSERT INTO communities (community_name, location, description ) VALUES \
-            (${community_name}, ${location}, ${description} ) RETURNING id;",
+        "INSERT INTO communities (community_name, location, description, creator_id ) VALUES \
+            (${community_name}, ${location}, ${description}, ${creator_id} ) RETURNING id;",
         newCommunity
       )
         .then((id) => {
