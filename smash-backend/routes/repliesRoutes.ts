@@ -45,6 +45,9 @@ repliesRoutes.post("/create-reply", (req, res) => {
     newReply
   )
     .then((id) => {
+      db.oneOrNone(
+        "UPDATE posts SET replies = ARRAY_APPEND(replies, ${id}) WHERE id=${post_id}", {id: id.id, post_id: req.body.post_id} 
+      )
       return db.oneOrNone("SELECT * FROM replies WHERE id=${id}", {
         id: id.id,
       });
