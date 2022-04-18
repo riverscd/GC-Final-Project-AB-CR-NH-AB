@@ -18,6 +18,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { Paper } from "@mui/material";
+import Smashbackground from "../images/Smashbackground.png";
 
 // function Copyright(props: any) {
 //   return (
@@ -94,7 +96,7 @@ export function SignUp() {
   return (
 
     <ThemeProvider theme={darkTheme}>
-      <Container component="main" maxWidth="xs">
+       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Formik
           initialValues={{ ...initialValues }}
@@ -162,11 +164,21 @@ export function SignUp() {
             values
           }) => (
 
-           
+            <Grid
+            item
+            xs={12}
+            // sm={8}
+            md={4}
+            component={Paper}
+            elevation={6}
+            square
+            //sx={{ maxWidth: { xs: 500, md: 400 } }}
+          >
 
               <Box
                 sx={{
-                  mt: 8,
+                  my: 8,
+                  mx: 4,
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -178,7 +190,11 @@ export function SignUp() {
                 <Typography component="h1" variant="h5">
                   Sign up
                 </Typography>
-                <Box component="form" autoComplete="off" noValidate onSubmit={handleSubmit}
+                <Box 
+                component="form" 
+                noValidate
+                // autoComplete="off"  
+                onSubmit={handleSubmit}
                   sx={{ mt: 3 }}
                 >
                   <Grid container spacing={2}>
@@ -358,12 +374,28 @@ export function SignUp() {
 
                 </Box>
               </Box>
-
+              </Grid>
            
           )}
         </Formik>
+        <Grid
+          item
+          xs={false}
+          // sm={4}
+          md={8}
+          sx={{
+            backgroundImage: `url(${Smashbackground})`,
+            backgroundRepeat: "no-repeat",
+            backgroundColor: (t) =>
+              t.palette.mode === "light"
+                ? t.palette.grey[50]
+                : t.palette.grey[900],
+            backgroundSize: "fit",
+            backgroundPosition: "center",
+          }}
+        />
 
-      </Container>
+      </Grid>
     </ThemeProvider >
 
   );

@@ -37,12 +37,7 @@ function Copyright(props: any) {
   );
 }
 
-//const theme = createTheme();
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+
 
 export default function SignInSide() {
   const [username, setUsername] = useState("");
@@ -60,12 +55,17 @@ export default function SignInSide() {
       }
     });
   }
+//const theme = createTheme();
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
   return (
     <ThemeProvider theme={darkTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
-
         <Grid
           item
           xs={12}
@@ -97,7 +97,7 @@ export default function SignInSide() {
               component="form"
               noValidate
               onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
+              sx={{ mt: 3 }}
             >
               <TextField
                 margin="normal"
@@ -140,9 +140,9 @@ export default function SignInSide() {
                   </MuiLink>
                 </Grid> */}
                 <Grid item>
-                  <MuiLink href="/signup" variant="body2">
+                  <Link to="/signup" >
                     {"Don't have an account? Sign Up"}
-                  </MuiLink>
+                  </Link>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
