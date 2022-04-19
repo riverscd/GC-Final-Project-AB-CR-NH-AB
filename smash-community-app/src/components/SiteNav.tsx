@@ -29,11 +29,6 @@ export function SiteNavigation() {
       window.localStorage.setItem("user", JSON.stringify(loggedInUser));
   }, []);
   console.log(loggedInUser);
-  function handleSignOut() {
-    logoutUser();
-    console.log(loggedInUser);
-    navigate("/login");
-  }
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -164,19 +159,7 @@ export function SiteNavigation() {
                   </Link>
                 </Grid>
               </Grid>
-              <Grid container>
-                <Grid item>
-                  <Button
-                    sx={{
-                      mt: 2,
-                    }}
-                    variant="outlined"
-                    onClick={handleSignOut}
-                  >
-                    Sign Out
-                  </Button>
-                </Grid>
-              </Grid>
+              
             </Box>
           </Box>
           {/* <Copyright sx={{ mt: 5 }} /> */}
