@@ -7,12 +7,9 @@ import {
 import { GetAllEvents, GetEventsByState } from "../services/events";
 import { SmashEvent } from "../models/events";
 import { TournamentNode, CompetitionEvent } from "../models/smash";
-<<<<<<< HEAD
 import userContext from "../contexts/UserContext";
 import { AddEventToUser } from "../services/users";
-=======
 import { Box, Button, Card, CardContent, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
->>>>>>> 7b5a6b0956e39c5fb0541bb389d56ec24658a104
 
 export function EventFinder() {
   const { loggedInUser } = useContext(userContext);
@@ -42,7 +39,6 @@ export function EventFinder() {
     }
   }, [state]);
 
-<<<<<<< HEAD
   function addEventToUser(eventId: number) {
     if (loggedInUser) {
       AddEventToUser(loggedInUser?.id, eventId).then((data: any) => {
@@ -50,13 +46,11 @@ export function EventFinder() {
       });
     }
   }
-=======
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
     },
   });
->>>>>>> 7b5a6b0956e39c5fb0541bb389d56ec24658a104
 
   return (
     <ThemeProvider theme={darkTheme}>
