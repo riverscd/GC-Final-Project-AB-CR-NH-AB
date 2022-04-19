@@ -124,7 +124,7 @@ export function CreateEvent() {
             ).then((newEvent) => {
               if (newEvent) {
                 //  addUser(user);
-                navigate("/");
+                navigate("/communityeventmanager");
               }
             });
           }}>
