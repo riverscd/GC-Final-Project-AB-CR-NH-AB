@@ -1,3 +1,4 @@
+import { Button, Grid, TextField } from "@mui/material";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
@@ -17,6 +18,17 @@ export function CreateEvent() {
   const {loggedInUser} = useContext(UserContext);
 
   const navigate = useNavigate();
+
+  const initialValues = {
+    eventName: '',
+    date: '',
+    location: '',
+    description: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: ''
+  }
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -39,13 +51,34 @@ export function CreateEvent() {
   }
 
   return (
-    <div>
+    <Grid container component="main" sx={{ height: "100vh" }}>
     <form>
       <p>Create an Event</p>
-      <label>
+      <Grid container spacing={2}>
+      <Grid item xs={12}>
+          <TextField
+            // error={Boolean(touched.lastName && errors.lastName)}
+            fullWidth
+            required
+            // helperText={touched.lastName && errors.lastName}
+            label="Event Name"
+            id="eventName"
+            name="eventName"
+            // onBlur={handleBlur}
+            // onChange={handleChange}
+            type="text"
+            // value={values.lastName}
+            variant="outlined"
+            size="small"
+            InputLabelProps={{
+            shrink: true,
+            }}
+          />
+      </Grid>
+      {/* <label>
         <p>Event Name:</p>
         <input type="text" onChange={(e) => setEventName(e.target.value)} />
-      </label>
+      </label> */}
       <label>
         <p>Event Date:</p>
         <input type="date" onChange={(e) => setDate(e.target.value)} />
@@ -69,12 +102,18 @@ export function CreateEvent() {
         <p>Event Description:</p>
         <input type="text" onChange={(e) => setDescription(e.target.value)} />
       </label>
-      <button className="button" type="submit" onClick={handleSubmit}>
-        Submit
-      </button>
+      </Grid>
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        onClick={handleSubmit}
+        sx={{ mt: 3, mb: 2 }}
+        >  Submit
+      </Button>
     </form>
     <Link to="/sitenav">Back to Home</Link>
-    </div>
+    </Grid>
   );
 }
 

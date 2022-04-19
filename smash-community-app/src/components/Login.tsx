@@ -103,16 +103,6 @@ export default function SignInSide() {
           square
           //sx={{ maxWidth: { xs: 500, md: 400 } }}
         >
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              //maxWidth: { xs: 350, md:250}
-            }}
-          >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               {/*   <LockOutlinedIcon /> */}
             </Avatar>
@@ -172,7 +162,6 @@ export default function SignInSide() {
               </Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>
-          </Box>
         </Grid>
         <Grid
           item

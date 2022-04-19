@@ -36,13 +36,13 @@ import Smashbackground from "../images/Smashbackground.png";
 
 
 export function SignUp() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [birthdate, setBirthdate] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const { addUser } = useContext(UserContext);
   const navigate = useNavigate();
   const initialValues = {
@@ -305,7 +305,6 @@ export function SignUp() {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                      // onSubmit={(e: any) => setLastName(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12}>
