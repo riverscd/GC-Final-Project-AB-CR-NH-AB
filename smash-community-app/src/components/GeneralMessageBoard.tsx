@@ -103,7 +103,16 @@ export function GeneralMessageBoard() {
             onClose={handleClose}
 
           >
-            <Box sx={style}>
+            <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              //maxWidth: { xs: 350, md:250}
+            }}
+          >
               <Typography id="modal-title" variant="h6" component="h2">
                 Create Post
               </Typography>

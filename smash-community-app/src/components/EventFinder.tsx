@@ -4,6 +4,7 @@ import { GetAllTournaments, GetTournamentsByState } from "../services/smash-api"
 import { GetAllEvents, GetEventsByState } from "../services/events";
 import { SmashEvent } from "../models/events";
 import { TournamentNode, CompetitionEvent } from "../models/smash";
+import { Box, Button, Card, CardContent, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
 
 export function EventFinder() {
   const [allTournaments, setAllTournaments] = useState<any>([]);
@@ -32,11 +33,15 @@ export function EventFinder() {
     }
   }, [state]);
 
-
-
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
 
   return (
-    <div>
+    <ThemeProvider theme={darkTheme}>
+    <Grid container component="main" sx={{ height: "100vh" }}>
       <h1>Event and Tournament Finder</h1>
       <div>
       <select onChange={(event) => { setState(event.target.value) }} >
@@ -96,7 +101,9 @@ export function EventFinder() {
         <h2>Tournaments:</h2>
         
         {allTournaments.map((tournament: TournamentNode) => (
-          <div>
+          <Card variant="outlined">
+             <CardContent>
+            <Typography variant="body1" color="text.secondary">
             <ul>
               <li
                 key={tournament.id}
@@ -113,14 +120,17 @@ export function EventFinder() {
                 </ul>
               ))}
             </ul>
-
             <button>Add To My Events</button>
-          </div>
+          </Typography>
+            </CardContent>
+            </Card>
         ))}
       </div>
-      <div>
         <h2>Community Events:</h2>
         {allEvents.map((event: any) => (
+          <Card variant="outlined">
+          <CardContent>
+         <Typography variant="body1" color="text.secondary">
           <ul>
             <li key={event.id}>{`event name: ${event.event_name}`}</li>
             <li>{`event location: ${event.location}`}</li>
@@ -130,9 +140,14 @@ export function EventFinder() {
             <li>{`description: ${event.description}`}</li>
             <button>Add To My Events</button>
           </ul>
+          </Typography>
+            </CardContent>
+            </Card>
         ))}
-      </div>
+      <Box>
       <Link to="/sitenav">Home</Link>
-    </div>
+      </Box>
+</Grid>
+</ThemeProvider >
   );
 }
