@@ -1,4 +1,4 @@
-import { Box, Button, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
@@ -133,8 +133,10 @@ export function GeneralMessageBoard() {
 
           {/* All Posts Display */}
           {allPosts.map((post: Post) => (
-
-            <div className="message">
+            <Card variant="outlined">
+            {/* <div className="message"> */}
+            <CardContent>
+            <Typography variant="body1" color="text.secondary">
               <ul>
                 <li
                   key={post.id}
@@ -145,9 +147,10 @@ export function GeneralMessageBoard() {
               <li>{`reply number: ${post.replies?.length}`}</li>
               {/* <button onClick={handleClick}>reply</button> */}
             </ul>
-            </div>
-             
-          
+            {/* </div> */}
+            </Typography>
+            </CardContent>
+          </Card>
           ))}
       </div>
     </Grid>
