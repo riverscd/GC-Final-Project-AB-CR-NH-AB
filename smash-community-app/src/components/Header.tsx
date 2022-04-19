@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
@@ -15,24 +15,28 @@ export function Header() {
   }
 
   return (
-    <Grid container
+    <Grid container 
+
       sx={{
-        display: "flex", 
-        justifyContent: "space-between"
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        my: 2
       }}>
-      <h2>Smash Community App</h2>
-    
-    <Grid item>
-      <Button
-        sx={{
-          mt: 2,
-        }}
-        variant="outlined"
-        onClick={handleSignOut}
-      >
-        Sign Out
-      </Button>
+      <Grid item>
+        <Typography component="h1" variant="h5">
+          Smash Community App
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Button
+          variant="outlined"
+          onClick={handleSignOut}
+        >
+          Sign Out
+        </Button>
+      </Grid>
     </Grid>
-  </Grid>
   );
 }
