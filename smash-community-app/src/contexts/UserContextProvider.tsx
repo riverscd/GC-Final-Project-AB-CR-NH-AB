@@ -1,4 +1,4 @@
-import { Provider, ReactElement, ReactNode, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import { User } from "../models/users";
 import UserContext from "./UserContext";
 
@@ -15,6 +15,7 @@ const userInitialValue: User = {
   country: "",
   zip: "",
   bio: "",
+  added_event_ids: [],
   main_character: [],
   secondary_characters: [],
   slippi_usernames: [],
@@ -23,8 +24,6 @@ const userInitialValue: User = {
 export function UserContextProvider(props: {
   children: JSX.Element;
 }): ReactElement {
-  //const navigate = useNavigate();
-
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const [loggedInUser, setUser] = useState<User>();
@@ -56,19 +55,6 @@ export function UserContextProvider(props: {
     } else {
       return false;
     }
-
-    //   if (userFromLocalStorage === "") {
-    //     return false;
-    //   } else if (userFromLocalStorage !== "") {
-    //     addUser(JSON.parse(userFromLocalStorage));
-    //     return true;
-    //   }
-    // } else if (isLoggedIn && userFromLocalStorage === "") {
-    //   localStorage.setItem("user", JSON.stringify(loggedInUser));
-    //   return true;
-    // } else {
-    //   return true;
-    // }
   }
 
   return (

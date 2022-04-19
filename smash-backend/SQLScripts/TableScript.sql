@@ -24,6 +24,7 @@ country varchar(50),
 zip varchar(5),
 user_profile_img bytea,
 bio text,
+added_event_ids int [],
 main_character smallint[],
 secondary_characters smallint[],
 slippi_usernames varchar(20)[]
@@ -104,7 +105,7 @@ INSERT INTO characters (character_name) values
 ('Mr. Game & Watch');
 
 insert into users (username, password, first_name, last_name, email, birthdate, city, state, country, zip, bio, main_character, secondary_characters, slippi_usernames) 
-values ('Hamer','pass','Nick','Hamer','nhamer@gmail.com','1991-08-26', 'Lansing', 'MI', 'United States of American', '55555', 'Avid gamer with a passion for programming and learning new stuff', '{23}', '{11}', '{nhamer}');
+values ('NHamer','pass','Nick','Hamer','nhamer@gmail.com','1991-08-26', 'Lansing', 'MI', 'United States of American', '55555', 'Avid gamer with a passion for programming and learning new stuff', '{23}', '{11}', '{nhamer}');
 insert into users (username, password, first_name, last_name, email, birthdate, city, state, country, zip, bio, main_character, secondary_characters, slippi_usernames) 
 values ('alifi','pass','Adam','Boeving','adamboeving@gmail.com','1993-07-02', 'Holt', 'MI', 'United States of American', '48842', 'Avid gamer with a passion for programming and learning new stuff',  '{8}', '{6}', '{aalifi}');
 

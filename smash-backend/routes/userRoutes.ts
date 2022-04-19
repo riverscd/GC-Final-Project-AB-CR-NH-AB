@@ -25,61 +25,30 @@ const signupSchema = Joi.object({
 });
 
 userRoutes.get("/users", (req, res) => {
-  db.manyOrNone("SELECT * FROM users")
+  db.manyOrNone(
+    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users"
+  )
     .then((data) => res.json(data))
     .catch((error) => console.log(error));
 });
 userRoutes.get("/users/:id", (req, res) => {
-  db.oneOrNone("SELECT * FROM users WHERE id = $(id)", { id: req.params.id })
+  db.oneOrNone(
+    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE id = $(id)",
+    { id: req.params.id }
+  )
     .then((data) => res.json(data))
     .catch((error) => console.log(error));
 });
 userRoutes.get("/users/:username", (req, res) => {
-  db.oneOrNone("SELECT * FROM users WHERE username = $(username)", {
-    id: req.params.username,
-  })
+  db.oneOrNone(
+    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
+    {
+      id: req.params.username,
+    }
+  )
     .then((data) => res.json(data))
     .catch((error) => console.log(error));
 });
-
-// userRoutes.post("/users", (req: any, res: any) => {
-//   const newUser = {
-//     username: req.body.username,
-//     password: req.body.password,
-//     first_name: req.body.first_name,
-//     last_name: req.body.last_name,
-//     email: req.body.email,
-//     birthdate: req.body.birthdate,
-//     city: req.body.city,
-//     state: req.body.state,
-//     country: req.body.country,
-//     zip: req.body.zip,
-//     user_profile_img: req.body.user_profile_img,
-//     bio: req.body.bio,
-//     main_character: req.body.main_character,
-//     secondary_character: req.body.secondary_character,
-//     slippi_usernames: req.body.slippi_usernames
-//   };
-//   // const valid = schema.validate(newUser);
-
-//   // if(valid.error) {
-//   //    return res.status(400).send(valid.error)
-//   // }
-
-//   db.oneOrNone(
-//     "INSER INTO users (username, password, first_name, last_name, email, birthdate, city, state, country, zip, user_profile_img, bio, main_character, secondary_character, slippi_usernames) values \
-//      ($(username), $(password), $(first_name), $(last_name), $(email), $(birthdate), $(city), $(state), $(country), $(zip), $(user_profile_img),\
-//        $(bio), $(main_character), $(secondary_character), $(slippi_usernames) returning id",
-//     newUser
-//   )
-
-//     .then((id) => {
-//       db.one("SELECT * FROM users WHERE id = $(id)", { id: id.id }).then(
-//         (todo) => res.json(todo)
-//       );
-//     })
-//     .catch((error) => res.status(500).send(error));
-// });
 
 userRoutes.post("/signup", (req, res) => {
   bcrypt.genSalt(saltRounds, function (err, salt) {
@@ -125,27 +94,22 @@ userRoutes.post("/login", (req, res) => {
     username: req.body.username,
     password: req.body.password,
   };
-
   const validLogin = loginSchema.validate(userLoginInput);
-
   if (validLogin.error) {
     return res.status(400).send(validLogin.error);
   }
-
   db.oneOrNone(
-    "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
+    "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
     { username: req.body.username }
   ).then((userCredentials) => {
     if (!userCredentials) {
       return res.status(401).send("Invalid Username or password");
     }
-
     if (
       !bcrypt.compareSync(userLoginInput.password, userCredentials.password)
     ) {
       return res.status(401).send("Invalid Username or Password");
     }
-
     res.status(200).json(userCredentials);
   });
 });
@@ -163,12 +127,29 @@ userRoutes.put("/users/:id", (req: any, res: any) => {
     secondary_characters: req.body.secondary_characters,
     slippi_usernames: req.body.slippi_usernames,
   };
-
   db.oneOrNone(
     "UPDATE users SET (first_name, last_name, country, state, city, bio, main_character, secondary_characters, slippi_usernames) = \
   (${first_name}, ${last_name}, ${country}, ${state}, ${city}, ${bio}, ${main_character}::smallint[], ${secondary_characters}::smallint[], ${slippi_usernames}::varchar(20)[]) WHERE id = ${id} \
   RETURNING id, username, first_name, last_name, country, state, city, bio, main_character, secondary_characters, slippi_usernames;",
     updatedUserValues
+  ).then((updatedUser) => {
+    if (updatedUser) {
+      return res.json(updatedUser);
+    } else {
+      return res.status(400);
+    }
+  });
+});
+
+userRoutes.put("/user/:id/addEvent", (req: any, res: any) => {
+  const eventToAdd = {
+    id: req.params.id,
+    added_event_ids: req.body.added_event_ids,
+  };
+
+  db.oneOrNone(
+    "UPDATE users SET added_event_ids = ARRAY_APPEND(added_event_ids, ${added_event_ids}) WHERE id = ${id} RETURNING id, username, added_event_ids;",
+    eventToAdd
   ).then((updatedUser) => {
     if (updatedUser) {
       return res.json(updatedUser);

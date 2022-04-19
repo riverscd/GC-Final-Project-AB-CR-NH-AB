@@ -24,6 +24,7 @@ export const defaultValue: UserContext = {
     country: "",
     zip: "",
     bio: "",
+    added_event_ids: [],
     main_character: [],
     secondary_characters: [],
     slippi_usernames: [],

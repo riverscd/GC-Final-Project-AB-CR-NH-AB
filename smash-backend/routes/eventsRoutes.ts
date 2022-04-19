@@ -20,20 +20,33 @@ eventsRoutes.get("/events/:id", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-
 eventsRoutes.get("/events/bycreator/:creator_id", (req, res) => {
-  return db.manyOrNone("select * from events where creator_id = $(creator_id)", {creator_id: req.params.creator_id})
-  .then((data) => res.json(data))
-  .catch((error) => console.log(error))
-})
+  return db
+    .manyOrNone("select * from events where creator_id = $(creator_id)", {
+      creator_id: req.params.creator_id,
+    })
+    .then((data) => res.json(data))
+    .catch((error) => console.log(error));
+});
 
 eventsRoutes.get("/events/bystate/:state", (req, res) => {
-  console.log(req.params)
+  console.log(req.params);
   console.log(req.query);
-  return db.manyOrNone("select * from events where state = $(state)", {state: req.params.state})
+  return db
+    .manyOrNone("select * from events where state = $(state)", {
+      state: req.params.state,
+    })
     .then((data) => res.json(data))
-    .catch((error) => console.log(error))
-})
+    .catch((error) => console.log(error));
+});
+
+eventsRoutes.post("/events/selectEvents", (req: any, res: any) => {
+  return db
+    .manyOrNone("SELECT * FROM events WHERE id IN ($1:csv);", [
+      req.body.added_event_ids,
+    ])
+    .then((events) => res.json(events));
+});
 
 eventsRoutes.post("/create-event", (req, res) => {
   const schema = Joi.object({
@@ -45,7 +58,7 @@ eventsRoutes.post("/create-event", (req, res) => {
     city: Joi.string().min(1).max(30),
     state: Joi.string().min(2).max(2),
     zip: Joi.string().min(5).max(5),
-    creator_id: Joi.number().required()
+    creator_id: Joi.number().required(),
   });
   const newEvent = {
     event_name: req.body.event_name,
@@ -56,7 +69,7 @@ eventsRoutes.post("/create-event", (req, res) => {
     city: req.body.city,
     state: req.body.state,
     zip: req.body.zip,
-    creator_id!: req.body.creator_id
+    creator_id: req.body.creator_id,
   };
   const valid = schema.validate(newEvent);
   console.log(newEvent);

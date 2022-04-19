@@ -81,3 +81,13 @@ export function UpdateUser(
       return res.data;
     });
 }
+
+export function AddEventToUser(id: number, added_event_ids: number) {
+  return axios
+    .put(`http://localhost:3001/user/${id}/addEvent`, {
+      added_event_ids: added_event_ids,
+    })
+    .then((res) => {
+      return res.data;
+    });
+}

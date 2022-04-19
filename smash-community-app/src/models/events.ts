@@ -6,7 +6,7 @@ export interface SmashEvent {
   id: number;
   creator_id: number;
   event_name: string;
-  attendees: number;
+  attendees: number[];
   description: string;
   event_date: string;
   is_in_person: number | null;
