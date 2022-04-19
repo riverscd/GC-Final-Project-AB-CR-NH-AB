@@ -7,8 +7,12 @@ import {
 import { GetAllEvents, GetEventsByState } from "../services/events";
 import { SmashEvent } from "../models/events";
 import { TournamentNode, CompetitionEvent } from "../models/smash";
+<<<<<<< HEAD
 import userContext from "../contexts/UserContext";
 import { AddEventToUser } from "../services/users";
+=======
+import { Box, Button, Card, CardContent, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
+>>>>>>> 7b5a6b0956e39c5fb0541bb389d56ec24658a104
 
 export function EventFinder() {
   const { loggedInUser } = useContext(userContext);
@@ -38,6 +42,7 @@ export function EventFinder() {
     }
   }, [state]);
 
+<<<<<<< HEAD
   function addEventToUser(eventId: number) {
     if (loggedInUser) {
       AddEventToUser(loggedInUser?.id, eventId).then((data: any) => {
@@ -45,9 +50,17 @@ export function EventFinder() {
       });
     }
   }
+=======
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+>>>>>>> 7b5a6b0956e39c5fb0541bb389d56ec24658a104
 
   return (
-    <div>
+    <ThemeProvider theme={darkTheme}>
+    <Grid container component="main" sx={{ height: "100vh" }}>
       <h1>Event and Tournament Finder</h1>
       <div>
         <select
@@ -111,7 +124,9 @@ export function EventFinder() {
         <h2>Tournaments:</h2>
 
         {allTournaments.map((tournament: TournamentNode) => (
-          <div>
+          <Card variant="outlined">
+             <CardContent>
+            <Typography variant="body1" color="text.secondary">
             <ul>
               <li
                 key={tournament.id}
@@ -128,14 +143,17 @@ export function EventFinder() {
                 </ul>
               ))}
             </ul>
-
             <button>Add To My Events</button>
-          </div>
+          </Typography>
+            </CardContent>
+            </Card>
         ))}
       </div>
-      <div>
         <h2>Community Events:</h2>
         {allEvents.map((event: any) => (
+          <Card variant="outlined">
+          <CardContent>
+         <Typography variant="body1" color="text.secondary">
           <ul>
             <li key={event.id}>{`event name: ${event.event_name}`}</li>
             <li>{`event location: ${event.location}`}</li>
@@ -147,9 +165,14 @@ export function EventFinder() {
               Add To My Events
             </button>
           </ul>
+          </Typography>
+            </CardContent>
+            </Card>
         ))}
-      </div>
+      <Box>
       <Link to="/sitenav">Home</Link>
-    </div>
+      </Box>
+</Grid>
+</ThemeProvider >
   );
 }

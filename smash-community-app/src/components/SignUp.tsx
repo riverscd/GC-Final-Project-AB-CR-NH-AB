@@ -36,13 +36,13 @@ import Smashbackground from "../images/Smashbackground.png";
 
 
 export function SignUp() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthdate, setBirthdate] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [birthdate, setBirthdate] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const { addUser } = useContext(UserContext);
   const navigate = useNavigate();
   const initialValues = {
@@ -134,6 +134,7 @@ export function SignUp() {
               .oneOf([Yup.ref('password')], 'Password does not match')
               .required('Confirm Password is required')
           })}
+
           onSubmit={(values) => {
             console.log(values);
             if (values.password === values.confirmPassword) {
@@ -152,6 +153,7 @@ export function SignUp() {
               });
             } 
           }}>
+
           {({
             errors,
             handleBlur,
@@ -216,9 +218,9 @@ export function SignUp() {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                      // onChange={(e: any) => setUsername(e.target.value)}
                       />
                     </Grid>
+
                     <Grid item xs={12}>
                       <TextField
                         error={Boolean(touched.birthdate && errors.birthdate)}
@@ -243,6 +245,7 @@ export function SignUp() {
                       // }}
                       />
                     </Grid>
+
                     <Grid item xs={12}>
                       <TextField
                         error={Boolean(touched.email && errors.email)}
@@ -264,6 +267,7 @@ export function SignUp() {
                       // onSubmit={(e: any) => setEmail(e.target.value)}
                       />
                     </Grid>
+
                     <Grid item xs={12}>
                       <TextField
                         autoComplete="given-name"
@@ -286,6 +290,7 @@ export function SignUp() {
                       // onSubmit={(e: any) => setFirstName(e.target.value)}
                       />
                     </Grid>
+
                     <Grid item xs={12}>
                       <TextField
                         autoComplete="family-name"
@@ -305,9 +310,9 @@ export function SignUp() {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                      // onSubmit={(e: any) => setLastName(e.target.value)}
                       />
                     </Grid>
+
                     <Grid item xs={12}>
                       <TextField
                         error={Boolean(touched.password && errors.password)}
@@ -329,6 +334,7 @@ export function SignUp() {
                       // onSubmit={(e: any) => setPassword(e.target.value)}
                       />
                     </Grid>
+
                     <Grid item xs={12}>
                       <TextField
                         error={Boolean(
@@ -354,6 +360,7 @@ export function SignUp() {
                       // onChange={(e: any) => setConfirmPassword(e.target.value)}
                       />
                     </Grid>
+                    
                   </Grid>
                   <Button
                     type="submit"

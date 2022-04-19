@@ -17,6 +17,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Smashbackground from "../images/Smashbackground.png";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 function Copyright(props: any) {
   return (
@@ -41,6 +43,10 @@ export default function SignInSide() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { loggedInUser, addUser } = useContext(UserContext);
+  const initialValues = {
+    username: "",
+    password: "",
+  };
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -63,6 +69,29 @@ export default function SignInSide() {
     <ThemeProvider theme={darkTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
+        <Formik
+          initialValues={{ ...initialValues }}
+          validationSchema={Yup.object({
+            username: Yup.string()
+              .min(5, "Username should be of minimum 5 characters length")
+              .max(10, "Username cannot be longer than 10 characters")
+              .required("Username is required"),
+            password: Yup.string()
+              .min(8, "Password should be of minimum 8 characters length")
+              .max(30, "Password cannot be longer than 30 characters")
+              .required("Password is required"),
+          })}
+          onSubmit={(values) => {
+            console.log(values);
+            LoginUser(values.username, values.password).then((user) => {
+              if (user) {
+                addUser(user);
+                navigate("/");
+              } else {
+              }
+            });
+          }}
+        />
         <Grid
           item
           xs={12}
@@ -73,16 +102,6 @@ export default function SignInSide() {
           square
           //sx={{ maxWidth: { xs: 500, md: 400 } }}
         >
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              //maxWidth: { xs: 350, md:250}
-            }}
-          >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               {/*   <LockOutlinedIcon /> */}
             </Avatar>
@@ -142,7 +161,6 @@ export default function SignInSide() {
               </Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>
-          </Box>
         </Grid>
         <Grid
           item
