@@ -18,6 +18,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Smashbackground from "../images/Smashbackground.png";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 function Copyright(props: any) {
   return (
@@ -37,13 +39,15 @@ function Copyright(props: any) {
   );
 }
 
-
-
 export default function SignInSide() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { loggedInUser, addUser } = useContext(UserContext);
+  const initialValues = {
+    username: "",
+    password: "",
+  };
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -55,17 +59,40 @@ export default function SignInSide() {
       }
     });
   }
-//const theme = createTheme();
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+  //const theme = createTheme();
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
 
   return (
     <ThemeProvider theme={darkTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
+        <Formik
+          initialValues={{ ...initialValues }}
+          validationSchema={Yup.object({
+            username: Yup.string()
+              .min(5, "Username should be of minimum 5 characters length")
+              .max(10, "Username cannot be longer than 10 characters")
+              .required("Username is required"),
+            password: Yup.string()
+              .min(8, "Password should be of minimum 8 characters length")
+              .max(30, "Password cannot be longer than 30 characters")
+              .required("Password is required"),
+          })}
+          onSubmit={(values) => {
+            console.log(values);
+            LoginUser(values.username, values.password).then((user) => {
+              if (user) {
+                addUser(user);
+                navigate("/");
+              } else {
+              }
+            });
+          }}
+        />
         <Grid
           item
           xs={12}
@@ -140,9 +167,7 @@ const darkTheme = createTheme({
                   </MuiLink>
                 </Grid> */}
                 <Grid item>
-                  <Link to="/signup" >
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                  <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
