@@ -29,7 +29,6 @@ export function GetEventsByState(state: string): Promise<SmashEvent[]> {
       },
     })
     .then((res: AxiosResponse<any>): any => {
-      console.log(res.data);
       return res.data;
     });
 }

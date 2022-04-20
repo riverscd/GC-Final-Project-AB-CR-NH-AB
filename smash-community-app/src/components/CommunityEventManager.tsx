@@ -49,45 +49,63 @@ export function CommunityEventManager() {
         }}
       >
         <Box>
-          <Typography component="h1" variant="h5">
-            Community and Event Manager
-          </Typography>
-          <Box 
-                sx={{
-                  m:4,
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                 
-                }}
-              >
-          <Button sx={{mr:2}}
-            variant="outlined"
-            type="submit"
-            onClick={handleCreateCommunity}>
-            Create a Community
-          </Button>
-          <Button sx={{ml:2}}
-            variant="outlined"
-            type="submit" onClick={handleCreateEvent}>
-            Create an Event
-          </Button>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center"
+            }}>
+            <Typography component="h1" variant="h5"
+            >
+              Community and Event Manager
+            </Typography>
+            <Box
+              sx={{
+                m: 4,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+
+              }}
+            >
+              <Button sx={{ mr: 2 }}
+                variant="outlined"
+                type="submit"
+                onClick={handleCreateCommunity}>
+                Create a Community
+              </Button>
+              <Button sx={{ ml: 2 }}
+                variant="outlined"
+                type="submit" onClick={handleCreateEvent}>
+                Create an Event
+              </Button>
+            </Box>
           </Box>
+          <Box
+          sx={{
+            mx:5,
+            mb:5}}> 
+      
           <Box>
-            <Typography component="h2" variant="h6">
-              My Communities:
+            <Typography component="h2" variant="h6"
+            sx={{
+              my:2,
+              mr:2
+            }}>
+              My Created Communities:
             </Typography>
 
             {createdCommunities.map((community: Community) => (
-              <Card variant="outlined">
+              <Card variant="outlined" sx={{mb:1}}>
                 {/* <div className="message"> */}
                 <CardContent>
                   <Typography variant="body1" color="text.secondary">
                     <ul>
-                      <li key={community.id}>
-                        Community Name: {`${community.community_name}`}</li>
-                      <li>Location: {`${community.location}`}</li>
-                      <li>Description: {`${community.description}`}
+                      <li key={community.id} className="title">
+                        {`${community.community_name}`}</li>
+                      <li className="list-item">Location: {`${community.location}`}</li>
+                      <li className="list-item">Description: {`${community.description}`}
                       </li>
                     </ul>
                   </Typography>
@@ -96,20 +114,26 @@ export function CommunityEventManager() {
             ))}
           </Box>
           <Box>
-          <Typography component="h2" variant="h6">
-              My Events:
+            <Typography component="h2" variant="h6"
+            sx={{
+              my:2,
+              mr:2
+            }}>
+              My Created Events:
             </Typography>
-         
+
             {createdEvents.map((event: SmashEvent) => (
-              <Card variant="outlined">
+              <Card variant="outlined" sx={{mb:1}}>
                 {/* <div className="message"> */}
                 <CardContent>
                   <Typography variant="body1" color="text.secondary">
                     <ul>
-                      <li key={event.id}>
-                        Event Name: {`${event.event_name}`}</li>
-                      <li>Location: {`${event.location}`}</li>
-                      <li>Description: {`${event.description}`}</li>
+                      <li key={event.id} className="title">
+                        {`${event.event_name}`}</li>
+                       
+                      <li className="list-item">Location: {`${event.location}`}</li>
+                   
+                      <li className="list-item">Description: {`${event.description}`}</li>
                     </ul>
                   </Typography>
                 </CardContent>
@@ -117,6 +141,7 @@ export function CommunityEventManager() {
             ))}
           </Box>
           </Box>
+        </Box>
       </Grid>
     </ThemeProvider>
   );

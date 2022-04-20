@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Landing } from "./components/Landing";
+// import { Landing } from "./components/Landing";
 import Login from "./components/Login";
 import { SignUp } from "./components/SignUp";
 import { CommunityFinder } from "./components/CommunityFinder";
@@ -21,7 +21,7 @@ import { Header } from "./components/Header";
 import { UserContextProvider } from "./contexts/UserContextProvider";
 import { userInfo } from "os";
 import { createContext } from "react";
-import UserContext from "./contexts/UserContext";
+import UserCohntext from "./contexts/UserContext";
 import { EditProfile } from "./components/EditProfile";
 import { PostBoard } from "./components/PostBoard";
 

@@ -28,6 +28,10 @@ export function CreateEvent() {
 
   const navigate = useNavigate();
 
+  function handleNav(){
+    navigate("/communityeventmanager")
+  }
+
   const initialValues = {
     eventName: '',
     date: '',
@@ -159,12 +163,17 @@ export function CreateEvent() {
                   alignItems: "center",
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                  {/* <LockOutlinedIcon /> */}
-                </Avatar>
+               
                 <Typography component="h1" variant="h5">
                   Create an Event
                 </Typography>
+                <Button sx={{ mr: 2, mt:1, borderRadius:1}}
+                variant="outlined"
+                type="submit"
+                size="small"
+                onClick={handleNav}>
+                Back
+              </Button>
                 <Box
                   component="form"
                   noValidate
@@ -376,7 +385,7 @@ export function CreateEvent() {
             backgroundPosition: "center",
           }}
         />
-        {/* <Link to="/sitenav">Back to Home</Link> */}
+        
       </Grid>
     </ThemeProvider >
   );

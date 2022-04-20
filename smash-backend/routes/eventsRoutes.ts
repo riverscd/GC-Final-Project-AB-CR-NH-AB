@@ -52,7 +52,8 @@ eventsRoutes.post("/create-event", (req, res) => {
   const schema = Joi.object({
     event_name: Joi.string().min(2).max(50).required(),
     description: Joi.string().min(1).max(500).required(),
-    event_date: Joi.date().greater("now").required(),
+    event_date: Joi.date().min(8).required(),
+    // event_date: Joi.date().greater("now").required(),
     location: Joi.string().min(1).max(100),
     address: Joi.string().min(1).max(100),
     city: Joi.string().min(1).max(30),

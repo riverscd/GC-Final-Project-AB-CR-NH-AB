@@ -14,8 +14,8 @@ export function GeneralMessageBoard() {
   const [allPosts, setAllPosts] = useState<any>([]);
   const { loggedInUser } = useContext(UserContext);
   const [allUsers, setAllUsers] = useState<User[]>([]);
-  
-  
+
+
 
   //create post modal
   const [postTitle, setPostTitle] = useState<any>("");
@@ -50,7 +50,7 @@ export function GeneralMessageBoard() {
     });
   };
 
-  console.log(allPosts)
+  
 
   const darkTheme = createTheme({
     palette: {
@@ -68,6 +68,9 @@ export function GeneralMessageBoard() {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: 3
   };
 
   return (
@@ -83,37 +86,46 @@ export function GeneralMessageBoard() {
           py: 2,
         }}
       >
-        <div>
-          <h1>General Message Board</h1>
-          <Box sx={{
-            m: 2,
-          }}>
-            <Link to="/sitenav">Home</Link>
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center"
+            }}>
+            <Typography component="h1" variant="h5"
+            >
+              General Message Board
+            </Typography>
+
+
+            {/* Create Post Modal  */}
+            <Button
+              sx={{
+                m: 2,
+                borderRadius: 1
+              }}
+              variant="outlined"
+              onClick={handleOpen}>Create Post</Button>
           </Box>
 
-          {/* Create Post Modal  */}
-          <Button
-            sx={{
-              m: 2,
-            }}
-            variant="outlined"
-            onClick={handleOpen}>Create Post</Button>
           <Modal
             open={open}
             onClose={handleClose}
 
           >
-            <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              //maxWidth: { xs: 350, md:250}
-            }}
-          >
-              <Typography id="modal-title" variant="h6" component="h2">
+            <Box sx={style}
+
+            >
+              <Typography
+                id="modal-title"
+                variant="h5"
+                component="h2"
+                sx={{ 
+                  display: "flex", 
+                  justifyContent: "center",
+                 }}>
                 Create Post
               </Typography>
 
@@ -136,33 +148,49 @@ export function GeneralMessageBoard() {
                 name="post_message"
                 onChange={(e) => setPostMessage(e.target.value)}
               />
-              <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+              <Button
+                sx={{
+                  mt: 1,
+                  borderRadius: 1
+                }}
+                variant="outlined"
+                onClick={handleSubmit}
+              >Submit
+              </Button>
             </Box>
           </Modal>
+          <Box
+            sx={{
+              mx: 5,
+              mb: 5
+            }}>
+            {/* All Posts Display */}
+            {allPosts.map((post: Post) => (
+              <Card
+                variant="outlined"
+                sx={{ mb: 1 ,
+                  borderRadius: 2}}>
 
-          {/* All Posts Display */}
-          {allPosts.map((post: Post) => (
-            <Card variant="outlined">
-            {/* <div className="message"> */}
-            <CardContent>
-            <Typography variant="body1" color="text.secondary">
-              <ul>
-                <li
-                  key={post.id}
-                ><Link to='/post' state={{post: post}}> {`post title: ${post.post_title}`}</Link></li>
-              <li>{`post author: ${post.author_id}`}</li>
-              <li>{`post message: ${post.post_message}`}</li>
-              <li>{`post date: ${post.date_created}`}</li>
-              <li>{`reply number: ${post.replies?.length}`}</li>
-              {/* <button onClick={handleClick}>reply</button> */}
-            </ul>
-            {/* </div> */}
-            </Typography>
-            </CardContent>
-          </Card>
-          ))}
-      </div>
-    </Grid>
+                <CardContent>
+                  <Typography variant="body1" color="text.secondary">
+                    <ul>
+                      <li
+                        key={post.id}
+                      ><Link to='/post' state={{ post: post }} className="title"> {`${post.post_title}`}</Link></li>
+                      <li className="list-item">{`Author: ${post.author_id}`}</li>
+                      <li className="list-item">{`Message: ${post.post_message}`}</li>
+                      <li className="list-item">{`Date: ${post.date_created}`}</li>
+                      <li className="list-item">{`Replies: ${post.replies?.length}`}</li>
+
+                    </ul>
+
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+        </Box>
+      </Grid>
     </ThemeProvider >
 
 
