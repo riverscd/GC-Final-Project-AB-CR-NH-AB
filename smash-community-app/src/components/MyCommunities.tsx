@@ -72,7 +72,7 @@ export function MyCommunities() {
               }}
             >
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -110,7 +110,7 @@ export function MyCommunities() {
               </Card> 
           ))}
             </ul>
-          </Box>
+          </Box> */}
           <Box
             sx={{
               display: "flex",
@@ -125,9 +125,6 @@ export function MyCommunities() {
             >
               Joined Communities
             </Typography>
-
-
-
 
             <ul>
               {usersJoinedCommunities?.map((createdCommunity) => (
