@@ -56,6 +56,8 @@ export function GeneralMessageBoard() {
     palette: {
       mode: "dark",
     },
+   
+   
   });
   //create post modal styling
   const style = {
@@ -68,6 +70,9 @@ export function GeneralMessageBoard() {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    display: "flex",
+    flexDirection: "column",
+    
   };
 
   return (
@@ -83,13 +88,19 @@ export function GeneralMessageBoard() {
           py: 2,
         }}
       >
-        <div>
-          <h1>General Message Board</h1>
-          <Box sx={{
-            m: 2,
-          }}>
-            <Link to="/sitenav">Home</Link>
-          </Box>
+        <Box>
+          <Box
+          sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center"
+            }}>
+          <Typography component="h1" variant="h5"
+            >
+              General Message Board
+            </Typography>
+        
 
           {/* Create Post Modal  */}
           <Button
@@ -98,22 +109,22 @@ export function GeneralMessageBoard() {
             }}
             variant="outlined"
             onClick={handleOpen}>Create Post</Button>
+            </Box>
+
           <Modal
             open={open}
             onClose={handleClose}
+           
 
           >
-            <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              //maxWidth: { xs: 350, md:250}
-            }}
+            <Box sx={style}
+        
           >
-              <Typography id="modal-title" variant="h6" component="h2">
+              <Typography 
+              id="modal-title" 
+              variant="h5" 
+              component="h2"
+              sx={{display:"flex", justifyContent: "center"}}>
                 Create Post
               </Typography>
 
@@ -136,32 +147,45 @@ export function GeneralMessageBoard() {
                 name="post_message"
                 onChange={(e) => setPostMessage(e.target.value)}
               />
-              <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+              <Button 
+              sx={{
+                mt: 1,
+               }}
+              variant="outlined" 
+              onClick={handleSubmit}
+              >Submit
+              </Button>
             </Box>
           </Modal>
-
+          <Box
+          sx={{
+            mx:5,
+            mb:5}}> 
           {/* All Posts Display */}
           {allPosts.map((post: Post) => (
-            <Card variant="outlined">
-            {/* <div className="message"> */}
+            <Card 
+            variant="outlined" 
+            sx={{mb:1}}>
+            
             <CardContent>
             <Typography variant="body1" color="text.secondary">
               <ul>
                 <li
                   key={post.id}
-                ><Link to='/post' state={{post: post}}> {`post title: ${post.post_title}`}</Link></li>
-              <li>{`post author: ${post.author_id}`}</li>
-              <li>{`post message: ${post.post_message}`}</li>
-              <li>{`post date: ${post.date_created}`}</li>
-              <li>{`reply number: ${post.replies?.length}`}</li>
-              {/* <button onClick={handleClick}>reply</button> */}
+                ><Link to='/post' state={{post: post}} className="title"> {`${post.post_title}`}</Link></li>
+              <li className="list-item">{`Author: ${post.author_id}`}</li>
+              <li className="list-item">{`Message: ${post.post_message}`}</li>
+              <li className="list-item">{`Date: ${post.date_created}`}</li>
+              <li className="list-item">{`Replies: ${post.replies?.length}`}</li>
+        
             </ul>
-            {/* </div> */}
+            
             </Typography>
             </CardContent>
           </Card>
           ))}
-      </div>
+          </Box>
+      </Box>
     </Grid>
     </ThemeProvider >
 

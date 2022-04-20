@@ -1,6 +1,6 @@
-import { Box, Button, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, createTheme, Grid, Modal, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import { Post, Reply } from "../models/posts";
 import { GetPostById } from "../services/posts";
@@ -9,6 +9,7 @@ import { AddReply, GetRepliesByPost } from "../services/replies";
 
 export function PostBoard() {
 
+  const navigate = useNavigate();
   const location = useLocation();
   const post: any = location.state;
   const [selectedPost, setSelectedPost] = useState<Post>();
@@ -45,6 +46,10 @@ export function PostBoard() {
     });
   };
 
+  function handleNav(){
+    navigate("/generalmessageboard")
+  }
+
   //create post modal styling
   const style = {
     position: 'absolute' as 'absolute',
@@ -56,6 +61,8 @@ export function PostBoard() {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    display: "flex",
+    flexDirection: "column",
   };
   const darkTheme = createTheme({
     palette: {
@@ -74,55 +81,109 @@ export function PostBoard() {
           py: 2,
         }}
       >
-        <Box sx={{ m: 2, }}>
-          <Link to="/generalmessageboard">Back to Message Board</Link>
-        </Box>
-        <div className="message">
-          <ul>
-            <li>{`post title: ${selectedPost?.post_title}`}</li>
-            <li>{`post author: ${selectedPost?.author_id}`}</li>
-            <li>{`date created: ${selectedPost?.date_created}`}</li>
-            <li>{`post message: ${selectedPost?.post_message}`}</li>
-          </ul>
-          <Button
-            sx={{ m: 2 }}
-            variant="outlined"
-            onClick={handleOpen}>Reply</Button>
-        </div>
-        {/* Create Post Modal  */}
-        <Modal
-          open={open}
-          onClose={handleClose}
-        >
-          <Box sx={style}>
-            <Typography id="modal-title" variant="h6" component="h2">
-              Reply
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center"
+            }}>
+              <Typography component="h1" variant="h5"
+            >
+              Post and Replies
             </Typography>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="reply_message"
-              label="Message"
-              name="reply_message"
-              onChange={(e) => setReplyMessage(e.target.value)}
-            />
-            <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+            <Button
+            sx={{
+              m: 2,
+            }}
+            variant="outlined"
+            onClick={handleNav}>Back to Message Board</Button>
+            </Box>
+            
+        
+          
+          <Box
+            sx={{
+              mx: 5,
+              
+            }}
+          >
+          <Card
+            variant="outlined"
+            sx={{ mb: 1 }}>
+
+            <CardContent>
+              <Typography variant="body1" color="text.secondary">
+                <ul>
+                  <li className="title">{`${selectedPost?.post_title}`}</li>
+                  <li className="list-item">{`Author: ${selectedPost?.author_id}`}</li>
+                  <li className="list-item">{`Date: ${selectedPost?.date_created}`}</li>
+                  <li className="list-item">{`Message: ${selectedPost?.post_message}`}</li>
+                </ul>
+                <Button
+                  sx={{ m: 2 }}
+                  variant="outlined"
+                  onClick={handleOpen}>Reply</Button>
+              </Typography>
+            </CardContent>
+          </Card>
+          {/* Create Post Modal  */}
+          <Modal
+            open={open}
+            onClose={handleClose}
+          >
+            <Box sx={style}>
+              <Typography
+                id="modal-title"
+                variant="h5"
+                component="h2"
+                sx={{ display: "flex", justifyContent: "center" }}>
+                Reply
+              </Typography>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="reply_message"
+                label="Message"
+                name="reply_message"
+                onChange={(e) => setReplyMessage(e.target.value)}
+              />
+              <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+            </Box>
+          </Modal>
           </Box>
-        </Modal>
 
-        {allReplies.map((reply: Reply) => (
-          <div className="reply">
-            <ul>
-              <li
-                key={reply.id}
-              >{`reply author: ${reply.author_id}`}</li>
-              <li>{`reply date: ${reply.date_created}`}</li>
-              <li>{`reply message: ${reply.message}`}</li>
-            </ul>
-          </div>
-        ))}
+          <Box
+            sx={{
+              mx: 10,
+        
+            }}
+          >
+          
+            {allReplies.map((reply: Reply) => (
+              <Card
+                variant="outlined"
+                sx={{ mb: 1 }}>
 
+                <CardContent>
+                  <Typography variant="body1" color="text.secondary">
+                    <ul>
+                      <li
+                        key={reply.id}
+                        className="title"
+                      >{`Author: ${reply.author_id}`}</li>
+                      <li className="list-item">{`Date: ${reply.date_created}`}</li>
+                      <li className="list-item">{`Message: ${reply.message}`}</li>
+                    </ul>
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+
+        </Box>
       </Grid>
     </ThemeProvider>
   )

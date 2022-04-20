@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Landing } from "./components/Landing";
+// import { Landing } from "./components/Landing";
 import Login from "./components/Login";
 import { SignUp } from "./components/SignUp";
 import { CommunityFinder } from "./components/CommunityFinder";
