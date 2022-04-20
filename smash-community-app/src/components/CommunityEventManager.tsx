@@ -70,7 +70,7 @@ export function CommunityEventManager() {
               }}
             >
               <Button sx={{ mr: 2 }}
-                variant="contained"
+                variant="outlined"
                 type="submit"
                 onClick={handleCreateCommunity}>
                 Create a Community

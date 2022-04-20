@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import { User } from "../models/users";
 import { Character, characters } from "../models/characters";
+import { Box, Button, Card, CardContent, createTheme, Grid, Paper, ThemeProvider, Typography } from "@mui/material";
 
 export function MyProfile() {
   const { loggedInUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const foundMainCharacters: Character[] = characters.filter((character) =>
     loggedInUser?.main_character?.find((characterId) => {
@@ -32,6 +34,10 @@ export function MyProfile() {
     )
   );
 
+  function handleNav() {
+    navigate("/editprofile")
+  }
+
   const scElements: JSX.Element[] = foundSecondaryCharacters?.map(
     (character: Character) => (
       <li key={character.id}>
@@ -53,31 +59,100 @@ export function MyProfile() {
   //   ]);
   // });
 
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   return (
-    <div>
-      <h1>My Profile</h1>
+    <ThemeProvider theme={darkTheme}>
+      <Grid
+        item
+        xs={12}
+        // sm={8}
+        component={Paper}
+        elevation={6}
+        sx={{
+          py: 2,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }}>
+          <Typography component="h1" variant="h5"
+            sx={{ mb: 2 }}
+          >
+            My Profile
+          </Typography>
 
-      <p>Username: {`${loggedInUser?.username}`} </p>
+          <Button
+            variant="outlined"
+            sx={{ mb: 2, borderRadius: 1 }}
+            onClick={handleNav}>
+            Edit Profile
+          </Button>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+             
+            }}>
+            <Card sx={{width: 300,px:5}}>
+              <CardContent >
+                <Typography variant="h6" color="text.primary" >
+                  <ul>
+                    <li>
+                      Username:
+                    </li>
+                    <li className="list-item">
+                      {`${loggedInUser?.username}`}
+                    </li>
+                    <li>
+                      Location:
+                    </li>
+                    <li className="list-item">
+                      {`${loggedInUser?.city}, ${loggedInUser?.state}`}
+                    </li>
+                    <li>
+                      Bio:
+                    </li>
+                    <li className="list-item">
+                      {`${loggedInUser?.bio}`}
+                    </li>
+                  </ul>
 
-      <p>location: {`${loggedInUser?.city}, ${loggedInUser?.state}`}</p>
+                </Typography>
 
-      <p>Bio: {`${loggedInUser?.bio}`}</p>
+                <Typography variant="h6" color="text.primary">
+                  Main Characters:
+                  <ul className="list-item">
+                    {mcElements ?? <li>No Characters</li>}</ul>
+                </Typography>
 
-      <p>Main Characters: </p>
-      <ul>{mcElements ?? <li>No Characters</li>}</ul>
+                <Typography variant="h6" color="text.primary">
+                  Secondaries:
+                  <ul className="list-item">{scElements ?? <li>No Characters</li>}</ul>
+                </Typography>
 
-      <p>Secondaries: </p>
-      <ul>{scElements ?? <li>No Characters</li>}</ul>
-
-      <p>Slippi Usernames:</p>
-      <ul>
-        {loggedInUser?.slippi_usernames?.map((slippiusername) => (
-          <li>{slippiusername}</li>
-        )) ?? <li>No Slippi Usernames</li>}
-      </ul>
-      <Link to="/editprofile">Edit </Link>
-      <br />
-      <Link to="/sitenav">Home</Link>
-    </div>
+                <Typography variant="h6" color="text.primary">
+                  Slippi Usernames:
+                  <ul>
+                    {loggedInUser?.slippi_usernames?.map((slippiusername) => (
+                      <li className="list-item">{slippiusername}</li>
+                    )) ?? <li>No Slippi Usernames</li>}
+                  </ul>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+          </Box>
+      </Grid>
+    </ThemeProvider>
   );
 }

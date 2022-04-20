@@ -50,14 +50,12 @@ export function GeneralMessageBoard() {
     });
   };
 
-  console.log(allPosts)
+  
 
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
     },
-
-
   });
   //create post modal styling
   const style = {

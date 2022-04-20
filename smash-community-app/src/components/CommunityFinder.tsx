@@ -39,6 +39,7 @@ export function CommunityFinder() {
       }
     );
   }
+
   function handleAddCommunity(communityId: number) {
     console.log(communityId);
     if (loggedInUser) {
@@ -104,24 +105,23 @@ export function CommunityFinder() {
                 size="small"
                 sx={{ m: 1 }}
                 onChange={(e: any) => setLocation(e.target.value)}>
-
               </TextField>
             
-               
-          
               <Button
                 variant="outlined"
                 type="submit"
                 sx={{ m: 1 ,
                 borderRadius: 1}}
                 onClick={handleSubmit}>
-              
-          
                 Submit
               </Button>
 
             </Box>
           </Box>
+          <Box
+          sx={{display:"flex",
+          justifyContent: "flex-start",
+          ml: 5}}>
           <Typography
             variant="h6"
             component="h2"
@@ -132,6 +132,7 @@ export function CommunityFinder() {
           >
             Communities:
           </Typography>
+          </Box>
 
           <Box
             sx={{
@@ -148,18 +149,18 @@ export function CommunityFinder() {
                     variant="body1"
                     color="text.secondary">
                     <ul>
-                      <li key={community.id}>
-                        Community Name: {`${community.community_name}`}
+                      <li key={community.id}
+                      className= "title">
+                        {`${community.community_name}`}
                       </li>
-                      <li>Location: {`${community.location}`}</li>
-                      <li>Description: {`${community.description}`}</li>
-                      <button onSubmit={() => handleAddCommunity(community.id)}>
-                        Join Community
-                      </button>
+                      <li className= "list-item">Location: {`${community.location}`}</li>
+                      <li className= "list-item">Description: {`${community.description}`}</li>
+                     
                     </ul>
                     <Button
                       sx={{ mt: 2,
                         borderRadius: 1 }}
+                       onClick={() => handleAddCommunity(community.id)}
                       variant="outlined"
                       size="small"
                     >
@@ -171,7 +172,6 @@ export function CommunityFinder() {
             ))}
           </Box>
 
-          <Link to="/sitenav">Home</Link>
         </Box>
         </Box>
       </Grid>

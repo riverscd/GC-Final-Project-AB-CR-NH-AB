@@ -28,6 +28,10 @@ export function CreateEvent() {
 
   const navigate = useNavigate();
 
+  function handleNav(){
+    navigate("/communityeventmanager")
+  }
+
   const initialValues = {
     eventName: '',
     date: '',
@@ -163,6 +167,13 @@ export function CreateEvent() {
                 <Typography component="h1" variant="h5">
                   Create an Event
                 </Typography>
+                <Button sx={{ mr: 2, mt:1, borderRadius:1}}
+                variant="outlined"
+                type="submit"
+                size="small"
+                onClick={handleNav}>
+                Back
+              </Button>
                 <Box
                   component="form"
                   noValidate

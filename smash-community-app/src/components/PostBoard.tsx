@@ -96,6 +96,7 @@ export function PostBoard() {
             <Button
             sx={{
               m: 2,
+              borderRadius:1
             }}
             variant="outlined"
             onClick={handleNav}>Back to Message Board</Button>
@@ -111,7 +112,8 @@ export function PostBoard() {
           >
           <Card
             variant="outlined"
-            sx={{ mb: 1 }}>
+            sx={{ mb: 1,
+              borderRadius:2 }}>
 
             <CardContent>
               <Typography variant="body1" color="text.secondary">
@@ -122,7 +124,9 @@ export function PostBoard() {
                   <li className="list-item">{`Message: ${selectedPost?.post_message}`}</li>
                 </ul>
                 <Button
-                  sx={{ m: 2 }}
+                  sx={{ m: 2,
+                  borderRadius:1 }}
+                  size="small"
                   variant="outlined"
                   onClick={handleOpen}>Reply</Button>
               </Typography>
@@ -150,7 +154,7 @@ export function PostBoard() {
                 name="reply_message"
                 onChange={(e) => setReplyMessage(e.target.value)}
               />
-              <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+              <Button variant="outlined"  sx={{borderRadius:1}} onClick={handleSubmit}>Submit</Button>
             </Box>
           </Modal>
           </Box>
@@ -165,7 +169,8 @@ export function PostBoard() {
             {allReplies.map((reply: Reply) => (
               <Card
                 variant="outlined"
-                sx={{ mb: 1 }}>
+                sx={{ mb: 1,
+                  borderRadius:2 }}>
 
                 <CardContent>
                   <Typography variant="body1" color="text.secondary">

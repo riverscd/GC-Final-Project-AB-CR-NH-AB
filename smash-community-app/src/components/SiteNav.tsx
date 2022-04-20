@@ -55,19 +55,16 @@ export function SiteNavigation() {
                 mx: 4,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "left",
+               
               }}
             >
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h5" sx={{mb:1}}>
                 Explore
               </Typography>
               <Grid container>
                 <Grid item>
                   <Link
                     to={"/generalmessageboard"}
-                    // variant="inherit"
-                    // color="inherit"
-                    // underline="none"
                   >
                     General Message Board
                   </Link>
@@ -77,9 +74,6 @@ export function SiteNavigation() {
                 <Grid item>
                   <Link
                     to={"/communityfinder"}
-                    // variant="inherit"
-                    // color="inherit"
-                    // underline="none"
                   >
                     Community Finder
                   </Link>
@@ -89,9 +83,6 @@ export function SiteNavigation() {
                 <Grid item>
                   <Link
                     to={"/eventfinder"}
-                    // variant="inherit"
-                    // color="inherit"
-                    // underline="none"
                   >
                     Event Finder
                   </Link>
@@ -101,9 +92,6 @@ export function SiteNavigation() {
                 <Grid item>
                   <Link
                     to={"/communityeventmanager"}
-                    // variant="inherit"
-                    // color="inherit"
-                    // underline="none"
                   >
                     Community and Event Creator
                   </Link>
@@ -117,19 +105,15 @@ export function SiteNavigation() {
                 mt: 4,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "left",
               }}
             >
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h5" sx={{mb:1}}>
                 My Stuff
               </Typography>
               <Grid container>
                 <Grid item>
                   <Link
                     to={"/myevents"}
-                    // variant="inherit"
-                    // color="inherit"
-                    // underline="none"
                   >
                     My Events
                   </Link>
@@ -139,9 +123,6 @@ export function SiteNavigation() {
                 <Grid item>
                   <Link
                     to={"/mycommunities"}
-                    // variant="inherit"
-                    // color="inherit"
-                    // underline="none"
                   >
                     My Communities
                   </Link>
@@ -151,9 +132,6 @@ export function SiteNavigation() {
                 <Grid item>
                   <Link
                     to={"/myprofile"}
-                    // variant="inherit"
-                    // color="inherit"
-                    // underline="none"
                   >
                     My Profile
                   </Link>
@@ -162,37 +140,10 @@ export function SiteNavigation() {
               
             </Box>
           </Box>
-          {/* <Copyright sx={{ mt: 5 }} /> */}
+          
         </Grid>
       </Container>
     </ThemeProvider>
 
-    // <div>
-    //   <nav>
-    //     <ul>
-    //       <li>
-    //         <Link to="/mycommunities">My Communities</Link>
-    //       </li>
-    //      <li>
-    //         <Link to="/communityfinder">Community Finder</Link>
-    //       </li>
-    //        <li>
-    //         <Link to="/myevents">My Events</Link>
-    //       </li>
-    //       <li>
-    //         <Link to="/myprofile">My Profile</Link>
-    //       </li>
-    //       <li>
-    //         <Link to="/eventfinder">Event Finder</Link>
-    //       </li>
-    //       <li>
-    //         <Link to="/communityeventmanager">Community/Event Manager</Link>
-    //       </li>
-    //       <li>
-    //         <Link to="/login">Sign Out</Link>
-    //       </li>
-    //     </ul>
-    //   </nav>
-    // </div>
   );
 }

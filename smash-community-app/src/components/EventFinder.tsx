@@ -190,7 +190,7 @@ export function EventFinder() {
                 <Card
                   variant="outlined"
                   sx={{ mb: 1 ,
-                    borderRadius: 16}}>
+                    borderRadius: 2}}>
                   <CardContent>
                     <Typography
                       variant="body1"
@@ -214,7 +214,8 @@ export function EventFinder() {
                       <Button
                         variant="outlined"
                         size="small"
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1,
+                          borderRadius: 1 }}
                       >
                         Add to My Events
                       </Button>
@@ -241,7 +242,8 @@ export function EventFinder() {
               {allEvents.map((event: any) => (
                 <Card
                   variant="outlined"
-                  sx={{ mb: 1 }}>
+                  sx={{ mb: 1 ,
+                    borderRadius: 2}}>
                   <CardContent>
                     <Typography variant="body1" color="text.secondary">
                       <ul>
@@ -253,7 +255,8 @@ export function EventFinder() {
                         <li>{`description: ${event.description}`}</li>
                         </ul>
                         <Button
-                          sx={{ mt: 2 }}
+                          sx={{ mt: 2,
+                            borderRadius: 1 }}
                           variant="outlined"
                           size="small"
                           onClick={() => handleAddEvent(event.id)}
