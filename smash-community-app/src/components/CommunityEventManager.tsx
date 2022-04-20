@@ -95,23 +95,24 @@ export function CommunityEventManager() {
             }}>
               My Created Communities:
             </Typography>
-
+            <ul>
             {createdCommunities.map((community: Community) => (
               <Card variant="outlined" sx={{mb:1}}>
                 {/* <div className="message"> */}
                 <CardContent>
                   <Typography variant="body1" color="text.secondary">
-                    <ul>
+                   
                       <li key={community.id} className="title">
                         {`${community.community_name}`}</li>
                       <li className="list-item">Location: {`${community.location}`}</li>
                       <li className="list-item">Description: {`${community.description}`}
                       </li>
-                    </ul>
+                    
                   </Typography>
                 </CardContent>
               </Card>
             ))}
+            </ul>
           </Box>
           <Box>
             <Typography component="h2" variant="h6"
@@ -121,24 +122,25 @@ export function CommunityEventManager() {
             }}>
               My Created Events:
             </Typography>
-
+            <ul>
             {createdEvents.map((event: SmashEvent) => (
               <Card variant="outlined" sx={{mb:1}}>
                 {/* <div className="message"> */}
                 <CardContent>
                   <Typography variant="body1" color="text.secondary">
-                    <ul>
+                    
                       <li key={event.id} className="title">
                         {`${event.event_name}`}</li>
                        
                       <li className="list-item">Location: {`${event.location}`}</li>
                    
                       <li className="list-item">Description: {`${event.description}`}</li>
-                    </ul>
+                    
                   </Typography>
                 </CardContent>
               </Card>
             ))}
+            </ul>
           </Box>
           </Box>
         </Box>

@@ -1,4 +1,4 @@
-import { Container, CssBaseline } from "@mui/material";
+import { Box, Card, CardContent, Container, CssBaseline, Grid, Paper, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { timeStamp } from "console";
 import { useContext, useEffect, useState } from "react";
@@ -32,15 +32,68 @@ export function MyEvents() {
     }
   }, []);
 
+
   return (
-    <div>
-      <h1>Events and Tournaments</h1>
+    <ThemeProvider theme={darkTheme}>
+        <Grid
+        item
+        xs={12}
+        // sm={8}
+        component={Paper}
+        elevation={6}
+        sx={{
+          py: 2,
+        }}
+      >
 
-      <label>
-        <h2>Created Events:</h2>
+<Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center"
+            }}>
+            <Typography component="h1" variant="h5"
+            >
+              Events and Tournaments
+            </Typography>
+            <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly"
+            }}
+          >
+</Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                mx: 5,
+                mb: 5
+              }}
+            >
+    <Typography
+                variant="h6"
+                component="h2"
+                sx={{ mb: 1 }}
+              >
+                Created Events
+              </Typography>
 
-        <ul>
+      
+
+              <ul>
           {usersCreatedEvents?.map((createdEvent) => (
+             <Card
+             variant="outlined"
+             sx={{ mb: 1 ,
+               borderRadius: 2}}>
+
+             <CardContent>
+               <Typography variant="body1" color="text.secondary">
+              
             <li key={createdEvent.id}>
               <h3>{createdEvent.event_name}</h3>
               <p>{createdEvent.is_in_person ? "In Person" : "Online"} Event</p>
@@ -48,16 +101,41 @@ export function MyEvents() {
               <p>{`${createdEvent.address} ${createdEvent.city}, ${createdEvent.state} ${createdEvent.zip}`}</p>
               {/* <p>Number of attendees: {createdEvent.attendees.length}</p> */}
               <p>{createdEvent.description}</p>
-              <button>Edit Event</button>
+              {/* <button>Edit Event</button> */}
             </li>
+            
+            </Typography>
+                </CardContent>
+              </Card>
           ))}
-        </ul>
-      </label>
-      <label>
-        <h2>Joined Events:</h2>
+          </ul>
+          
+     </Box>
+     <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+
+              }}
+            >
+              <Typography
+                variant="h6"
+                component="h2"
+                sx={{ mb: 2 }}
+              >
+                Joined Events
+              </Typography>
+    
+        
 
         <ul>
           {usersJoinedEvents?.map((createdEvent) => (
+             <Card
+             variant="outlined"
+             sx={{ mb: 1 ,
+               borderRadius: 2}}>
+             <CardContent>
+               <Typography variant="body1" color="text.secondary">
             <li key={createdEvent.id}>
               <h2>{createdEvent.event_name}</h2>
               <p>{createdEvent.is_in_person ? "In Person" : "Online"} Event</p>
@@ -66,10 +144,15 @@ export function MyEvents() {
               {/* <p>Number of attendees: {createdEvent.attendees.length}</p> */}
               <p>{createdEvent.description}</p>
             </li>
+            </Typography>
+                  </CardContent>
+                </Card>
           ))}
         </ul>
-      </label>
-      <Link to="/sitenav">Home</Link>
-    </div>
+        </Box>
+   </Box>
+   </Box>
+    </Grid>
+    </ThemeProvider >
   );
 }

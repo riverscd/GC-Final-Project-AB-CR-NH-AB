@@ -165,6 +165,7 @@ export function GeneralMessageBoard() {
               mb: 5
             }}>
             {/* All Posts Display */}
+            <ul>
             {allPosts.map((post: Post) => (
               <Card
                 variant="outlined"
@@ -173,7 +174,7 @@ export function GeneralMessageBoard() {
 
                 <CardContent>
                   <Typography variant="body1" color="text.secondary">
-                    <ul>
+                   
                       <li
                         key={post.id}
                       ><Link to='/post' state={{ post: post }} className="title"> {`${post.post_title}`}</Link></li>
@@ -182,12 +183,13 @@ export function GeneralMessageBoard() {
                       <li className="list-item">{`Date: ${post.date_created}`}</li>
                       <li className="list-item">{`Replies: ${post.replies?.length}`}</li>
 
-                    </ul>
+                   
 
                   </Typography>
                 </CardContent>
               </Card>
             ))}
+             </ul>
           </Box>
         </Box>
       </Grid>

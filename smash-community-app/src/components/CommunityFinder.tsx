@@ -139,6 +139,7 @@ export function CommunityFinder() {
               mx: 5,
               mb: 5
             }}>
+               <ul>
             {allCommunities?.map((community: Community) => (
               <Card
                 variant="outlined"
@@ -148,7 +149,7 @@ export function CommunityFinder() {
                   <Typography
                     variant="body1"
                     color="text.secondary">
-                    <ul>
+                   
                       <li key={community.id}
                       className= "title">
                         {`${community.community_name}`}
@@ -156,7 +157,6 @@ export function CommunityFinder() {
                       <li className= "list-item">Location: {`${community.location}`}</li>
                       <li className= "list-item">Description: {`${community.description}`}</li>
                      
-                    </ul>
                     <Button
                       sx={{ mt: 2,
                         borderRadius: 1 }}
@@ -170,6 +170,7 @@ export function CommunityFinder() {
                 </CardContent>
               </Card>
             ))}
+            </ul>
           </Box>
 
         </Box>

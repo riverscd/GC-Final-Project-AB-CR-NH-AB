@@ -165,7 +165,7 @@ export function PostBoard() {
         
             }}
           >
-          
+           <ul>
             {allReplies.map((reply: Reply) => (
               <Card
                 variant="outlined"
@@ -174,18 +174,19 @@ export function PostBoard() {
 
                 <CardContent>
                   <Typography variant="body1" color="text.secondary">
-                    <ul>
+                   
                       <li
                         key={reply.id}
                         className="title"
                       >{`Author: ${reply.author_id}`}</li>
                       <li className="list-item">{`Date: ${reply.date_created}`}</li>
                       <li className="list-item">{`Message: ${reply.message}`}</li>
-                    </ul>
+                    
                   </Typography>
                 </CardContent>
               </Card>
             ))}
+            </ul>
           </Box>
 
         </Box>

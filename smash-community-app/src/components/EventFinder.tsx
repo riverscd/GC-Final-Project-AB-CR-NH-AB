@@ -185,7 +185,7 @@ export function EventFinder() {
               >
                 Tournaments:
               </Typography>
-
+              <ul>
               {allTournaments.map((tournament: TournamentNode) => (
                 <Card
                   variant="outlined"
@@ -195,7 +195,7 @@ export function EventFinder() {
                     <Typography
                       variant="body1"
                       color="text.secondary">
-                      <ul>
+                     
                         <li
                           key={tournament.id}
                         >{`tournament name: ${tournament.name}`}</li>
@@ -204,13 +204,15 @@ export function EventFinder() {
                         <li>{`number of attendees: ${tournament.numAttendees}`}</li>
                         <li>{`has offline events: ${tournament.hasOfflineEvents}`}</li>
                         <li>{`has online events: ${tournament.hasOnlineEvents}`}</li>
+                        
                         {tournament.events.map((tournamentEvent: CompetitionEvent) => (
-                          <ul>
+                         <ul>
                             <li>{`competition tier: ${tournamentEvent.competitionTier}`}</li>
                             <li>{`event name: ${tournamentEvent.name}`}</li>
-                          </ul>
+                            </ul>
                         ))}
-                      </ul>
+                        
+                      
                       <Button
                         variant="outlined"
                         size="small"
@@ -223,7 +225,7 @@ export function EventFinder() {
                   </CardContent>
                 </Card>
               ))}
-
+</ul>
             </Box>
             <Box
               sx={{
