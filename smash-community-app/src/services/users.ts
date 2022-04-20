@@ -5,7 +5,7 @@ import { User, Users } from "../models/users";
 
 export function GetAllUsers() {
   return axios
-    .get("http://localhost:3001/users")
+    .get("http://obscure-basin-51700.herokuapp.com/users")
     .then((res: AxiosResponse<Users>): Users => {
       return res.data;
     });
@@ -13,7 +13,7 @@ export function GetAllUsers() {
 
 export function GetUserById(id: number) {
   return axios
-    .get(`http://localhost:3001/users/${id}`)
+    .get(`http://obscure-basin-51700.herokuapp.com/users/${id}`)
     .then((res: AxiosResponse<Users>): Users => {
       return res.data;
     });
@@ -21,7 +21,7 @@ export function GetUserById(id: number) {
 
 export function LoginUser(username: string, password: string) {
   return axios
-    .post(`http://localhost:3001/login`, {
+    .post(`http://obscure-basin-51700.herokuapp.com/login`, {
       username: username,
       password: password,
     })
@@ -40,7 +40,7 @@ export function SignUpUser(
 ) {
   console.log(birthdate);
   return axios
-    .post(`http://localhost:3001/signup`, {
+    .post(`http://obscure-basin-51700.herokuapp.com/signup`, {
       email: email,
       username: username,
       first_name: first_name,
@@ -66,7 +66,7 @@ export function UpdateUser(
   slippi_usernames: string[]
 ) {
   return axios
-    .put(`http://localhost:3001/users/${id}`, {
+    .put(`http://obscure-basin-51700.herokuapp.com/users/${id}`, {
       first_name: first_name,
       last_name: last_name,
       country: country,
@@ -84,7 +84,7 @@ export function UpdateUser(
 
 export function AddEventToUser(id: number, added_event_ids: number) {
   return axios
-    .put(`http://localhost:3001/user/${id}/addEvent`, {
+    .put(`http://obscure-basin-51700.herokuapp.com/user/${id}/addEvent`, {
       added_event_ids: added_event_ids,
     })
     .then((res) => {

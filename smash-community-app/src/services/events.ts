@@ -3,7 +3,7 @@ import { SmashEvents, SmashEvent } from "../models/events";
 
 export function GetAllEvents() {
   return axios
-    .get("http://localhost:3001/events")
+    .get("http://obscure-basin-51700.herokuapp.com/events")
     .then((res: AxiosResponse<SmashEvents>): SmashEvents => {
       return res.data;
     });
@@ -13,7 +13,7 @@ export function GetMultipleEventsById(
   eventIds: number[]
 ): Promise<SmashEvent[]> {
   return axios
-    .post(`http://localhost:3001/events/selectEvents`, {
+    .post(`http://obscure-basin-51700.herokuapp.com/events/selectEvents`, {
       added_event_ids: eventIds,
     })
     .then((res: AxiosResponse<SmashEvent[]>): SmashEvent[] => {
@@ -23,7 +23,7 @@ export function GetMultipleEventsById(
 
 export function GetEventsByState(state: string): Promise<SmashEvent[]> {
   return axios
-    .get(`http://localhost:3001/events/bystate/${state}`, {
+    .get(`http://obscure-basin-51700.herokuapp.com/events/bystate/${state}`, {
       params: {
         state: state,
       },
@@ -36,7 +36,7 @@ export function GetEventsByState(state: string): Promise<SmashEvent[]> {
 
 export function GetEventsByCreator(creator_id: number): Promise<SmashEvent[]> {
   return axios
-    .get(`http://localhost:3001/events/bycreator/${creator_id}`, {
+    .get(`http://obscure-basin-51700.herokuapp.com/events/bycreator/${creator_id}`, {
       params: {
         creator_id: creator_id,
       },
@@ -58,7 +58,7 @@ export function AddEvent(
   creator_id: number
 ) {
   return axios
-    .post("http://localhost:3001/create-event", {
+    .post("http://obscure-basin-51700.herokuapp.com/create-event", {
       event_name: event_name,
       event_date: event_date,
       location: location,

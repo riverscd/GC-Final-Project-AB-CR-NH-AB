@@ -3,7 +3,7 @@ import { Communities, Community } from "../models/communities";
 
 export function GetAllCommunities() {
   return axios
-    .get("http://localhost:3001/communities")
+    .get("http://obscure-basin-51700.herokuapp.com/communities")
     .then((res: AxiosResponse<Communities>): Communities => {
       return res.data;
     });
@@ -11,7 +11,7 @@ export function GetAllCommunities() {
 
 export function GetCommunitiesByLocation(location: string): Promise<Community[]> { 
   return axios 
-  .get(`http://localhost:3001/communities/bylocation/${location}`, {
+  .get(`http://obscure-basin-51700.herokuapp.com/communities/bylocation/${location}`, {
     params: { 
       "location": location
     }
@@ -24,7 +24,7 @@ export function GetCommunitiesByLocation(location: string): Promise<Community[]>
 
 export function GetCommunitiesByCreator(creator_id: number): Promise<Community[]> { 
   return axios 
-  .get(`http://localhost:3001/communities/bycreator/${creator_id}`, { 
+  .get(`http://obscure-basin-51700.herokuapp.com/communities/bycreator/${creator_id}`, { 
     params: { 
       "creator_id": creator_id
     }
@@ -43,7 +43,7 @@ export function AddCommunity(
 ) { 
   console.log(creator_id);
   return axios 
-  .post("http://localhost:3001/create-community", {
+  .post("http://obscure-basin-51700.herokuapp.com/create-community", {
     community_name: community_name, 
     // date: date, 
     location: location, 
