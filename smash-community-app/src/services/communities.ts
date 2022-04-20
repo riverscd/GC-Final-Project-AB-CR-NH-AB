@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { MyCommunities } from "../components/MyCommunities";
 import { Communities, Community } from "../models/communities";
 
 export function GetAllCommunities() {
@@ -70,3 +71,11 @@ export function AddCommunity(
       return res.data;
     });
 }
+
+// export function DeleteCommunity(id :number) { 
+//   return axios 
+//     .delete(`https://localhost:3001/communities/${id}`,)
+//     .then((res: AxiosResponse<any>) => { 
+//       return console.log("community deleted")
+//     })
+// }
