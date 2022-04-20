@@ -7,6 +7,14 @@ li{
   padding-left: 0;
 }
 
+Select{
+  color: black;
+}
+
+.character-selects{
+  width: 50%
+}
+
 .title{
   font-size: 18px;
   font-weight: bold

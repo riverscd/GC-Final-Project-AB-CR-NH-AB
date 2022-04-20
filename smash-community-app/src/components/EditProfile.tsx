@@ -7,7 +7,7 @@ import Select from "react-select";
 
 import CreatableSelect from "react-select";
 import { ActionMeta, OnChangeValue, MultiValue } from "react-select";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider, Typography } from "@mui/material";
 
 export function EditProfile() {
   const components = {
@@ -121,26 +121,51 @@ export function EditProfile() {
           <input type="text" onChange={(e) => setBio(e.target.value)} />
         </label>
         <br />
+        <div className="character-selects">
+          <br />
         <label>
           Mains:
+          <Typography sx={{color: 'black'}}>
           <Select
             options={options}
             isMulti
             name="main_characters"
             className="basic-multi-select"
             classNamePrefix="select"
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary25: 'lightskyblue',
+                primary: 'black',
+              },
+            })}
             onChange={(newValues) => {
               setMainCharacters(newValues.map((newValue) => newValue.value));
             }}
           />
+          </Typography>
         </label>
+        <br />
         <label>
+          
           Secondaries:
+          <Typography sx={{color: 'black'}}>
           <Select
             options={options}
             isMulti
             name="secondary_characters"
             className="basic-multi-select"
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary25: 'lightskyblue',
+                primary: 'black',
+              },
+            })}
             classNamePrefix="select"
             onChange={(newValues) => {
               setSecondaryCharacters(
@@ -148,8 +173,11 @@ export function EditProfile() {
               );
             }}
           />
+          </Typography>
         </label>
+        <br />
         <label>
+          Type slippi Username and Press Enter to Add:
           <CreatableSelect
             components={components}
             inputValue={inputValues}
@@ -163,11 +191,14 @@ export function EditProfile() {
             value={creatableSelectValues}
           />
         </label>
+        </div>
+        <br />
         <button className="button" type="submit">
           Submit
         </button>
-        <Link to="/sitenav">Home</Link>
+       <br />
         <Link to="/myprofile">Back to My Profile</Link>
+        
       </form>
     </div>
     </ThemeProvider>
