@@ -34,7 +34,7 @@ export function MyEvents() {
 
   return (
     <div>
-      <h1>My Events and Tournaments</h1>
+      <h1>Events and Tournaments</h1>
 
       <label>
         <h2>Created Events:</h2>

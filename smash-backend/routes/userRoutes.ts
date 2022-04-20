@@ -1,8 +1,6 @@
 import express from "express";
 import { db } from "../index";
 import bcrypt from "bcrypt";
-import { Body } from "node-fetch";
-import { User } from "../Models/users";
 
 const saltRounds = 10;
 
@@ -26,14 +24,14 @@ const signupSchema = Joi.object({
 
 userRoutes.get("/users", (req, res) => {
   db.manyOrNone(
-    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users"
+    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_community_ids, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users"
   )
     .then((data) => res.json(data))
     .catch((error) => console.log(error));
 });
 userRoutes.get("/users/:id", (req, res) => {
   db.oneOrNone(
-    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE id = $(id)",
+    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_community_ids, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE id = $(id)",
     { id: req.params.id }
   )
     .then((data) => res.json(data))
@@ -41,7 +39,7 @@ userRoutes.get("/users/:id", (req, res) => {
 });
 userRoutes.get("/users/:username", (req, res) => {
   db.oneOrNone(
-    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
+    "SELECT id, email, username, first_name, last_name, birthdate, city, state, country, zip, bio, added_community_ids, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
     {
       id: req.params.username,
     }
@@ -99,7 +97,7 @@ userRoutes.post("/login", (req, res) => {
     return res.status(400).send(validLogin.error);
   }
   db.oneOrNone(
-    "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
+    "SELECT id, email, username, password, first_name, last_name, birthdate, city, state, country, zip, bio, added_community_ids, added_event_ids, main_character, secondary_characters, slippi_usernames FROM users WHERE username = $(username)",
     { username: req.body.username }
   ).then((userCredentials) => {
     if (!userCredentials) {
@@ -150,6 +148,24 @@ userRoutes.put("/user/:id/addEvent", (req: any, res: any) => {
   db.oneOrNone(
     "UPDATE users SET added_event_ids = ARRAY_APPEND(added_event_ids, ${added_event_ids}) WHERE id = ${id} RETURNING id, username, added_event_ids;",
     eventToAdd
+  ).then((updatedUser) => {
+    if (updatedUser) {
+      return res.json(updatedUser);
+    } else {
+      return res.status(400);
+    }
+  });
+});
+
+userRoutes.put("/user/:id/addCommunity", (req: any, res: any) => {
+  console.log(req.body.added_community_ids);
+  const communityToAdd = {
+    id: req.params.id,
+    added_community_ids: req.body.added_community_ids,
+  };
+  db.oneOrNone(
+    "UPDATE users SET added_community_ids = ARRAY_APPEND(added_community_ids, ${added_community_ids}) WHERE id = ${id} RETURNING id, username, added_community_ids;",
+    communityToAdd
   ).then((updatedUser) => {
     if (updatedUser) {
       return res.json(updatedUser);
