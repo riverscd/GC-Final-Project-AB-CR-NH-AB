@@ -1,6 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { StringifyOptions } from "querystring";
-import { Character } from "../models/characters";
 import { User, Users } from "../models/users";
 
 export function GetAllUsers() {
@@ -86,6 +84,18 @@ export function AddEventToUser(id: number, added_event_ids: number) {
   return axios
     .put(`http://localhost:3001/user/${id}/addEvent`, {
       added_event_ids: added_event_ids,
+    })
+    .then((res) => {
+      return res.data;
+    });
+}
+
+export function AddCommunityToUser(id: number, added_community_ids: number) {
+  console.log(id);
+  console.log(added_community_ids);
+  return axios
+    .put(`http://localhost:3001/user/${id}/addCommunity`, {
+      added_community_ids: added_community_ids,
     })
     .then((res) => {
       return res.data;
