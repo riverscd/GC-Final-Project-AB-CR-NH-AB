@@ -103,7 +103,7 @@ export function CreateCommunity() {
               // sm={8}
               md={4}
               component={Paper}
-              elevation={6}
+              elevation={4}
               square
             >
               <Box
@@ -115,9 +115,7 @@ export function CreateCommunity() {
                   alignItems: "center",
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                  {/* <LockOutlinedIcon /> */}
-                </Avatar>
+                
                 <Typography component="h1" variant="h5">
                   Create a Community
                 </Typography>
@@ -201,7 +199,7 @@ export function CreateCommunity() {
                   <Button
                     type="submit"
                     fullWidth
-                    variant="contained"
+                    variant="outlined"
                     sx={{ mt: 3, mb: 2 }}
                   >
                     Submit

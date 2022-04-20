@@ -43,7 +43,8 @@ export function Header() {
       
       <Grid item>
         <Button
-        sx={{mr:1}}
+        sx={{mr:1,
+        borderRadius:1}}
         size="small"
           variant="outlined"
           onClick={handleHome}
@@ -53,7 +54,8 @@ export function Header() {
       </Grid>
       <Grid item>
         <Button
-        sx={{ml:1}}
+        sx={{ml:1,
+          borderRadius:1}}
         size="small"
           variant="outlined"
           onClick={handleSignOut}

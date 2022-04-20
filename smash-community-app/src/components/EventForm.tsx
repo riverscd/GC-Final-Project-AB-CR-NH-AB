@@ -159,9 +159,7 @@ export function CreateEvent() {
                   alignItems: "center",
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                  {/* <LockOutlinedIcon /> */}
-                </Avatar>
+               
                 <Typography component="h1" variant="h5">
                   Create an Event
                 </Typography>
@@ -376,7 +374,7 @@ export function CreateEvent() {
             backgroundPosition: "center",
           }}
         />
-        {/* <Link to="/sitenav">Back to Home</Link> */}
+        
       </Grid>
     </ThemeProvider >
   );

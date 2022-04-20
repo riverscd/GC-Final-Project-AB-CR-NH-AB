@@ -39,55 +39,91 @@ export function CommunityFinder() {
         }}
       >
 
-       <Box sx={{m:2}}>
-          <Typography variant="h5" component="h1">
-            Community Finder
-          </Typography>
-
+        <Box sx={{ m: 2 }}>
           <Box
-          sx={{
-            m:2
-          }}>
-            <form>
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center"
+            }}
+          >
+            <Typography variant="h5" component="h1">
+              Community Finder
+            </Typography>
+
+            <Box
+              sx={{
+                mt: 2,
+                mx: 2
+              }}>
+
               <TextField
                 label="Search by Location:"
                 type="text"
                 variant="outlined"
                 size="small"
-                sx={{m:2}}
+                sx={{ m: 1 }}
                 onChange={(e: any) => setLocation(e.target.value)}>
 
               </TextField>
               <Button
                 variant="outlined"
                 type="submit"
-                sx={{m:2}}
+                sx={{ m: 1 ,
+                borderRadius: 1}}
                 onClick={handleSubmit}>
                 Submit
-                
-              </Button>
-            </form>
-          </Box>
-          
 
-          <Box>
+              </Button>
+
+            </Box>
+          </Box>
+          <Typography
+            variant="h6"
+            component="h2"
+            sx={{
+              mb: 1,
+              ml: 5
+            }}
+          >
+            Communities:
+          </Typography>
+
+          <Box
+            sx={{
+              mx: 5,
+              mb: 5
+            }}>
             {allCommunities?.map((community: Community) => (
-              <Card variant="outlined">
-                {/* <div className="message"> */}
+              <Card
+                variant="outlined"
+                sx={{ mb: 1,
+                  borderRadius: 2 }}>
                 <CardContent>
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography
+                    variant="body1"
+                    color="text.secondary">
                     <ul>
                       <li key={community.id}>Community Name: {`${community.community_name}`}</li>
                       <li>Location: {`${community.location}`}</li>
                       <li>Description: {`${community.description}`}</li>
                     </ul>
+                    <Button
+                      sx={{ mt: 2,
+                        borderRadius: 1 }}
+                      variant="outlined"
+                      size="small"
+                    >
+                      Add to My Communities
+                    </Button>
                   </Typography>
                 </CardContent>
               </Card>
             ))}
           </Box>
-          <Link to="/sitenav">Home</Link>
-          </Box>
+
+        </Box>
       </Grid>
     </ThemeProvider>
   );

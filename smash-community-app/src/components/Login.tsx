@@ -150,7 +150,7 @@ export default function SignInSide() {
               // sm={8}
               md={4}
               component={Paper}
-              elevation={6}
+              elevation={4}
               square
               //sx={{ maxWidth: { xs: 500, md: 400 } }}
             >
