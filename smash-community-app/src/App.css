@@ -9,10 +9,27 @@ li{
 
 Select{
   color: black;
+  
+}
+
+
+.slippi-username{
+  width: 250px
+}
+
+.profile{
+  margin-bottom: 5px
+}
+
+input{
+  width: 250px;
+  height: 35px;
+  
 }
 
 .character-selects{
-  width: 50%
+  width: 250;
+ 
 }
 
 .title{

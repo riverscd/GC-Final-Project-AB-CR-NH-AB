@@ -78,6 +78,16 @@ export function MyProfile() {
           py: 2,
         }}
       >
+         <Card
+        variant="outlined"
+        sx={{ mx:10,
+          borderRadius: 2}}>
+          <CardContent>
+        <Box 
+        sx={{display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        }}>
         <Box
           sx={{
             display: "flex",
@@ -103,56 +113,44 @@ export function MyProfile() {
               alignItems: "flex-start",
              
             }}>
-            <Card sx={{width: 300,px:5}}>
-              <CardContent >
-                <Typography variant="h6" color="text.primary" >
+            {/* <Card sx={{width: 300,px:5}}>
+              <CardContent > */}
+                <Typography variant="h5" color="text.primary" >
                   <ul>
-                    <li>
-                      Username:
+                    <li className="profile">
+                      Username: {`${loggedInUser?.username}`}
                     </li>
-                    <li className="list-item">
-                      {`${loggedInUser?.username}`}
+                    
+                    <li className="profile">
+                      First Name: {`${loggedInUser?.first_name}`}
+                   
                     </li>
-                    <li>
-                      First Name:
+                    <li className="profile">
+                      Last Name: {`${loggedInUser?.last_name}`}
+                   
                     </li>
-                    <li className="list-item">
-                      {`${loggedInUser?.first_name}`}
+                    <li className="profile">
+                      Location: {`${loggedInUser?.city}, ${loggedInUser?.state}`}
                     </li>
-                    <li>
-                      Last Name:
+                    
+                    <li className="profile">
+                      Bio: {`${loggedInUser?.bio}`}
                     </li>
-                    <li className="list-item">
-                      {`${loggedInUser?.last_name}`}
-                    </li>
-                    <li>
-                      Location:
-                    </li>
-                    <li className="list-item">
-                      {`${loggedInUser?.city}, ${loggedInUser?.state}`}
-                    </li>
-                    <li>
-                      Bio:
-                    </li>
-                    <li className="list-item">
-                      {`${loggedInUser?.bio}`}
-                    </li>
+                    
                   </ul>
 
                 </Typography>
 
-                <Typography variant="h6" color="text.primary">
+                <Typography variant="h5" color="text.primary">
                   Main Characters:
                   <ul className="list-item">
                     {mcElements ?? <li>No Characters</li>}</ul>
-                </Typography>
-
-                <Typography variant="h6" color="text.primary">
+                
                   Secondaries:
                   <ul className="list-item">{scElements ?? <li>No Characters</li>}</ul>
-                </Typography>
+              
 
-                <Typography variant="h6" color="text.primary">
+                
                   Slippi Usernames:
                   <ul>
                     {loggedInUser?.slippi_usernames?.map((slippiusername) => (
@@ -160,10 +158,13 @@ export function MyProfile() {
                     )) ?? <li>No Slippi Usernames</li>}
                   </ul>
                 </Typography>
-              </CardContent>
-            </Card>
+              {/* </CardContent>
+            </Card> */}
           </Box>
           </Box>
+          </Box>
+          </CardContent>
+    </Card>
       </Grid>
     </ThemeProvider>
   );

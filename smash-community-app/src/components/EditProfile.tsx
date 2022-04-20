@@ -7,7 +7,7 @@ import Select from "react-select";
 
 import CreatableSelect from "react-select";
 import { ActionMeta, OnChangeValue, MultiValue } from "react-select";
-import { createTheme, ThemeProvider, Typography } from "@mui/material";
+import { autocompleteClasses, Box, Button, Card, CardContent, createTheme, Grid, Paper, ThemeProvider, Typography } from "@mui/material";
 
 export function EditProfile() {
   const components = {
@@ -44,6 +44,10 @@ export function EditProfile() {
   const options = characters.map((character) => {
     return { value: character.id, label: character.character_name };
   });
+
+  function handleNav(){
+    navigate("/myprofile")
+  }
   function handleSubmit(e: any) {
     e.preventDefault();
 
@@ -96,9 +100,44 @@ export function EditProfile() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-    <div>
+      <Grid
+      item
+      xs={12}
+      // sm={8}
+      component={Paper}
+      elevation={6}
+      sx={{
+        py: 2,
+      }}
+      >
+        <Card
+        variant="outlined"
+        sx={{ mx:10,
+          borderRadius: 2}}>
+          <CardContent>
+        <Box 
+        sx={{display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        }}>
+   
       <form onSubmit={handleSubmit}>
-        <p>Edit Your Profile</p>
+
+      <Box
+            sx={{
+             
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center"
+            }}>
+      <Typography component="h1" variant="h5"
+            >
+             Edit Your Profile
+            </Typography>
+            <Button sx={{ my: 2,
+              borderRadius: 1,}}onClick={handleNav} size="small" variant="outlined">Back to My Profile</Button>
+       </Box>
         <label>
           <p>First Name:</p>
           <input type="text" onChange={(e) => setFirstName(e.target.value)} />
@@ -108,7 +147,7 @@ export function EditProfile() {
           <input type="text" onChange={(e) => setLastName(e.target.value)} />
         </label>
         <label>
-          <p>Location Information:</p>
+       
           <p>Country:</p>
           <input type="text" onChange={(e) => setCountry(e.target.value)} />
           <p>State:</p>
@@ -175,9 +214,10 @@ export function EditProfile() {
           />
           </Typography>
         </label>
-        <br />
+      
         <label>
-          Type slippi Username and Press Enter to Add:
+          <p className="slippi-username" >Type slippi Username and Press Enter to Add:</p>
+          
           <CreatableSelect
             components={components}
             inputValue={inputValues}
@@ -193,14 +233,21 @@ export function EditProfile() {
         </label>
         </div>
         <br />
-        <button className="button" type="submit">
+        <Button className="button" type="submit" variant="outlined" sx={{
+                width: 250,
+                borderRadius: 1
+              }}>
           Submit
-        </button>
+        </Button>
        <br />
-        <Link to="/myprofile">Back to My Profile</Link>
+        
         
       </form>
-    </div>
+  
+    </Box>
+    </CardContent>
+    </Card>
+    </Grid>
     </ThemeProvider>
   );
 }
