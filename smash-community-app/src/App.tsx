@@ -24,6 +24,7 @@ function App() {
     palette: {
       mode: "dark",
     },
+    
   });
 
   if (
@@ -36,7 +37,7 @@ function App() {
     return (
       <ThemeProvider theme={darkTheme}>
         {" "}
-        <Container component="main" maxWidth="xs">
+        <Container component="main" >
           <CssBaseline />
           <Header />
         </Container>
