@@ -21,7 +21,7 @@ import { Header } from "./components/Header";
 import { UserContextProvider } from "./contexts/UserContextProvider";
 import { userInfo } from "os";
 import { createContext } from "react";
-import UserContext from "./contexts/UserContext";
+import UserCohntext from "./contexts/UserContext";
 import { EditProfile } from "./components/EditProfile";
 import { PostBoard } from "./components/PostBoard";
 

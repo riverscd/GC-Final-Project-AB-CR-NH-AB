@@ -1,11 +1,22 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AddCommunity } from "../services/communities";
-import UserContext from "../contexts/UserContext"
-import * as Yup from 'yup';
+import UserContext from "../contexts/UserContext";
+import * as Yup from "yup";
 import Smashbackground from "../images/Smashbackground.png";
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { Avatar, Box, Button, createTheme, CssBaseline, Grid, Paper, TextField, ThemeProvider, Typography } from "@mui/material";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import {
+  Avatar,
+  Box,
+  Button,
+  createTheme,
+  CssBaseline,
+  Grid,
+  Paper,
+  TextField,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 // import loggedInUser from "../contexts/UserContext"
 
 export function CreateCommunity() {
@@ -16,17 +27,17 @@ export function CreateCommunity() {
   const { loggedInUser } = useContext(UserContext);
 
   const initialValues = {
-    communityName: '',
-    location: '',
-    description: '',
-  }
+    communityName: "",
+    location: "",
+    description: "",
+  };
 
   // function handleSubmit(e: any) {
   //   e.preventDefault();
   //   AddCommunity(
-  //     communityName, 
-  //     location, 
-  //     description, 
+  //     communityName,
+  //     location,
+  //     description,
   //     loggedInUser!.id
   //     ).then((newCommunity) => {
   //     if (newCommunity) {
@@ -48,22 +59,18 @@ export function CreateCommunity() {
         <Formik
           initialValues={{ ...initialValues }}
           validationSchema={Yup.object({
-            communityName: Yup
-              .string()
-              .min(2, 'Community name must be at least 2 characters')
-              .max(50, 'Community name cannot be longer than 50 characters')
-              .required('Community Name is required'),
-            location: Yup
-              .string()
-              .min(1, 'Location must be at least 1 character')
-              .max(100, 'Location name cannot be longer than 100 characters'),
-            description: Yup
-              .string()
-              .min(1, 'Description must be at least 1 character')
-              .max(500, 'Description cannot be longer than 500 characters')
-              .required('Description is required'),
+            communityName: Yup.string()
+              .min(2, "Community name must be at least 2 characters")
+              .max(50, "Community name cannot be longer than 50 characters")
+              .required("Community Name is required"),
+            location: Yup.string()
+              .min(1, "Location must be at least 1 character")
+              .max(100, "Location name cannot be longer than 100 characters"),
+            description: Yup.string()
+              .min(1, "Description must be at least 1 character")
+              .max(500, "Description cannot be longer than 500 characters")
+              .required("Description is required"),
           })}
-
           onSubmit={(values: any) => {
             console.log(values);
             AddCommunity(
@@ -77,9 +84,8 @@ export function CreateCommunity() {
                 navigate("/communityeventmanager");
               }
             });
-          }}>
-
-
+          }}
+        >
           {({
             errors,
             handleBlur,
@@ -89,9 +95,8 @@ export function CreateCommunity() {
             isValid,
             dirty,
             touched,
-            values
+            values,
           }) => (
-
             <Grid
               item
               xs={12}
@@ -101,7 +106,6 @@ export function CreateCommunity() {
               elevation={6}
               square
             >
-
               <Box
                 sx={{
                   my: 8,
@@ -120,18 +124,21 @@ export function CreateCommunity() {
                 <Box
                   component="form"
                   noValidate
-                  // autoComplete="off"  
+                  // autoComplete="off"
                   onSubmit={handleSubmit}
                   sx={{ mt: 3 }}
                 >
-
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
                       <TextField
-                        error={Boolean(touched.communityName && errors.communityName)}
+                        error={Boolean(
+                          touched.communityName && errors.communityName
+                        )}
                         fullWidth
                         required
-                        helperText={touched.communityName && errors.communityName}
+                        helperText={
+                          touched.communityName && errors.communityName
+                        }
                         label="Community Name"
                         id="communityName"
                         name="communityName"
@@ -170,7 +177,9 @@ export function CreateCommunity() {
 
                     <Grid item xs={12}>
                       <TextField
-                        error={Boolean(touched.description && errors.description)}
+                        error={Boolean(
+                          touched.description && errors.description
+                        )}
                         fullWidth
                         required
                         helperText={touched.description && errors.description}
@@ -188,7 +197,6 @@ export function CreateCommunity() {
                         }}
                       />
                     </Grid>
-
                   </Grid>
                   <Button
                     type="submit"
@@ -198,7 +206,6 @@ export function CreateCommunity() {
                   >
                     Submit
                   </Button>
-
                 </Box>
               </Box>
             </Grid>
@@ -223,9 +230,6 @@ export function CreateCommunity() {
         />
         {/* <Link to="/sitenav">Back to Home</Link> */}
       </Grid>
-    </ThemeProvider >
-
-
+    </ThemeProvider>
   );
 }
-
