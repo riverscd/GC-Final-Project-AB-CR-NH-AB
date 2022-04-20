@@ -47,13 +47,13 @@ export function CommunityFinder() {
       });
     }
   }
-
-  GetCommunitiesByLocation(location as string).then(
-    (data: Community[]): void => {
-      setAllCommunities(data);
-    }
-  );
-
+  useEffect(() => {
+    GetCommunitiesByLocation(location as string).then(
+      (data: Community[]): void => {
+        setAllCommunities(data);
+      }
+    );
+  }, [setLocation]);
   const darkTheme = createTheme({
     palette: {
       mode: "dark",

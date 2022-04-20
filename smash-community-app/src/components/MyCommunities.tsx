@@ -29,8 +29,8 @@ export function MyCommunities() {
         setUsersCreatedCommunities(data);
       });
     }
-    if (loggedInUser?.added_event_ids) {
-      GetMultipleCommunitiesById(loggedInUser.added_event_ids).then(
+    if (loggedInUser?.added_community_ids) {
+      GetMultipleCommunitiesById(loggedInUser.added_community_ids).then(
         (data: any) => {
           setUsersJoinedCommunities(data);
         }
