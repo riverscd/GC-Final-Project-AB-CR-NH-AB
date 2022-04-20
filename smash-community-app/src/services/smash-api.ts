@@ -9,7 +9,7 @@ import {
 export function GetAllTournaments() : Promise<TournamentNode[]> {
   return axios
     .get(
-      "http://localhost:3001/tournaments")
+      "https://obscure-basin-51700.herokuapp.com/tournaments")
     .then((res: AxiosResponse<GetTournamentsResponse>): TournamentNode[] => {
       return res.data.data.tournaments.nodes;
     });
@@ -17,7 +17,7 @@ export function GetAllTournaments() : Promise<TournamentNode[]> {
 
 export function GetTournamentsByState(state: string) : Promise<TournamentNode[]> {
   return axios.get(
-    `http://localhost:3001/tournaments/byState`,
+    `https://obscure-basin-51700.herokuapp.com/tournaments/byState`,
     {
       params: {
       "state": state

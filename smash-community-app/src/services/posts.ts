@@ -4,7 +4,7 @@ import { Post, Posts } from "../models/posts";
 
 export function GetAllPosts() {
   return axios
-    .get("http://localhost:3001/posts")
+    .get("https://obscure-basin-51700.herokuapp.com/posts")
     .then((res: AxiosResponse<Posts>): Posts => {
       return res.data;
     });
@@ -13,7 +13,7 @@ export function GetAllPosts() {
 
 export function GetPostById(id: number) {
   return axios
-    .get(`http://localhost:3001/posts/${id}`)
+    .get(`https://obscure-basin-51700.herokuapp.com/posts/${id}`)
     .then((res: AxiosResponse<Posts>): Posts => {
       return res.data;
     });
@@ -26,7 +26,7 @@ export function AddPost(
   post_message: string, 
 ) { 
   return axios 
-  .post("http://localhost:3001/create-post", {
+  .post("https://obscure-basin-51700.herokuapp.com/create-post", {
   author_id: author_id,  
   post_title: post_title, 
     // date: date, 
