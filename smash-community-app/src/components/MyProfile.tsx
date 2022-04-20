@@ -114,6 +114,18 @@ export function MyProfile() {
                       {`${loggedInUser?.username}`}
                     </li>
                     <li>
+                      First Name:
+                    </li>
+                    <li className="list-item">
+                      {`${loggedInUser?.first_name}`}
+                    </li>
+                    <li>
+                      Last Name:
+                    </li>
+                    <li className="list-item">
+                      {`${loggedInUser?.last_name}`}
+                    </li>
+                    <li>
                       Location:
                     </li>
                     <li className="list-item">

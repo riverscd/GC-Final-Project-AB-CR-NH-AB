@@ -106,10 +106,12 @@ export function PostBoard() {
           
           <Box
             sx={{
-              mx: 5,
+              mx: 25,
               
             }}
+            
           >
+  
           <Card
             variant="outlined"
             sx={{ mb: 1,
@@ -158,13 +160,21 @@ export function PostBoard() {
             </Box>
           </Modal>
           </Box>
-
+         
           <Box
             sx={{
-              mx: 10,
+             mx:25
         
             }}
           >
+             <Typography
+                variant="h6"
+                component="h2"
+                sx={{ mb: 1 }}
+              >
+                Replies:
+              </Typography>
+
            <ul>
             {allReplies.map((reply: Reply) => (
               <Card
