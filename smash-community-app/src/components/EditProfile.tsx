@@ -216,7 +216,7 @@ export function EditProfile() {
         </label>
       
         <label>
-          <p className="slippi-username" >Type slippi Username and Press Enter to Add:</p>
+          <p>Type slippi Username and Press Enter to Add:</p>
           
           <CreatableSelect
             components={components}
