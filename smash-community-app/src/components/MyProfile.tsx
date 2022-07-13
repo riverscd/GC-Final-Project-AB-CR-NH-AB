@@ -14,13 +14,13 @@ export function MyProfile() {
       return characterId === character.id;
     })
   );
-  console.log(foundMainCharacters);
+
   const foundSecondaryCharacters: Character[] = characters.filter((character) =>
     loggedInUser?.secondary_characters?.find((characterId) => {
       return characterId === character.id;
     })
   );
-  console.log(foundSecondaryCharacters);
+
   const mcElements: JSX.Element[] = foundMainCharacters?.map(
     (character: Character) => (
       <li key={character.id}>
@@ -92,7 +92,8 @@ export function MyProfile() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: 'center'
           }}>
           <Typography component="h1" variant="h5"
             sx={{ mb: 2 }}
@@ -104,6 +105,7 @@ export function MyProfile() {
             variant="outlined"
             sx={{ mb: 2, borderRadius: 1 }}
             onClick={handleNav}>
+
             Edit Profile
           </Button>
           <Box
@@ -115,7 +117,7 @@ export function MyProfile() {
             }}>
             {/* <Card sx={{width: 300,px:5}}>
               <CardContent > */}
-                <Typography variant="h5" color="text.primary" >
+                <Typography align="center" variant="h5" color="text.primary" >
                   <ul>
                     <li className="profile">
                       Username: {`${loggedInUser?.username}`}
@@ -141,21 +143,20 @@ export function MyProfile() {
 
                 </Typography>
 
-                <Typography variant="h5" color="text.primary">
-                  Main Characters:
+                <Typography align="center" variant="h5" color="text.primary">
                   <ul className="list-item">
-                    {mcElements ?? <li>No Characters</li>}</ul>
+                  <li  className="profile"> Main Characters:
+                  {mcElements ?? "No Characters"} </li>
                 
-                  Secondaries:
-                  <ul className="list-item">{scElements ?? <li>No Characters</li>}</ul>
+                  <li  className="profile"> Secondaries:
+                  {scElements ?? "No Characters"}</li>
               
 
                 
                   Slippi Usernames:
-                  <ul>
                     {loggedInUser?.slippi_usernames?.map((slippiusername) => (
-                      <li className="list-item">{slippiusername}</li>
-                    )) ?? <li>No Slippi Usernames</li>}
+                      <li  className="profile">{slippiusername}</li>
+                    )) ?? <li className="profile"> No Slippi Usernames</li>}
                   </ul>
                 </Typography>
               {/* </CardContent>
